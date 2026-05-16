@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Skin Juice Body Care</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -18,14 +21,14 @@
 }
 
 body{
-    background:#f6f0ea;
-    color:#2b1c15;
+    background:#f7f0e8;
+    color:#2a1d17;
     font-family:'Cormorant Garamond', serif;
-    line-height:1.5;
+    overflow-x:hidden;
 }
 
 img{
-    max-width:100%;
+    width:100%;
     display:block;
 }
 
@@ -33,152 +36,174 @@ a{
     text-decoration:none;
 }
 
-.hero{
+.container{
     width:100%;
-    background:#f6f0ea;
-    padding:70px 20px 40px;
+    max-width:1400px;
+    margin:auto;
+    padding:0 20px;
+}
+
+.hero{
+    padding:70px 20px 50px;
     text-align:center;
 }
 
 .logo{
     font-size:110px;
-    letter-spacing:8px;
     font-weight:700;
+    letter-spacing:10px;
     line-height:1;
 }
 
-.tagline{
-    margin-top:15px;
-    color:#c8751a;
+.sublogo{
+    color:#d67a1f;
     font-size:24px;
     letter-spacing:5px;
-    text-transform:uppercase;
+    margin-top:12px;
     font-weight:600;
 }
 
-.headline{
+.hero-title{
+    font-size:74px;
     margin-top:40px;
-    font-size:72px;
     line-height:1.05;
     font-weight:600;
 }
 
-.subheadline{
-    max-width:950px;
-    margin:25px auto 0;
-    font-size:32px;
+.hero-text{
+    max-width:1000px;
+    margin:30px auto 0;
+    font-size:34px;
+    line-height:1.35;
 }
 
 .hero-image{
     max-width:1400px;
-    margin:50px auto 0;
-    border-radius:30px;
+    margin:55px auto 0;
+    border-radius:32px;
     overflow:hidden;
-    box-shadow:0 8px 40px rgba(0,0,0,.08);
+    box-shadow:0 10px 40px rgba(0,0,0,.08);
+}
+
+.shop-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:24px;
+    margin-top:55px;
+}
+
+.shop-buttons a{
+    background:#e3811e;
+    color:white;
+    padding:22px 52px;
+    border-radius:18px;
+    font-size:28px;
+    font-weight:700;
+    transition:.25s ease;
+}
+
+.shop-buttons a:hover{
+    background:#c96f16;
 }
 
 .section{
-    padding:90px 20px;
-}
-
-.container{
-    max-width:1400px;
-    margin:auto;
+    padding:100px 0;
 }
 
 .section-title{
     text-align:center;
     font-size:72px;
-    margin-bottom:25px;
+    line-height:1.05;
+    margin-bottom:24px;
     font-weight:600;
 }
 
-.section-subtitle{
-    text-align:center;
+.section-text{
     max-width:1000px;
-    margin:0 auto 60px;
-    font-size:32px;
-}
-
-.category-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
-}
-
-.category-card{
-    background:#f9f4ef;
-    border:1px solid #e4d7ca;
-    border-radius:26px;
-    padding:45px 30px;
+    margin:0 auto 70px;
     text-align:center;
-    transition:.3s ease;
+    font-size:32px;
+    line-height:1.4;
 }
 
-.category-card:hover{
-    transform:translateY(-6px);
+.collection-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:28px;
 }
 
-.category-card h3{
-    font-size:42px;
-    margin-bottom:15px;
-    color:#a85e18;
+.collection-card{
+    background:#fbf6f1;
+    border:1px solid #eadbcc;
+    border-radius:28px;
+    padding:42px 28px;
+    text-align:center;
 }
 
-.category-card p{
+.collection-card h3{
+    color:#ab611d;
+    font-size:40px;
+    margin-bottom:14px;
+}
+
+.collection-card p{
     font-size:28px;
+    line-height:1.3;
 }
 
-.product-feature{
+.feature-section{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:60px;
     align-items:center;
-    margin-bottom:120px;
 }
 
-.product-feature img{
+.feature-image img{
     border-radius:28px;
-    box-shadow:0 8px 40px rgba(0,0,0,.08);
+    box-shadow:0 10px 40px rgba(0,0,0,.08);
 }
 
-.product-copy h2{
-    font-size:70px;
-    margin-bottom:25px;
+.feature-copy h2{
+    font-size:68px;
+    margin-bottom:24px;
+    line-height:1.05;
 }
 
-.product-copy p{
-    font-size:32px;
+.feature-copy p{
+    font-size:31px;
     margin-bottom:30px;
+    line-height:1.4;
 }
 
-.product-copy ul{
-    padding-left:25px;
+.feature-copy ul{
+    padding-left:26px;
 }
 
-.product-copy li{
+.feature-copy li{
     font-size:28px;
-    margin-bottom:10px;
+    margin-bottom:12px;
+    line-height:1.35;
 }
 
 .fragrance-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-    margin-top:60px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:24px;
 }
 
 .fragrance-card{
-    background:#f8f3ed;
-    border:1px solid #e1d4c6;
-    border-radius:22px;
-    padding:35px 20px;
+    background:#fbf6f1;
+    border:1px solid #eadbcc;
+    border-radius:24px;
+    padding:34px 20px;
     text-align:center;
 }
 
 .fragrance-card h4{
-    color:#a85e18;
+    color:#ab611d;
     font-size:38px;
+    line-height:1.1;
     margin-bottom:10px;
 }
 
@@ -186,49 +211,29 @@ a{
     font-size:24px;
 }
 
-.shop-buttons{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:25px;
-    margin-top:60px;
-}
-
-.shop-buttons a{
-    background:#e27f1c;
-    color:white;
-    padding:22px 50px;
-    border-radius:18px;
-    font-size:28px;
-    font-weight:700;
-    transition:.3s ease;
-}
-
-.shop-buttons a:hover{
-    background:#c96e15;
-}
-
 .footer{
-    background:#df7a17;
+    background:#df7c1a;
     color:white;
     text-align:center;
-    padding:30px 20px;
-    margin-top:70px;
+    padding:34px 20px;
+    margin-top:80px;
     font-size:24px;
     letter-spacing:2px;
+    line-height:1.4;
 }
 
-@media(max-width:900px){
+@media(max-width:950px){
 
 .logo{
-    font-size:70px;
+    font-size:68px;
+    letter-spacing:4px;
 }
 
-.headline{
+.hero-title{
     font-size:48px;
 }
 
-.subheadline{
+.hero-text{
     font-size:24px;
 }
 
@@ -236,28 +241,38 @@ a{
     font-size:48px;
 }
 
-.section-subtitle{
+.section-text{
     font-size:24px;
 }
 
-.product-feature{
+.feature-section{
     grid-template-columns:1fr;
 }
 
-.product-copy h2{
+.feature-copy h2{
     font-size:48px;
 }
 
-.product-copy p{
+.feature-copy p{
     font-size:24px;
 }
 
-.product-copy li{
+.feature-copy li{
     font-size:22px;
 }
 
-.category-card h3{
-    font-size:34px;
+.collection-card h3{
+    font-size:32px;
+}
+
+.collection-card p{
+    font-size:22px;
+}
+
+.shop-buttons a{
+    width:100%;
+    text-align:center;
+    font-size:24px;
 }
 
 }
@@ -275,19 +290,20 @@ a{
 SKIN JUICE
 </div>
 
-<div class="tagline">
+<div class="sublogo">
 BODY CARE, ELEVATED
 </div>
 
-<div class="headline">
+<div class="hero-title">
 Smells like dessert.<br>
 Feels like luxury.
 </div>
 
-<div class="subheadline">
-Dessert-inspired body care handcrafted for soft, smooth, glowing skin.
-Foaming scrubs, rich moisturizers, Lip Seal conditioning treatments,
-goat milk soaps, gift boxes, and indulgent self-care essentials.
+<div class="hero-text">
+Dessert-inspired foaming body scrubs, rich Second Skin Moisturizers,
+Lip Seal conditioning treatments, goat milk soaps, gift boxes,
+and indulgent self-care essentials handcrafted for soft,
+smooth, glowing skin.
 </div>
 
 <div class="hero-image">
@@ -295,13 +311,20 @@ goat milk soaps, gift boxes, and indulgent self-care essentials.
 </div>
 
 <div class="shop-buttons">
-<a href="https://www.etsy.com/shop/SkinJuiceBody" target="_blank">SHOP ETSY</a>
-<a href="https://www.ebay.com/usr/skinjuicebody" target="_blank">SHOP EBAY</a>
+
+<a href="https://www.etsy.com/shop/SkinJuiceBody" target="_blank">
+SHOP ETSY
+</a>
+
+<a href="https://www.ebay.com/usr/shook" target="_blank">
+SHOP EBAY
+</a>
+
 </div>
 
 </section>
 
-<!-- SHOP COLLECTION -->
+<!-- COLLECTION -->
 
 <section class="section">
 
@@ -311,45 +334,47 @@ goat milk soaps, gift boxes, and indulgent self-care essentials.
 Shop The Collection
 </h2>
 
-<p class="section-subtitle">
-Luxury dessert-inspired body care designed to turn everyday routines
-into indulgent self-care rituals.
+<p class="section-text">
+Luxury dessert-inspired body care designed to transform
+ordinary routines into elevated self-care experiences.
 </p>
 
-<div class="category-grid">
+<div class="collection-grid">
 
-<div class="category-card">
+<div class="collection-card">
 <h3>Foaming Body Scrubs</h3>
-<p>Dense, creamy exfoliating scrubs with rich dessert fragrances.</p>
+<p>Dense, creamy exfoliating scrubs with indulgent bakery-inspired fragrances.</p>
 </div>
 
-<div class="category-card">
+<div class="collection-card">
 <h3>Second Skin Moisturizers</h3>
-<p>Rich moisturizers that leave skin soft, silky, and hydrated.</p>
+<p>Rich moisturizers crafted for soft, silky, hydrated skin.</p>
 </div>
 
-<div class="category-card">
+<div class="collection-card">
 <h3>Lip Seal Treatments</h3>
 <p>Conditioning lip treatments inspired by nostalgic sweet flavors.</p>
 </div>
 
-<div class="category-card">
+<div class="collection-card">
 <h3>Goat Milk Soaps</h3>
-<p>Handcrafted soaps with creamy lather and boutique fragrance blends.</p>
+<p>Handcrafted soaps with creamy lather and luxury fragrance blends.</p>
 </div>
 
-<div class="category-card">
+<div class="collection-card">
 <h3>Samples & Minis</h3>
 <p>Perfect for discovering your favorite Skin Juice fragrances.</p>
 </div>
 
-<div class="category-card">
+<div class="collection-card">
 <h3>Gift Boxes</h3>
-<p>Curated self-care collections for gifting or personal indulgence.</p>
+<p>Curated body care collections designed for gifting and indulgence.</p>
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 <!-- LIP SEAL -->
@@ -358,17 +383,17 @@ into indulgent self-care rituals.
 
 <div class="container">
 
-<div class="product-feature">
+<div class="feature-section">
 
-<div class="product-copy">
+<div class="feature-copy">
 
 <h2>
 Lip Seal Conditioning Treatments
 </h2>
 
 <p>
-Smooth, rich, conditioning lip treatments inspired by nostalgic dessert
-and candy fragrances with a luxe Skin Juice twist.
+Smooth, rich conditioning treatments inspired by nostalgic desserts,
+sweet treats, bakery favorites, and juicy fruit blends.
 </p>
 
 <ul>
@@ -376,36 +401,37 @@ and candy fragrances with a luxe Skin Juice twist.
 <li>Cherry Blast</li>
 <li>Cotton Candy</li>
 <li>Fruity Pebbles</li>
-<li>Peaches & Crème</li>
-<li>Raspberry Sorbet</li>
 <li>Fresh Lemonade</li>
+<li>Raspberry Sorbet</li>
 <li>Caramel Apple</li>
+<li>Peaches & Crème</li>
 </ul>
 
 </div>
 
-<div>
-<img src="profile-square.png" alt="Lip Seal">
+<div class="feature-image">
+<img src="LipProd All Six.png" alt="Skin Juice Lip Seal Collection">
 </div>
 
 </div>
 
 </div>
+
 </section>
 
-<!-- SOAP SECTION -->
+<!-- SOAPS -->
 
 <section class="section">
 
 <div class="container">
 
-<div class="product-feature">
+<div class="feature-section">
 
-<div>
-<img src="two-products.png" alt="Goat Milk Soap">
+<div class="feature-image">
+<img src="SQSoaps.jpg" alt="Skin Juice Goat Milk Soaps">
 </div>
 
-<div class="product-copy">
+<div class="feature-copy">
 
 <h2>
 Goat Milk Soaps
@@ -413,15 +439,15 @@ Goat Milk Soaps
 
 <p>
 Creamy handcrafted goat milk soaps inspired by bakery desserts,
-fresh fruits, comforting florals, and nostalgic treats.
+fresh fruits, soft florals, and comforting luxury fragrances.
 </p>
 
 <ul>
 <li>Sample size soaps</li>
-<li>Full size bars</li>
-<li>Layered artisan styles</li>
-<li>Dessert-inspired fragrance blends</li>
-<li>Boutique handcrafted appearance</li>
+<li>Full size soaps</li>
+<li>Layered artisan designs</li>
+<li>Dessert-inspired fragrances</li>
+<li>Luxury handcrafted appearance</li>
 </ul>
 
 </div>
@@ -429,43 +455,7 @@ fresh fruits, comforting florals, and nostalgic treats.
 </div>
 
 </div>
-</section>
 
-<!-- SAMPLE SECTION -->
-
-<section class="section">
-
-<div class="container">
-
-<h2 class="section-title">
-Try The Scents
-</h2>
-
-<p class="section-subtitle">
-Mini samples are perfect for discovering your favorite Skin Juice
-fragrances before committing to full-size products.
-</p>
-
-<div class="category-grid">
-
-<div class="category-card">
-<h3>Scrub Samples</h3>
-<p>Mini exfoliating body scrub samples in rotating fragrances.</p>
-</div>
-
-<div class="category-card">
-<h3>Moisturizer Samples</h3>
-<p>Second Skin Moisturizer minis perfect for testing fragrances.</p>
-</div>
-
-<div class="category-card">
-<h3>Soap Samples</h3>
-<p>Handcrafted goat milk soap sample pieces and gift assortments.</p>
-</div>
-
-</div>
-
-</div>
 </section>
 
 <!-- GIFT BOXES -->
@@ -474,9 +464,9 @@ fragrances before committing to full-size products.
 
 <div class="container">
 
-<div class="product-feature">
+<div class="feature-section">
 
-<div class="product-copy">
+<div class="feature-copy">
 
 <h2>
 Gift Boxes & Body Care Sets
@@ -489,21 +479,22 @@ products beautifully paired together for gifting and indulgence.
 
 <ul>
 <li>Scrub + moisturizer duos</li>
-<li>Lip Seal bundles</li>
+<li>Lip Seal collections</li>
+<li>Soap assortments</li>
 <li>Sample discovery sets</li>
-<li>Seasonal collections</li>
-<li>Luxury self-care gift boxes</li>
+<li>Luxury self-care bundles</li>
 </ul>
 
 </div>
 
-<div>
-<img src="orange-chiffon-label.png" alt="Gift Boxes">
+<div class="feature-image">
+<img src="GiftBox.png" alt="Skin Juice Gift Boxes">
 </div>
 
 </div>
 
 </div>
+
 </section>
 
 <!-- FRAGRANCES -->
@@ -516,7 +507,7 @@ products beautifully paired together for gifting and indulgence.
 Dessert-Inspired & Fresh Fragrances
 </h2>
 
-<p class="section-subtitle">
+<p class="section-text">
 Choose from bakery-inspired desserts, fruity favorites,
 fresh clean scents, and comforting luxury blends.
 </p>
@@ -610,12 +601,8 @@ SHOP SCRUBS
 SHOP LIP SEAL
 </a>
 
-<a href="https://www.etsy.com/shop/SkinJuiceBody" target="_blank">
-SHOP GIFT BOXES
-</a>
-
-<a href="https://www.ebay.com/usr/skinjuicebody" target="_blank">
-SHOP SAMPLES
+<a href="https://www.ebay.com/usr/shook" target="_blank">
+SHOP EBAY
 </a>
 
 </div>
@@ -634,14 +621,14 @@ SHOP SAMPLES
 Meet Skin Juice
 </h2>
 
-<p class="section-subtitle">
+<p class="section-text">
 Skin Juice was created for people who want body care to feel indulgent,
 comforting, beautiful, and unforgettable.
 
 From whipped foaming body scrubs to rich Second Skin Moisturizers,
-Lip Seal treatments, soaps, and curated gift boxes,
-every product is handcrafted to elevate everyday routines into
-luxurious self-care rituals.
+Lip Seal conditioning treatments, handcrafted goat milk soaps,
+samples, and curated gift boxes, every product is designed
+to elevate everyday routines into luxurious self-care rituals.
 </p>
 
 </div>
@@ -651,7 +638,7 @@ luxurious self-care rituals.
 <!-- FOOTER -->
 
 <div class="footer">
-FOAMING BODY SCRUBS • SECOND SKIN MOISTURIZERS • LIP SEAL • GOAT MILK SOAPS • GIFT BOXES
+FOAMING BODY SCRUBS • SECOND SKIN MOISTURIZERS • LIP SEAL CONDITIONING TREATMENTS • GOAT MILK SOAPS • GIFT BOXES
 </div>
 
 </body>
