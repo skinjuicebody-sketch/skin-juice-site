@@ -3,31 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SkinSessed dessert-inspired body care: foaming body scrubs, Second Skin moisturizers, Dessert Balm Glide Sticks, handcrafted goat milk soaps, and gift boxes.">
 <title>SkinSessed | Next Level Obsessed Body Care</title>
+<meta name="description" content="SkinSessed dessert-inspired body care: foaming body scrubs, Second Skin Moisturizers, Dessert Balm Glide Sticks, Lip Seals, handmade goat milk soaps, samples, and gift boxes.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700;6..96,800;6..96,900&family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
     --cream:#fff8ef;
-    --cream-2:#f7eadb;
-    --champagne:#f2d8b7;
-    --soft-pink:#f8d8d0;
-    --blush:#eaa39c;
-    --rose:#b95f59;
-    --gold:#c99447;
-    --deep-gold:#9a672d;
-    --olive:#4a5d33;
-    --olive-dark:#26341f;
-    --brown:#3a2418;
-    --ink:#241812;
-    --white:#ffffff;
-    --shadow:0 22px 60px rgba(58,36,24,.14);
-    --soft-shadow:0 14px 38px rgba(58,36,24,.10);
-    --radius:34px;
+    --cream-2:#f8ecdf;
+    --champagne:#f3dfc4;
+    --blush:#f8d8d0;
+    --rose:#c44b67;
+    --berry:#9f2344;
+    --olive:#42562b;
+    --sage:#77845b;
+    --gold:#c79642;
+    --deep:#2a1d17;
+    --soft-shadow:0 18px 55px rgba(42,29,23,.13);
+    --card-shadow:0 12px 34px rgba(42,29,23,.08);
 }
 
 *{
@@ -42,27 +38,13 @@ html{
 
 body{
     background:
-        radial-gradient(circle at top left, rgba(248,216,208,.55), transparent 36%),
-        radial-gradient(circle at top right, rgba(201,148,71,.20), transparent 34%),
-        linear-gradient(180deg, var(--cream), #f6ecdf 42%, #fff8ef);
-    color:var(--ink);
+        radial-gradient(circle at top left, rgba(248,216,208,.65), transparent 34rem),
+        radial-gradient(circle at top right, rgba(199,150,66,.16), transparent 30rem),
+        linear-gradient(180deg,var(--cream),var(--cream-2));
+    color:var(--deep);
     font-family:'Cormorant Garamond', serif;
     overflow-x:hidden;
     line-height:1.5;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    opacity:.33;
-    background-image:
-        linear-gradient(120deg, rgba(255,255,255,.55), rgba(255,255,255,0) 28%),
-        radial-gradient(circle at 18% 22%, rgba(255,255,255,.8) 0 1px, transparent 1px),
-        radial-gradient(circle at 72% 68%, rgba(154,103,45,.18) 0 1px, transparent 1px);
-    background-size:100% 100%, 34px 34px, 44px 44px;
-    z-index:-1;
 }
 
 img{
@@ -72,523 +54,370 @@ img{
 
 a{
     text-decoration:none;
-    color:inherit;
 }
 
 .container{
-    width:min(1420px, 100%);
-    margin:0 auto;
+    width:100%;
+    max-width:1440px;
+    margin:auto;
     padding:0 24px;
 }
 
 .eyebrow{
     font-family:'Cinzel', serif;
-    color:var(--deep-gold);
-    font-size:16px;
-    font-weight:700;
+    color:var(--berry);
     letter-spacing:5px;
     text-transform:uppercase;
+    font-size:18px;
+    font-weight:700;
 }
 
-.script{
+.small-script{
     font-family:'Great Vibes', cursive;
-    font-weight:400;
+    color:var(--olive);
+    font-size:42px;
+    line-height:1;
 }
-
-/* TOP BAR */
-
-.topbar{
-    background:linear-gradient(90deg, var(--olive-dark), #40532c, var(--olive-dark));
-    color:#fff5df;
-    font-family:'Cinzel', serif;
-    font-size:14px;
-    letter-spacing:2.5px;
-    text-transform:uppercase;
-    text-align:center;
-    padding:11px 18px;
-    border-bottom:1px solid rgba(255,224,178,.35);
-}
-
-.nav{
-    position:sticky;
-    top:0;
-    z-index:30;
-    backdrop-filter:blur(18px);
-    background:rgba(255,248,239,.83);
-    border-bottom:1px solid rgba(201,148,71,.25);
-}
-
-.nav-inner{
-    width:min(1420px, 100%);
-    margin:auto;
-    padding:14px 24px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:22px;
-}
-
-.nav-logo{
-    font-family:'Playfair Display', serif;
-    font-size:34px;
-    font-weight:800;
-    letter-spacing:.5px;
-    color:var(--brown);
-    white-space:nowrap;
-}
-
-.nav-logo span{
-    color:var(--deep-gold);
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:20px;
-    flex-wrap:wrap;
-    justify-content:flex-end;
-    font-family:'Cinzel', serif;
-    font-size:13px;
-    letter-spacing:1.8px;
-    text-transform:uppercase;
-    color:#4b3324;
-}
-
-.nav-links a{
-    transition:.25s ease;
-}
-
-.nav-links a:hover{
-    color:var(--deep-gold);
-}
-
-.nav-shop{
-    background:linear-gradient(135deg, var(--gold), #e1b66f, var(--deep-gold));
-    color:white !important;
-    padding:10px 19px;
-    border-radius:999px;
-    box-shadow:0 8px 22px rgba(154,103,45,.22);
-}
-
-/* HERO */
 
 .hero{
     position:relative;
+    padding:86px 20px 70px;
+    text-align:center;
+    background:
+        linear-gradient(180deg,rgba(255,248,239,.98),rgba(248,236,223,.92)),
+        radial-gradient(circle at 22% 18%,rgba(196,75,103,.18),transparent 28rem);
     overflow:hidden;
-    padding:84px 0 70px;
 }
 
-.hero::before,
-.hero::after{
+.hero:before,
+.hero:after{
     content:"";
     position:absolute;
-    border-radius:999px;
-    filter:blur(2px);
-    opacity:.55;
+    width:430px;
+    height:430px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(199,150,66,.17),transparent 68%);
     pointer-events:none;
 }
 
-.hero::before{
-    width:420px;
-    height:420px;
+.hero:before{
     left:-170px;
-    top:80px;
-    background:radial-gradient(circle, rgba(248,216,208,.85), transparent 65%);
+    top:-160px;
 }
 
-.hero::after{
-    width:520px;
-    height:520px;
-    right:-230px;
-    top:40px;
-    background:radial-gradient(circle, rgba(201,148,71,.30), transparent 68%);
+.hero:after{
+    right:-170px;
+    bottom:-190px;
 }
 
-.hero-grid{
-    display:grid;
-    grid-template-columns:minmax(0, .92fr) minmax(420px, 1.08fr);
-    gap:54px;
-    align-items:center;
+.logo-wrap{
     position:relative;
     z-index:2;
-}
-
-.hero-copy{
-    padding:36px 0;
-}
-
-.logo-mark{
-    width:94px;
-    height:94px;
-    display:grid;
-    place-items:center;
-    margin-bottom:18px;
-    border-radius:50%;
-    background:
-        radial-gradient(circle at 35% 26%, #fff7db 0 12%, transparent 13%),
-        linear-gradient(135deg, #f7d48d, #a87531 52%, #f2c57b);
-    box-shadow:0 18px 40px rgba(154,103,45,.24), inset 0 0 0 2px rgba(255,255,255,.48);
-    color:white;
-    font-family:'Playfair Display', serif;
-    font-size:58px;
-    line-height:1;
-    text-shadow:0 2px 9px rgba(58,36,24,.35);
-}
-
-.brand-name{
-    font-family:'Playfair Display', serif;
-    font-size:clamp(72px, 8.2vw, 138px);
-    font-weight:800;
-    line-height:.88;
-    letter-spacing:-2px;
-    color:#372014;
-    text-shadow:0 2px 0 rgba(255,255,255,.65);
-}
-
-.brand-name .gold{
-    color:var(--deep-gold);
-}
-
-.tagline-row{
-    margin:22px 0 18px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    color:var(--deep-gold);
-    font-family:'Cinzel', serif;
-    font-size:18px;
-    font-weight:700;
-    letter-spacing:4px;
-    text-transform:uppercase;
-}
-
-.tagline-row::before,
-.tagline-row::after{
-    content:"";
-    width:70px;
-    height:1px;
-    background:linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-
-.hero h1{
-    font-family:'Playfair Display', serif;
-    font-size:clamp(43px, 4.6vw, 76px);
-    line-height:.98;
-    color:var(--brown);
-    margin:26px 0 18px;
-}
-
-.hero h1 .script{
-    display:block;
-    color:var(--olive);
-    font-size:clamp(54px, 5vw, 84px);
-    line-height:.76;
-    margin-top:7px;
-}
-
-.hero-text{
-    font-size:29px;
-    line-height:1.34;
-    color:#4c3426;
-    max-width:720px;
-}
-
-.hero-actions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:17px;
-    margin-top:34px;
-}
-
-.button{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    gap:9px;
-    min-height:58px;
-    padding:16px 34px;
-    border-radius:999px;
+    padding:12px 42px 12px;
+}
+
+.logo-wrap:before,
+.logo-wrap:after{
+    content:"";
+    width:92px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),var(--berry));
+    margin:0 22px;
+    opacity:.9;
+}
+
+.logo{
+    position:relative;
+    z-index:1;
+    font-family:'Playfair Display','Cormorant Garamond',serif;
+    font-size:clamp(84px,10.8vw,156px);
+    font-weight:800;
+    letter-spacing:-.025em;
+    line-height:.88;
+    color:#2a1d17;
+    background:none;
+    -webkit-background-clip:initial;
+    background-clip:initial;
+    -webkit-text-fill-color:#2a1d17;
+    -webkit-text-stroke:0;
+    text-shadow:
+        0 1px 0 #fff8e8,
+        0 3px 0 rgba(199,150,66,.18),
+        0 12px 26px rgba(42,29,23,.18);
+}
+
+.logo span{
+    color:var(--berry);
+    -webkit-text-fill-color:var(--berry);
+    background:none;
+    -webkit-background-clip:initial;
+    background-clip:initial;
+    text-shadow:
+        0 1px 0 #fff8e8,
+        0 3px 0 rgba(199,150,66,.18),
+        0 12px 26px rgba(42,29,23,.16);
+}
+
+.logo:before,
+.logo:after{
+    content:'✦';
+    position:absolute;
+    top:48%;
+    transform:translateY(-50%);
+    font-family:'Cinzel',serif;
+    font-size:clamp(20px,2vw,32px);
+    color:var(--gold);
+    text-shadow:0 5px 18px rgba(199,150,66,.35);
+}
+
+.logo:before{ left:clamp(-42px,-3vw,-24px); }
+.logo:after{ right:clamp(-42px,-3vw,-24px); }
+
+.logo-rule{
+    position:relative;
+    z-index:1;
+    width:min(620px,84%);
+    height:2px;
+    margin:14px auto 0;
+    background:linear-gradient(90deg,transparent,var(--gold),var(--rose),var(--gold),transparent);
+    opacity:.9;
+}
+
+.sublogo{
+    position:relative;
+    z-index:1;
+    color:var(--berry);
     font-family:'Cinzel', serif;
-    font-size:15px;
+    font-size:22px;
+    letter-spacing:6px;
+    margin-top:18px;
     font-weight:700;
+    text-transform:uppercase;
+}
+
+.hero-title{
+    position:relative;
+    z-index:1;
+    font-family:'Playfair Display', serif;
+    font-size:78px;
+    margin-top:38px;
+    line-height:1.02;
+    font-weight:700;
+}
+
+.hero-title em{
+    font-family:'Great Vibes', cursive;
+    font-style:normal;
+    color:var(--olive);
+    font-weight:400;
+}
+
+.hero-text{
+    position:relative;
+    z-index:1;
+    max-width:1080px;
+    margin:28px auto 0;
+    font-size:32px;
+    line-height:1.35;
+}
+
+.luxe-note{
+    position:relative;
+    z-index:1;
+    margin:28px auto 0;
+    display:inline-flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+    color:var(--olive);
+    font-family:'Cinzel', serif;
+    font-size:16px;
     letter-spacing:2px;
     text-transform:uppercase;
-    transition:.25s ease;
+    font-weight:700;
 }
 
-.button-primary{
-    background:linear-gradient(135deg, var(--gold), #dfb267 52%, var(--deep-gold));
+.luxe-note span{
+    background:rgba(255,255,255,.62);
+    border:1px solid rgba(199,150,66,.42);
+    padding:9px 15px;
+    border-radius:999px;
+}
+
+.shop-buttons{
+    position:relative;
+    z-index:1;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:42px;
+}
+
+.shop-buttons a{
+    background:linear-gradient(135deg,var(--berry),var(--rose));
     color:white;
-    box-shadow:0 16px 34px rgba(154,103,45,.25);
+    padding:17px 40px;
+    border-radius:999px;
+    font-family:'Cinzel', serif;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:1.2px;
+    transition:.25s ease;
+    box-shadow:0 12px 26px rgba(159,35,68,.20);
 }
 
-.button-secondary{
-    color:var(--brown);
-    background:rgba(255,255,255,.55);
-    border:1px solid rgba(154,103,45,.34);
+.shop-buttons a.secondary{
+    background:linear-gradient(135deg,var(--olive),var(--sage));
+    box-shadow:0 12px 26px rgba(66,86,43,.18);
 }
 
-.button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 18px 42px rgba(58,36,24,.16);
+.shop-buttons a.gold{
+    background:linear-gradient(135deg,#a87225,var(--gold));
+    box-shadow:0 12px 26px rgba(167,114,37,.18);
 }
 
-.hero-visual{
+.shop-buttons a:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.04);
+}
+
+.hero-image{
     position:relative;
-}
-
-.hero-frame{
-    position:relative;
-    border-radius:44px;
+    z-index:1;
+    max-width:1400px;
+    margin:58px auto 0;
+    border-radius:36px;
     overflow:hidden;
-    background:linear-gradient(145deg, rgba(255,255,255,.72), rgba(247,234,219,.62));
-    border:1px solid rgba(201,148,71,.30);
-    padding:14px;
-    box-shadow:var(--shadow);
+    box-shadow:var(--soft-shadow);
+    border:1px solid rgba(199,150,66,.45);
+    background:#fff;
 }
 
-.hero-frame::before{
+.hero-image:before{
     content:"";
     position:absolute;
     inset:14px;
-    border:1px solid rgba(255,255,255,.5);
-    border-radius:32px;
+    border:1px solid rgba(255,255,255,.70);
+    border-radius:26px;
     pointer-events:none;
     z-index:2;
 }
-
-.hero-frame img{
-    aspect-ratio:1.25/1;
-    object-fit:cover;
-    border-radius:32px;
-}
-
-.hero-badge{
-    position:absolute;
-    left:-24px;
-    bottom:34px;
-    width:min(330px, 72%);
-    padding:24px 24px 22px;
-    border-radius:26px;
-    background:rgba(255,248,239,.92);
-    border:1px solid rgba(201,148,71,.34);
-    box-shadow:var(--soft-shadow);
-    backdrop-filter:blur(12px);
-}
-
-.hero-badge strong{
-    display:block;
-    font-family:'Playfair Display', serif;
-    font-size:31px;
-    line-height:1.02;
-    color:var(--brown);
-}
-
-.hero-badge span{
-    display:block;
-    margin-top:7px;
-    font-size:22px;
-    color:#604334;
-}
-
-.feature-strip{
-    margin-top:50px;
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:1px;
-    overflow:hidden;
-    border-radius:28px;
-    border:1px solid rgba(201,148,71,.28);
-    background:rgba(201,148,71,.28);
-    box-shadow:0 14px 42px rgba(58,36,24,.08);
-}
-
-.strip-item{
-    background:rgba(255,248,239,.78);
-    padding:22px 20px;
-    text-align:center;
-}
-
-.strip-icon{
-    display:block;
-    color:var(--deep-gold);
-    font-size:28px;
-    margin-bottom:4px;
-}
-
-.strip-item strong{
-    display:block;
-    font-family:'Cinzel', serif;
-    font-size:13px;
-    letter-spacing:1.9px;
-    color:var(--brown);
-    text-transform:uppercase;
-}
-
-/* SECTION SHARED */
 
 .section{
     padding:96px 0;
     position:relative;
 }
 
-.section-heading{
+.section-title{
     text-align:center;
-    max-width:930px;
-    margin:0 auto 54px;
+    font-family:'Playfair Display', serif;
+    font-size:68px;
+    line-height:1.05;
+    margin-bottom:20px;
+    font-weight:700;
 }
 
-.section-heading .eyebrow{
+.section-title span{
+    color:var(--berry);
+}
+
+.section-kicker{
+    text-align:center;
     margin-bottom:12px;
 }
 
-.section-title{
-    font-family:'Playfair Display', serif;
-    font-size:clamp(44px, 5.1vw, 78px);
-    line-height:1.02;
-    color:var(--brown);
-    margin-bottom:16px;
-}
-
-.section-title .script{
-    color:var(--olive);
-    font-size:1.1em;
-    line-height:.72;
-}
-
 .section-text{
-    font-size:28px;
-    line-height:1.36;
-    color:#573d2e;
+    max-width:1080px;
+    margin:0 auto 64px;
+    text-align:center;
+    font-size:30px;
+    line-height:1.38;
 }
-
-.divider{
-    width:min(460px, 78%);
-    margin:24px auto 0;
-    height:18px;
-    position:relative;
-}
-
-.divider::before{
-    content:"";
-    position:absolute;
-    left:0;
-    right:0;
-    top:50%;
-    height:1px;
-    background:linear-gradient(90deg, transparent, rgba(201,148,71,.75), transparent);
-}
-
-.divider::after{
-    content:"✦";
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%, -50%);
-    color:var(--gold);
-    background:var(--cream);
-    padding:0 18px;
-    font-size:18px;
-}
-
-/* COLLECTION */
 
 .collection-grid{
     display:grid;
-    grid-template-columns:repeat(5, 1fr);
-    gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;
 }
 
 .collection-card{
     position:relative;
-    min-height:278px;
-    padding:34px 24px 30px;
-    overflow:hidden;
-    border-radius:30px;
-    border:1px solid rgba(201,148,71,.28);
     background:
-        linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,248,239,.82)),
-        radial-gradient(circle at top right, rgba(248,216,208,.68), transparent 48%);
-    box-shadow:var(--soft-shadow);
-    transition:.25s ease;
+        linear-gradient(180deg,rgba(255,255,255,.88),rgba(251,246,241,.96));
+    border:1px solid rgba(199,150,66,.34);
+    border-radius:30px;
+    padding:38px 28px;
+    text-align:center;
+    box-shadow:var(--card-shadow);
+    overflow:hidden;
 }
 
-.collection-card::before{
+.collection-card:before{
     content:"";
     position:absolute;
-    right:-42px;
-    top:-42px;
-    width:128px;
-    height:128px;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(201,148,71,.24), transparent 64%);
-}
-
-.collection-card::after{
-    content:"";
-    position:absolute;
-    inset:12px;
-    border-radius:22px;
-    border:1px solid rgba(255,255,255,.62);
+    inset:10px;
+    border:1px solid rgba(199,150,66,.22);
+    border-radius:23px;
     pointer-events:none;
 }
 
-.collection-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 26px 58px rgba(58,36,24,.14);
-}
-
-.card-number{
-    font-family:'Great Vibes', cursive;
-    font-size:53px;
-    color:rgba(154,103,45,.28);
-    line-height:.8;
-}
-
 .collection-card h3{
-    position:relative;
-    z-index:1;
+    color:var(--berry);
     font-family:'Playfair Display', serif;
-    font-size:31px;
-    line-height:1.03;
-    color:var(--brown);
-    margin:14px 0 12px;
+    font-size:36px;
+    line-height:1.05;
+    margin-bottom:12px;
+    position:relative;
 }
 
 .collection-card p{
+    font-size:24px;
+    line-height:1.32;
     position:relative;
-    z-index:1;
-    font-size:23px;
-    line-height:1.28;
-    color:#5a4030;
 }
 
-/* FEATURE PANELS */
-
-.panel{
-    border-radius:48px;
-    padding:18px;
-    background:linear-gradient(145deg, rgba(255,255,255,.72), rgba(242,216,183,.38));
-    border:1px solid rgba(201,148,71,.28);
-    box-shadow:var(--shadow);
+.badge-row{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
 }
 
-.panel-inner{
-    border-radius:34px;
-    padding:58px;
-    background:rgba(255,248,239,.70);
-    border:1px solid rgba(255,255,255,.75);
+.badge-row span{
+    font-family:'Cinzel', serif;
+    font-size:13px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--olive);
+    border:1px solid rgba(119,132,91,.35);
+    border-radius:999px;
+    padding:7px 11px;
+    background:rgba(255,255,255,.65);
 }
 
-.feature-grid{
+.feature-section{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:58px;
+    grid-template-columns:1.02fr .98fr;
+    gap:56px;
     align-items:center;
+    margin-bottom:94px;
 }
 
-.feature-grid.reverse .feature-image{
+.feature-section.reverse .feature-image{
     order:2;
+}
+
+.feature-section.reverse .feature-copy{
+    order:1;
+}
+
+.feature-section:last-child{
+    margin-bottom:0;
 }
 
 .feature-image{
@@ -596,829 +425,805 @@ a{
 }
 
 .feature-image img{
-    border-radius:32px;
-    box-shadow:0 20px 52px rgba(58,36,24,.16);
-    aspect-ratio:1.12/1;
-    object-fit:cover;
-    border:1px solid rgba(201,148,71,.22);
+    border-radius:30px;
+    box-shadow:var(--soft-shadow);
+    border:1px solid rgba(199,150,66,.42);
+    background:#fff;
 }
 
-.image-note{
+.feature-image:after{
+    content:"";
     position:absolute;
-    right:-14px;
-    bottom:22px;
-    max-width:270px;
-    padding:18px 20px;
+    inset:16px;
+    border:1px solid rgba(255,255,255,.68);
     border-radius:22px;
-    background:rgba(255,248,239,.91);
-    border:1px solid rgba(201,148,71,.30);
-    box-shadow:var(--soft-shadow);
-    font-family:'Cinzel', serif;
-    color:var(--olive-dark);
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:1.8px;
-    text-transform:uppercase;
+    pointer-events:none;
+}
+
+.feature-copy{
+    background:rgba(255,248,239,.70);
+    border:1px solid rgba(199,150,66,.28);
+    border-radius:32px;
+    padding:44px;
+    box-shadow:0 10px 35px rgba(42,29,23,.06);
 }
 
 .feature-copy h2{
     font-family:'Playfair Display', serif;
-    font-size:clamp(40px, 4.2vw, 68px);
-    line-height:1.02;
-    color:var(--brown);
-    margin-bottom:20px;
+    font-size:58px;
+    margin-bottom:18px;
+    line-height:1.05;
 }
 
-.feature-copy h2 .script{
-    display:block;
-    color:var(--olive);
-    font-size:1.12em;
-    line-height:.68;
+.feature-copy h2 span{
+    color:var(--berry);
 }
 
 .feature-copy p{
     font-size:28px;
-    line-height:1.37;
-    color:#563d2e;
-    margin-bottom:25px;
+    margin-bottom:24px;
+    line-height:1.38;
 }
 
-.luxe-list{
-    display:grid;
-    gap:13px;
+.feature-copy ul{
     list-style:none;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px 16px;
 }
 
-.luxe-list li{
+.feature-copy li{
+    font-size:22px;
+    line-height:1.22;
+    padding-left:22px;
     position:relative;
-    padding-left:34px;
-    font-size:24px;
-    line-height:1.25;
-    color:#422c21;
 }
 
-.luxe-list li::before{
-    content:"✧";
+.feature-copy li:before{
+    content:"✦";
     position:absolute;
     left:0;
     top:0;
     color:var(--gold);
-    font-size:23px;
+    font-size:15px;
 }
 
-/* RITUAL */
-
-.ritual{
+.lux-box{
     background:
-        linear-gradient(180deg, rgba(74,93,51,.08), rgba(74,93,51,.03)),
-        radial-gradient(circle at 90% 0%, rgba(248,216,208,.48), transparent 34%);
-    border-top:1px solid rgba(201,148,71,.18);
-    border-bottom:1px solid rgba(201,148,71,.18);
-}
-
-.ritual-grid{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:20px;
-}
-
-.ritual-step{
-    background:rgba(255,248,239,.78);
-    border:1px solid rgba(201,148,71,.25);
-    border-radius:30px;
-    padding:34px 26px;
-    text-align:center;
+        linear-gradient(135deg,rgba(255,255,255,.88),rgba(255,248,239,.88)),
+        radial-gradient(circle at top right,rgba(196,75,103,.10),transparent 28rem);
+    border:1px solid rgba(199,150,66,.42);
+    border-radius:36px;
+    padding:58px;
     box-shadow:var(--soft-shadow);
 }
 
-.ritual-step .step-icon{
-    width:64px;
-    height:64px;
-    margin:0 auto 15px;
-    border-radius:50%;
+.split-products{
     display:grid;
-    place-items:center;
-    color:white;
-    background:linear-gradient(135deg, var(--gold), var(--deep-gold));
-    font-size:30px;
-    box-shadow:0 14px 30px rgba(154,103,45,.20);
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:28px;
 }
 
-.ritual-step h3{
+.product-panel{
+    background:rgba(255,255,255,.78);
+    border:1px solid rgba(199,150,66,.30);
+    border-radius:30px;
+    padding:34px;
+    box-shadow:var(--card-shadow);
+}
+
+.product-panel h3{
     font-family:'Playfair Display', serif;
-    font-size:30px;
-    color:var(--brown);
-    line-height:1.03;
-    margin-bottom:10px;
+    font-size:42px;
+    line-height:1.05;
+    color:var(--berry);
+    margin-bottom:12px;
 }
 
-.ritual-step p{
-    font-size:22px;
-    color:#5b4232;
-    line-height:1.29;
+.product-panel .product-type{
+    font-family:'Cinzel', serif;
+    letter-spacing:2px;
+    color:var(--olive);
+    text-transform:uppercase;
+    font-weight:700;
+    font-size:15px;
+    margin-bottom:12px;
 }
 
-/* FRAGRANCES */
+.product-panel p{
+    font-size:24px;
+    line-height:1.34;
+    margin-bottom:22px;
+}
 
-.fragrance-cloud{
+.scent-list{
     display:flex;
     flex-wrap:wrap;
-    justify-content:center;
-    gap:14px;
-    max-width:1160px;
-    margin:0 auto;
+    gap:9px;
 }
 
-.fragrance-pill{
-    border:1px solid rgba(201,148,71,.32);
+.scent-list span{
+    background:linear-gradient(180deg,#fff,#fbf2ea);
+    border:1px solid rgba(199,150,66,.34);
     border-radius:999px;
-    padding:14px 20px;
-    background:rgba(255,255,255,.55);
-    box-shadow:0 10px 24px rgba(58,36,24,.06);
-    color:#4c3325;
-    font-size:22px;
+    padding:8px 13px;
+    font-size:19px;
     line-height:1;
 }
 
-.fragrance-pill strong{
-    color:var(--deep-gold);
+.fragrance-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(225px,1fr));
+    gap:18px;
 }
 
-/* CTA */
-
-.cta{
-    padding:98px 0;
-}
-
-.cta-card{
-    position:relative;
-    overflow:hidden;
-    border-radius:48px;
-    padding:78px 28px;
+.fragrance-card{
+    background:rgba(255,255,255,.76);
+    border:1px solid rgba(199,150,66,.32);
+    border-radius:24px;
+    padding:26px 18px;
     text-align:center;
-    color:#fff8ed;
-    background:
-        linear-gradient(135deg, rgba(38,52,31,.94), rgba(74,93,51,.90)),
-        radial-gradient(circle at 25% 10%, rgba(255,255,255,.20), transparent 32%);
-    box-shadow:0 28px 70px rgba(38,52,31,.24);
+    box-shadow:0 8px 20px rgba(42,29,23,.045);
 }
 
-.cta-card::before,
-.cta-card::after{
-    content:"";
-    position:absolute;
-    width:320px;
-    height:320px;
-    border-radius:50%;
-    pointer-events:none;
-}
-
-.cta-card::before{
-    left:-140px;
-    bottom:-140px;
-    background:radial-gradient(circle, rgba(201,148,71,.42), transparent 66%);
-}
-
-.cta-card::after{
-    right:-140px;
-    top:-140px;
-    background:radial-gradient(circle, rgba(248,216,208,.32), transparent 66%);
-}
-
-.cta-card .eyebrow{
-    color:#f0c981;
-}
-
-.cta-card h2{
-    position:relative;
-    z-index:1;
+.fragrance-card h4{
+    color:var(--berry);
     font-family:'Playfair Display', serif;
-    font-size:clamp(48px, 5.6vw, 82px);
-    line-height:1.02;
-    margin:12px auto 16px;
-    max-width:1000px;
+    font-size:29px;
+    line-height:1.1;
+    margin-bottom:8px;
 }
 
-.cta-card p{
-    position:relative;
-    z-index:1;
-    max-width:940px;
-    margin:0 auto 32px;
-    font-size:30px;
-    line-height:1.3;
+.fragrance-card p{
+    color:#4b372f;
+    font-size:20px;
 }
 
-.cta-card .hero-actions{
+.about-section{
+    background:
+        linear-gradient(180deg,rgba(255,248,239,.92),rgba(248,236,223,.92));
+    border-top:1px solid rgba(199,150,66,.30);
+    border-bottom:1px solid rgba(199,150,66,.30);
+}
+
+.contact-strip{
+    display:flex;
     justify-content:center;
-    position:relative;
-    z-index:1;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:28px;
 }
 
-/* FOOTER */
+.contact-strip a,
+.contact-strip span{
+    color:var(--deep);
+    background:rgba(255,255,255,.70);
+    border:1px solid rgba(199,150,66,.32);
+    border-radius:999px;
+    padding:10px 16px;
+    font-family:'Cinzel', serif;
+    font-size:14px;
+    letter-spacing:.7px;
+}
 
 .footer{
-    background:#211510;
-    color:#fff8ed;
-    padding:54px 0 34px;
-    border-top:1px solid rgba(201,148,71,.42);
-}
-
-.footer-grid{
-    display:grid;
-    grid-template-columns:1.2fr .9fr .9fr;
-    gap:36px;
-    align-items:start;
+    background:
+        linear-gradient(180deg,#33231c,#241914);
+    color:white;
+    text-align:center;
+    padding:50px 20px;
+    font-size:20px;
+    letter-spacing:1.4px;
+    line-height:1.55;
 }
 
 .footer-logo{
     font-family:'Playfair Display', serif;
-    font-size:46px;
-    font-weight:800;
-    letter-spacing:.6px;
-    margin-bottom:10px;
-}
-
-.footer-logo span{
-    color:#f0c981;
-}
-
-.footer p,
-.footer a{
-    color:#f9e9cf;
-    font-size:22px;
-    line-height:1.36;
-}
-
-.footer h3{
-    font-family:'Cinzel', serif;
-    color:#f0c981;
-    font-size:15px;
-    letter-spacing:2.4px;
-    text-transform:uppercase;
+    font-size:48px;
+    letter-spacing:1px;
     margin-bottom:12px;
 }
 
+.footer-logo span{
+    color:#f1bfd0;
+}
+
+.footer a{
+    color:#ffd8ad;
+}
+
 .footer-links{
-    display:grid;
-    gap:7px;
+    margin-top:22px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:16px;
 }
 
-.copyright{
-    margin-top:34px;
-    padding-top:24px;
-    border-top:1px solid rgba(255,248,237,.14);
+.footer-links a{
+    border:1px solid rgba(255,216,173,.40);
+    border-radius:999px;
+    padding:8px 14px;
+}
+
+@media(max-width:950px){
+
+.logo{
+    font-size:62px;
+    letter-spacing:.5px;
+}
+
+.sublogo{
+    font-size:16px;
+    letter-spacing:3px;
+}
+
+.hero-title{
+    font-size:46px;
+}
+
+.hero-text{
+    font-size:23px;
+}
+
+.luxe-note{
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+.section{
+    padding:72px 0;
+}
+
+.section-title{
+    font-size:44px;
+}
+
+.section-text{
+    font-size:23px;
+    margin-bottom:42px;
+}
+
+.feature-section,
+.feature-section.reverse{
+    grid-template-columns:1fr;
+    gap:30px;
+}
+
+.feature-section.reverse .feature-image,
+.feature-section.reverse .feature-copy{
+    order:initial;
+}
+
+.feature-copy{
+    padding:30px 22px;
+}
+
+.feature-copy h2{
+    font-size:40px;
+}
+
+.feature-copy p{
+    font-size:23px;
+}
+
+.feature-copy ul{
+    grid-template-columns:1fr;
+}
+
+.feature-copy li{
+    font-size:20px;
+}
+
+.collection-card h3{
+    font-size:30px;
+}
+
+.collection-card p{
+    font-size:21px;
+}
+
+.lux-box{
+    padding:30px 20px;
+}
+
+.split-products{
+    grid-template-columns:1fr;
+}
+
+.product-panel h3{
+    font-size:34px;
+}
+
+.product-panel p{
+    font-size:22px;
+}
+
+.shop-buttons a{
+    width:100%;
     text-align:center;
-    color:#e9d2b7;
-    font-family:'Cinzel', serif;
-    font-size:12px;
-    letter-spacing:2px;
-    text-transform:uppercase;
+    font-size:16px;
 }
 
-/* RESPONSIVE */
+.hero-image,
+.feature-image img{
+    border-radius:22px;
+}
 
-@media(max-width:1180px){
-    .hero-grid,
-    .feature-grid{
-        grid-template-columns:1fr;
+}
+
+@media(max-width:720px){
+    .logo-wrap{
+        padding:8px 10px 10px;
     }
 
-    .hero-copy{
-        text-align:center;
-        padding:10px 0 0;
+    .logo-wrap:before,
+    .logo-wrap:after,
+    .logo:before,
+    .logo:after{
+        display:none;
     }
 
-    .logo-mark{
-        margin-left:auto;
-        margin-right:auto;
+    .logo{
+        font-size:clamp(58px,18vw,88px);
+        letter-spacing:-.02em;
+        -webkit-text-stroke:0;
     }
 
-    .tagline-row{
-        justify-content:center;
-    }
-
-    .hero-text{
-        margin:0 auto;
-    }
-
-    .hero-actions{
-        justify-content:center;
-    }
-
-    .hero-frame{
-        max-width:860px;
-        margin:0 auto;
-    }
-
-    .collection-grid{
-        grid-template-columns:repeat(3, 1fr);
-    }
-
-    .feature-grid.reverse .feature-image{
-        order:0;
+    .logo-rule{
+        margin-top:8px;
+        width:86%;
     }
 }
 
-@media(max-width:860px){
-    .topbar{
-        font-size:11px;
-        letter-spacing:1.6px;
-    }
-
-    .nav-inner{
-        flex-direction:column;
-        align-items:center;
-        padding:14px 18px;
-    }
-
-    .nav-links{
-        justify-content:center;
-        gap:13px;
-        font-size:11px;
-        letter-spacing:1.2px;
-    }
-
-    .hero{
-        padding:52px 0 44px;
-    }
-
-    .brand-name{
-        font-size:58px;
-        letter-spacing:-1px;
-    }
-
-    .tagline-row{
-        font-size:13px;
-        letter-spacing:2.2px;
-    }
-
-    .tagline-row::before,
-    .tagline-row::after{
-        width:36px;
-    }
-
-    .hero-text,
-    .section-text,
-    .feature-copy p,
-    .cta-card p{
-        font-size:23px;
-    }
-
-    .hero-badge{
-        position:relative;
-        left:auto;
-        bottom:auto;
-        width:100%;
-        margin:18px auto 0;
-    }
-
-    .feature-strip,
-    .ritual-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .collection-grid{
-        grid-template-columns:1fr;
-    }
-
-    .panel-inner{
-        padding:34px 22px;
-    }
-
-    .section{
-        padding:68px 0;
-    }
-
-    .feature-copy h2{
-        font-size:42px;
-    }
-
-    .image-note{
-        position:relative;
-        right:auto;
-        bottom:auto;
-        max-width:100%;
-        margin-top:14px;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr;
-        text-align:center;
-    }
-}
-
-@media(max-width:560px){
-    .container{
-        padding:0 16px;
-    }
-
-    .nav-logo{
-        font-size:30px;
-    }
-
-    .brand-name{
-        font-size:48px;
-    }
-
-    .hero h1{
-        font-size:39px;
-    }
-
-    .hero h1 .script{
-        font-size:48px;
-    }
-
-    .button{
-        width:100%;
-        padding:15px 18px;
-    }
-
-    .feature-strip,
-    .ritual-grid{
-        grid-template-columns:1fr;
-    }
-
-    .section-title{
-        font-size:41px;
-    }
-
-    .luxe-list li{
-        font-size:22px;
-    }
-
-    .fragrance-pill{
-        width:100%;
-        text-align:center;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
-    Dessert-inspired body care • handcrafted soaps • glide sticks • gift-ready self-care
+<!-- HERO -->
+
+<section class="hero">
+<div class="logo-wrap"><div class="logo">Skin<span>Sessed</span></div></div>
+<div class="logo-rule"></div>
+
+<div class="sublogo">Next Level Obsessed • Body Care, Elevated</div>
+
+<div class="hero-title">
+Smells like dessert.<br>
+<em>Feels like luxury.</em>
 </div>
 
-<header class="nav">
-    <div class="nav-inner">
-        <a class="nav-logo" href="#top">Skin<span>Sessed</span></a>
-        <nav class="nav-links" aria-label="Main navigation">
-            <a href="#collection">Collection</a>
-            <a href="#scrubs">Scrubs</a>
-            <a href="#balms">Glide Sticks</a>
-            <a href="#soaps">Soaps</a>
-            <a href="#fragrances">Scents</a>
-            <a class="nav-shop" href="https://www.etsy.com/shop/SkinJuiceBody" target="_blank" rel="noopener">Shop Etsy</a>
-        </nav>
-    </div>
-</header>
+<div class="hero-text">
+Dessert-inspired body care made to feel rich, creamy, beautiful, and gift-worthy —
+from foaming body scrubs and Second Skin Moisturizers to Dessert Balm Glide Sticks,
+Lip Seals, handmade goat milk soaps, samples, and curated gift boxes.
+</div>
 
-<main id="top">
+<div class="luxe-note">
+<span>Gently exfoliates</span>
+<span>Deeply hydrates</span>
+<span>Nourishing ingredients</span>
+<span>Made for you</span>
+</div>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-grid">
-            <div class="hero-copy">
-                <div class="logo-mark" aria-hidden="true">S</div>
-                <div class="brand-name">Skin<span class="gold">Sessed</span></div>
-                <div class="tagline-row">Next Level Obsessed</div>
-                <h1>
-                    Body care that feels like luxury
-                    <span class="script">and smells like dessert.</span>
-                </h1>
-                <p class="hero-text">
-                    Foaming body scrubs, rich Second Skin moisturizers, Dessert Balm Glide Sticks,
-                    handcrafted goat milk soaps, and curated gift boxes made for soft, glowing,
-                    beautifully scented skin.
-                </p>
+<div class="shop-buttons">
+<a href="https://www.etsy.com/shop/SkinSessed" target="_blank" rel="noopener">Shop Etsy</a>
+<a class="secondary" href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener">Shop eBay</a>
+<a class="gold" href="mailto:ShopSkinSessed@gmail.com">Email Us</a>
+</div>
 
-                <div class="hero-actions">
-                    <a class="button button-primary" href="https://www.etsy.com/shop/SkinJuiceBody" target="_blank" rel="noopener">Shop Etsy</a>
-                    <a class="button button-secondary" href="https://www.ebay.com/usr/shook" target="_blank" rel="noopener">Shop eBay</a>
-                </div>
-            </div>
-
-            <div class="hero-visual">
-                <div class="hero-frame">
-                    <img src="SkinSessed%20FacebookCover(1).png" onerror="this.onerror=null;this.src='body-care-duo.png';" alt="SkinSessed luxury body care collection with scrubs, soaps, and Dessert Balm Glide Sticks">
-                </div>
-                <div class="hero-badge">
-                    <strong>Complete Body Care</strong>
-                    <span>cleanse • exfoliate • hydrate • glow</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="feature-strip" aria-label="SkinSessed product benefits">
-            <div class="strip-item">
-                <span class="strip-icon">♡</span>
-                <strong>Gently Exfoliates</strong>
-            </div>
-            <div class="strip-item">
-                <span class="strip-icon">♢</span>
-                <strong>Deeply Hydrates</strong>
-            </div>
-            <div class="strip-item">
-                <span class="strip-icon">✦</span>
-                <strong>Smells Delicious</strong>
-            </div>
-            <div class="strip-item">
-                <span class="strip-icon">☘</span>
-                <strong>Made For You</strong>
-            </div>
-        </div>
-    </div>
+<div class="hero-image">
+<img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/body-care-duo.png" alt="SkinSessed foaming body scrub collection">
+</div>
 </section>
 
 <!-- COLLECTION -->
-<section class="section" id="collection">
-    <div class="container">
-        <div class="section-heading">
-            <div class="eyebrow">Shop the collection</div>
-            <h2 class="section-title">Luxurious self-care, <span class="script">beautifully scented.</span></h2>
-            <p class="section-text">
-                SkinSessed brings together dessert-inspired fragrance, creamy textures,
-                soft skin finishes, and gift-ready presentation in one complete body care line.
-            </p>
-            <div class="divider"></div>
-        </div>
 
-        <div class="collection-grid">
-            <article class="collection-card">
-                <div class="card-number">01</div>
-                <h3>Foaming Body Scrubs</h3>
-                <p>Dense, creamy scrubs that polish, cleanse, and leave skin feeling soft and smooth.</p>
-            </article>
+<section class="section">
+<div class="container">
 
-            <article class="collection-card">
-                <div class="card-number">02</div>
-                <h3>Second Skin Moisturizers</h3>
-                <p>Rich moisturizers designed for silky, comfortable, beautifully scented skin.</p>
-            </article>
+<div class="section-kicker eyebrow">Complete body care</div>
+<h2 class="section-title">Shop The <span>SkinSessed</span> Collection</h2>
 
-            <article class="collection-card">
-                <div class="card-number">03</div>
-                <h3>Dessert Balm Glide Sticks</h3>
-                <p>Portable glide-on balm sticks inspired by bakery, fruit, and fresh clean favorites.</p>
-            </article>
+<p class="section-text">
+A fragrance-forward luxury body care collection with coordinated scents, creamy textures,
+pretty packaging, and products designed to make everyday self-care feel special.
+</p>
 
-            <article class="collection-card">
-                <div class="card-number">04</div>
-                <h3>Goat Milk Soaps</h3>
-                <p>Handcrafted bars with creamy lather, pretty colors, and boutique fragrance blends.</p>
-            </article>
+<div class="collection-grid">
 
-            <article class="collection-card">
-                <div class="card-number">05</div>
-                <h3>Gift Boxes</h3>
-                <p>Curated matching body care sets made for gifting, pampering, and indulgence.</p>
-            </article>
-        </div>
-    </div>
+<div class="collection-card">
+<h3>Foaming Body Scrubs</h3>
+<p>Dense, creamy exfoliating scrubs with rich lather and indulgent dessert-inspired fragrance blends.</p>
+<div class="badge-row"><span>11 oz</span><span>7 oz</span><span>Foaming</span></div>
+</div>
+
+<div class="collection-card">
+<h3>Second Skin Moisturizers</h3>
+<p>Rich moisturizers crafted for soft, silky, hydrated-feeling skin with a luxe finish.</p>
+<div class="badge-row"><span>6 oz</span><span>10 oz</span><span>Soft glow</span></div>
+</div>
+
+<div class="collection-card">
+<h3>Dessert Balm Glide Sticks</h3>
+<p>Glide-on dessert balm sticks for smooth body-care touchups in sweet, fresh, and bakery scents.</p>
+<div class="badge-row"><span>Body balm</span><span>Glide stick</span><span>1 oz</span></div>
+</div>
+
+<div class="collection-card">
+<h3>Lip Seals</h3>
+<p>Conditioning lip care made separately from the Dessert Balm Glide Sticks, sized for lips and sealed for protection.</p>
+<div class="badge-row"><span>Lip care</span><span>0.15 oz</span><span>Sealed</span></div>
+</div>
+
+<div class="collection-card">
+<h3>Goat Milk Soaps</h3>
+<p>Square handmade goat milk soaps with creamy lather, boutique scent pairings, and gift-ready style.</p>
+<div class="badge-row"><span>4.5 oz</span><span>Square soaps</span><span>Small batch</span></div>
+</div>
+
+<div class="collection-card">
+<h3>Gift Boxes & Samples</h3>
+<p>Curated sample boxes and coordinated body-care sets created for gifting, discovery, and indulgence.</p>
+<div class="badge-row"><span>Samples</span><span>Giftable</span><span>Curated</span></div>
+</div>
+
+</div>
+</div>
 </section>
 
-<!-- SCRUBS + MOISTURIZERS -->
-<section class="section" id="scrubs">
-    <div class="container">
-        <div class="panel">
-            <div class="panel-inner">
-                <div class="feature-grid">
-                    <div class="feature-image">
-                        <img src="body-care-duo.png" alt="SkinSessed foaming body scrubs and Second Skin moisturizers">
-                        <div class="image-note">Dense • creamy • dessert-inspired</div>
-                    </div>
+<!-- SCRUBS AND MOISTURIZERS -->
 
-                    <div class="feature-copy">
-                        <div class="eyebrow">Foaming scrubs + moisturizers</div>
-                        <h2>Cleanse, polish, <span class="script">then glow.</span></h2>
-                        <p>
-                            Our foaming body scrubs and Second Skin moisturizers are made to work
-                            together: a creamy exfoliating cleanse followed by rich, silky moisture.
-                        </p>
-                        <ul class="luxe-list">
-                            <li>11 oz foaming body scrubs</li>
-                            <li>6 oz and larger Second Skin moisturizers</li>
-                            <li>Fragrance-forward bakery, fruit, and fresh clean scents</li>
-                            <li>Designed for a complete body care ritual</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="section">
+<div class="container">
+
+<div class="feature-section">
+<div class="feature-image">
+<img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/body-care-duo.png" alt="SkinSessed foaming body scrubs and body care jars">
+</div>
+
+<div class="feature-copy">
+<div class="eyebrow">Creamy • Dense • Indulgent</div>
+<h2>Foaming Body Scrubs & <span>Second Skin</span> Moisturizers</h2>
+
+<p>
+The heart of SkinSessed is soft, polished, beautifully scented body care.
+Our foaming body scrubs cleanse and exfoliate, while our Second Skin Moisturizers
+help skin feel smooth, hydrated, and touchably soft.
+</p>
+
+<ul>
+<li>11 oz Foaming Body Scrubs</li>
+<li>7 oz Foaming Body Scrubs</li>
+<li>6 oz Second Skin Moisturizers</li>
+<li>10 oz Second Skin Moisturizers</li>
+<li>Dessert, fruit, bakery, and spa-fresh scent families</li>
+<li>Coordinating scents for gift boxes and body-care routines</li>
+</ul>
+</div>
+</div>
+
+</div>
 </section>
 
-<!-- BALMS -->
-<section class="section" id="balms">
-    <div class="container">
-        <div class="feature-grid reverse">
-            <div class="feature-image">
-                <img src="Balms%20Product%20Shot.png" onerror="this.onerror=null;this.src='LipProd%20All%20Six.png';" alt="SkinSessed Dessert Balm Glide Sticks">
-                <div class="image-note">Portable • smooth • addictive</div>
-            </div>
+<!-- DESSERT BALM VS LIP SEAL -->
 
-            <div class="feature-copy">
-                <div class="eyebrow">Dessert Balm Glide Sticks</div>
-                <h2>Swipe on soft, <span class="script">sweet comfort.</span></h2>
-                <p>
-                    Dessert Balm Glide Sticks are made for quick, easy moisture with the same
-                    delicious SkinSessed scent personality — bakery, juicy, creamy, and fresh.
-                </p>
-                <ul class="luxe-list">
-                    <li>Malibu Rum</li>
-                    <li>Cucumber Melon</li>
-                    <li>Orange Chiffon Cake</li>
-                    <li>Raspberry Mimosa</li>
-                    <li>Blueberry Poundcake</li>
-                    <li>Oatmeal Milk & Honey</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<section class="section">
+<div class="container">
+
+<div class="lux-box">
+<div class="section-kicker eyebrow">Important product distinction</div>
+<h2 class="section-title">Dessert Balm Glide Sticks <span>and</span> Lip Seals</h2>
+
+<p class="section-text">
+These are two different SkinSessed products. Dessert Balm Glide Sticks are larger glide-on body-care balm sticks.
+Lip Seals are smaller conditioning lip-care treatments made specifically for lips.
+</p>
+
+<div class="split-products">
+
+<div class="product-panel">
+<div class="product-type">Body-care balm stick</div>
+<h3>Dessert Balm Glide Sticks</h3>
+<p>
+Larger glide-on dessert balm sticks made for smooth body-care touchups and scent layering.
+These are not the same as Lip Seals.
+</p>
+<div class="scent-list">
+<span>Malibu Rum Cupcakes</span>
+<span>Cucumber Melon</span>
+<span>Caramel Nut Muffin</span>
+<span>Fresh Clean Linen</span>
+<span>Kiwi Watermelon</span>
+<span>Oatmeal Milk & Honey</span>
+<span>Orange Chiffon Cake</span>
+<span>Raspberry Mimosa</span>
+<span>Birthday Cake</span>
+<span>Black Cherry Merlot</span>
+<span>Blueberry Pound Cake</span>
+<span>Cherry Vanilla Swirl</span>
+<span>Frosted Eucalyptus Mint</span>
+<span>Lemon Meringue Pie</span>
+<span>Maple Pecan</span>
+<span>Peaches & Cream</span>
+</div>
+</div>
+
+<div class="product-panel">
+<div class="product-type">Lip-care treatment</div>
+<h3>Lip Seals</h3>
+<p>
+Conditioning lip treatments with a protective sealed design, made for soft, smooth lips in sweet
+dessert and fruit-inspired flavors.
+</p>
+<div class="scent-list">
+<span>Birthday Cake</span>
+<span>Caramel Apple</span>
+<span>Raspberry Sorbet</span>
+<span>Lemon Meringue Pie</span>
+<span>Peaches & Cream</span>
+<span>Fruity Pebbles</span>
+<span>Cherry Vanilla Swirl</span>
+<span>Blueberry Pound Cake</span>
+<span>Orange Chiffon Cake</span>
+<span>Black Cherry Merlot</span>
+<span>Kiwi Watermelon</span>
+<span>Cotton Candy</span>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 </section>
 
-<!-- SOAPS -->
-<section class="section" id="soaps">
-    <div class="container">
-        <div class="panel">
-            <div class="panel-inner">
-                <div class="feature-grid">
-                    <div class="feature-image">
-                        <img src="SoapVariation1.png" onerror="this.onerror=null;this.src='SQSoaps.jpg';" alt="SkinSessed handcrafted goat milk soaps">
-                        <div class="image-note">Handcrafted • creamy lather • giftable</div>
-                    </div>
 
-                    <div class="feature-copy">
-                        <div class="eyebrow">Handcrafted goat milk soaps</div>
-                        <h2>Pretty bars, <span class="script">beautiful scents.</span></h2>
-                        <p>
-                            SkinSessed goat milk soaps are crafted to look beautiful on the counter
-                            and feel creamy in your everyday routine.
-                        </p>
-                        <ul class="luxe-list">
-                            <li>Full-size square soaps</li>
-                            <li>Sample-size soaps</li>
-                            <li>Layered and botanical-inspired designs</li>
-                            <li>Dessert, fruit, floral, and fresh clean fragrance families</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- DESSERT BALM GLIDE STICKS -->
+
+<section class="section">
+<div class="container">
+
+<div class="feature-section">
+<div class="feature-image">
+<img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/Balm%20Sticks%20Products.png" alt="SkinSessed Dessert Balm Glide Stick collection">
+</div>
+
+<div class="feature-copy">
+<div class="eyebrow">Body balm • Glide stick • Dessert inspired</div>
+<h2><span>Dessert Balm</span> Glide Sticks</h2>
+
+<p>
+Dessert Balm Glide Sticks are the larger SkinSessed body-care balm sticks — smooth glide-on balm
+for quick moisturizing touchups, scent layering, and soft, pretty skin on the go. These are separate
+from Lip Seals and are made for body-care use.
+</p>
+
+<ul>
+<li>Malibu Rum Cupcakes</li>
+<li>Cucumber Melon</li>
+<li>Caramel Nut Muffin</li>
+<li>Fresh Clean Linen</li>
+<li>Kiwi Watermelon</li>
+<li>Oatmeal Milk &amp; Honey</li>
+<li>Orange Chiffon Cake</li>
+<li>Raspberry Mimosa</li>
+<li>Birthday Cake</li>
+<li>Black Cherry Merlot</li>
+<li>Blueberry Pound Cake</li>
+<li>Cherry Vanilla Swirl</li>
+<li>Frosted Eucalyptus Mint</li>
+<li>Lemon Meringue Pie</li>
+<li>Maple Pecan</li>
+<li>Peaches &amp; Cream</li>
+</ul>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- LIP SEALS -->
+
+<section class="section">
+<div class="container">
+
+<div class="feature-section reverse">
+<div class="feature-image">
+<img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/Balms%20Product%20Shot.png" alt="SkinSessed Lip Seal Collection with six luxury lip balm flavors">
+</div>
+
+<div class="feature-copy">
+<div class="eyebrow">Lip care • Sealed for protection</div>
+<h2><span>Lip Seal</span> Collection</h2>
+
+<p>
+Lip Seals are the small SkinSessed lip-care treatments — separate from the Dessert Balm Glide Sticks.
+They are made for lips, with creamy conditioning care and playful dessert-inspired flavors.
+</p>
+
+<ul>
+<li>Birthday Cake</li>
+<li>Caramel Apple</li>
+<li>Raspberry Sorbet</li>
+<li>Lemon Meringue Pie</li>
+<li>Peaches &amp; Cream</li>
+<li>Fruity Pebbles</li>
+</ul>
+</div>
+</div>
+
+</div>
 </section>
 
 <!-- GIFT BOXES -->
-<section class="section" id="giftboxes">
-    <div class="container">
-        <div class="feature-grid reverse">
-            <div class="feature-image">
-                <img src="GiftBox.png" alt="SkinSessed curated body care gift box">
-                <div class="image-note">Coordinated • polished • ready to gift</div>
-            </div>
 
-            <div class="feature-copy">
-                <div class="eyebrow">Gift-ready body care</div>
-                <h2>A full SkinSessed ritual, <span class="script">boxed beautifully.</span></h2>
-                <p>
-                    Curated gift boxes bring together matching scents and textures so every set feels
-                    intentional, special, and ready to enjoy.
-                </p>
-                <ul class="luxe-list">
-                    <li>Foaming body scrub</li>
-                    <li>Second Skin moisturizer</li>
-                    <li>Coordinating goat milk soaps</li>
-                    <li>Dessert Balm Glide Stick</li>
-                    <li>Gift-ready presentation</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<section class="section">
+<div class="container">
+
+<div class="feature-section">
+<div class="feature-image">
+<img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/GiftBox.png" alt="SkinSessed sample gift box with scrub, moisturizer, soaps, Lip Seal, loofah mitt, and samples">
+</div>
+
+<div class="feature-copy">
+<div class="eyebrow">Curated • Pretty • Gift-ready</div>
+<h2>Sample Gift Boxes & <span>Coordinated Sets</span></h2>
+
+<p>
+SkinSessed gift boxes are built to feel special from the first look — coordinated body-care products,
+pretty scents, samples, soaps, Lip Seal, and a loofah mitt arranged for a complete self-care experience.
+</p>
+
+<ul>
+<li>7 oz Foaming Body Scrub</li>
+<li>6 oz Second Skin Moisturizer</li>
+<li>Two handmade goat milk soaps</li>
+<li>Lip Seal treatment</li>
+<li>Loofah mitt</li>
+<li>3g sample packets</li>
+<li>Curated scent pairings</li>
+<li>Ready-to-gift presentation</li>
+</ul>
+</div>
+</div>
+
+</div>
 </section>
 
-<!-- RITUAL -->
-<section class="section ritual">
-    <div class="container">
-        <div class="section-heading">
-            <div class="eyebrow">The SkinSessed ritual</div>
-            <h2 class="section-title">Simple steps. <span class="script">Luxury finish.</span></h2>
-            <p class="section-text">
-                Built around the way your customers actually use body care: cleanse, exfoliate,
-                hydrate, and keep their favorite scent close.
-            </p>
-        </div>
+<!-- SOAPS -->
 
-        <div class="ritual-grid">
-            <article class="ritual-step">
-                <div class="step-icon">1</div>
-                <h3>Cleanse</h3>
-                <p>Start with creamy lather and beautiful fragrance.</p>
-            </article>
-            <article class="ritual-step">
-                <div class="step-icon">2</div>
-                <h3>Exfoliate</h3>
-                <p>Polish dull, dry-feeling skin with a dense scrub texture.</p>
-            </article>
-            <article class="ritual-step">
-                <div class="step-icon">3</div>
-                <h3>Hydrate</h3>
-                <p>Follow with rich moisture for a soft, silky feel.</p>
-            </article>
-            <article class="ritual-step">
-                <div class="step-icon">4</div>
-                <h3>Refresh</h3>
-                <p>Keep a Dessert Balm Glide Stick nearby for quick comfort.</p>
-            </article>
-        </div>
-    </div>
+<section class="section">
+<div class="container">
+
+<div class="feature-section reverse">
+<div class="feature-image">
+<img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/SQSoaps.jpg" alt="SkinSessed square goat milk soap collection">
+</div>
+
+<div class="feature-copy">
+<div class="eyebrow">Handmade • Square • Creamy</div>
+<h2>Square Goat Milk <span>Soaps</span></h2>
+
+<p>
+Our square goat milk soaps are designed to look boutique, feel creamy, and pair beautifully with
+the rest of your SkinSessed routine. Each one is crafted in small batches with a soft, giftable finish.
+</p>
+
+<ul>
+<li>Birthday Cake</li>
+<li>Fresh Clean Linen</li>
+<li>Oatmeal Milk & Honey</li>
+<li>Blueberry Pound Cake</li>
+<li>Maple Pecan</li>
+<li>Cucumber Melon</li>
+<li>Cherry Vanilla Swirl</li>
+<li>Orange Chiffon Cake</li>
+<li>Malibu Rum Cupcakes</li>
+</ul>
+</div>
+</div>
+
+</div>
 </section>
 
 <!-- FRAGRANCES -->
-<section class="section" id="fragrances">
-    <div class="container">
-        <div class="section-heading">
-            <div class="eyebrow">Signature scents</div>
-            <h2 class="section-title">Dessert, fruit, floral, <span class="script">and fresh clean favorites.</span></h2>
-            <p class="section-text">
-                From bakery-sweet to juicy-bright to soft and clean, SkinSessed scents are made
-                to make everyday body care feel irresistible.
-            </p>
-            <div class="divider"></div>
-        </div>
 
-        <div class="fragrance-cloud">
-            <div class="fragrance-pill"><strong>Orange</strong> Chiffon Cake</div>
-            <div class="fragrance-pill"><strong>Blueberry</strong> Poundcake</div>
-            <div class="fragrance-pill"><strong>Birthday</strong> Cake</div>
-            <div class="fragrance-pill"><strong>Caramel</strong> Nut Muffin</div>
-            <div class="fragrance-pill"><strong>Cherry</strong> Vanilla Swirl</div>
-            <div class="fragrance-pill"><strong>Raspberry</strong> Mimosa</div>
-            <div class="fragrance-pill"><strong>Kiwi</strong> Watermelon</div>
-            <div class="fragrance-pill"><strong>Cucumber</strong> Melon</div>
-            <div class="fragrance-pill"><strong>Oatmeal</strong> Milk & Honey</div>
-            <div class="fragrance-pill"><strong>Black Cherry</strong> Merlot</div>
-            <div class="fragrance-pill"><strong>Fresh Clean</strong> Linen</div>
-            <div class="fragrance-pill"><strong>Malibu</strong> Rum</div>
-        </div>
-    </div>
+<section class="section">
+<div class="container">
+
+<div class="section-kicker eyebrow">Scent library</div>
+<h2 class="section-title">Signature <span>Fragrances</span></h2>
+
+<p class="section-text">
+Dessert bakery blends, nostalgic sweets, juicy fruits, and fresh spa-inspired scents.
+Availability may vary by product, but this is the SkinSessed scent library currently represented across the collection.
+</p>
+
+<div class="fragrance-grid">
+
+<div class="fragrance-card"><h4>Birthday Cake</h4><p>Vanilla • Sweet • Bakery</p></div>
+<div class="fragrance-card"><h4>Black Cherry Merlot</h4><p>Dark Cherry • Luxe • Bold</p></div>
+<div class="fragrance-card"><h4>Blueberry Pound Cake</h4><p>Bakery • Fruity • Cozy</p></div>
+<div class="fragrance-card"><h4>Caramel Apple</h4><p>Sweet • Juicy • Irresistible</p></div>
+<div class="fragrance-card"><h4>Caramel Nut Muffin</h4><p>Warm • Nutty • Indulgent</p></div>
+<div class="fragrance-card"><h4>Cherry Vanilla Swirl</h4><p>Sweet • Creamy • Smooth</p></div>
+<div class="fragrance-card"><h4>Cotton Candy</h4><p>Sweet • Sugary • Nostalgic</p></div>
+<div class="fragrance-card"><h4>Cucumber Melon</h4><p>Fresh • Juicy • Refreshing</p></div>
+<div class="fragrance-card"><h4>Dragon Fruit Berry</h4><p>Bright • Fruity • Tropical</p></div>
+<div class="fragrance-card"><h4>Fresh Clean Linen</h4><p>Clean • Crisp • Soft</p></div>
+<div class="fragrance-card"><h4>Frosted Eucalyptus Mint</h4><p>Cool • Fresh • Spa-like</p></div>
+<div class="fragrance-card"><h4>Fruity Pebbles</h4><p>Playful • Sweet • Nostalgic</p></div>
+<div class="fragrance-card"><h4>Kiwi Watermelon</h4><p>Juicy • Bright • Fruity</p></div>
+<div class="fragrance-card"><h4>Lemon Meringue Pie</h4><p>Citrus • Creamy • Sweet</p></div>
+<div class="fragrance-card"><h4>Malibu Rum Cupcakes</h4><p>Tropical • Warm • Bakery</p></div>
+<div class="fragrance-card"><h4>Maple Pecan</h4><p>Warm • Nutty • Comforting</p></div>
+<div class="fragrance-card"><h4>Oatmeal Milk & Honey</h4><p>Soft • Creamy • Comforting</p></div>
+<div class="fragrance-card"><h4>Orange Chiffon Cake</h4><p>Citrus • Soft • Sweet</p></div>
+<div class="fragrance-card"><h4>Peaches & Cream</h4><p>Soft • Creamy • Comforting</p></div>
+<div class="fragrance-card"><h4>Raspberry Mimosa</h4><p>Berry • Bubbly • Bright</p></div>
+<div class="fragrance-card"><h4>Raspberry Sorbet</h4><p>Fruity • Bright • Refreshing</p></div>
+
+</div>
+
+<div class="shop-buttons">
+<a href="https://www.etsy.com/shop/SkinSessed" target="_blank" rel="noopener">Shop Etsy</a>
+<a class="secondary" href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener">Shop eBay</a>
+</div>
+
+</div>
 </section>
 
-<!-- CTA -->
-<section class="cta">
-    <div class="container">
-        <div class="cta-card">
-            <div class="eyebrow">Available online</div>
-            <h2>Ready to get SkinSessed?</h2>
-            <p>
-                Shop dessert-inspired body scrubs, moisturizers, Dessert Balm Glide Sticks,
-                handcrafted goat milk soaps, and limited gift boxes online.
-            </p>
-            <div class="hero-actions">
-                <a class="button button-primary" href="https://www.etsy.com/shop/SkinJuiceBody" target="_blank" rel="noopener">Shop on Etsy</a>
-                <a class="button button-secondary" href="https://www.ebay.com/usr/shook" target="_blank" rel="noopener">Shop on eBay</a>
-            </div>
-        </div>
-    </div>
+<!-- ABOUT -->
+
+<section class="section about-section">
+<div class="container">
+
+<div class="section-kicker eyebrow">Meet the brand</div>
+<h2 class="section-title">Meet <span>SkinSessed</span></h2>
+
+<p class="section-text">
+SkinSessed was created for people who want body care to feel indulgent, comforting, beautiful,
+and unforgettable. From foaming body scrubs to rich Second Skin Moisturizers, Dessert Balm Glide Sticks,
+Lip Seals, handmade goat milk soaps, samples, and curated gift boxes, every product is designed to turn
+ordinary self-care into a luxurious little ritual.
+</p>
+
+<div class="contact-strip">
+<a href="mailto:ShopSkinSessed@gmail.com">ShopSkinSessed@gmail.com</a>
+<a href="https://SkinSessed.com">SkinSessed.com</a>
+<a href="https://facebook.com/shopskinsessed" target="_blank" rel="noopener">Facebook @shopskinsessed</a>
+<a href="https://instagram.com/shopskinsessed" target="_blank" rel="noopener">Instagram @shopskinsessed</a>
+</div>
+
+<div class="shop-buttons">
+<a href="https://www.etsy.com/shop/SkinSessed" target="_blank" rel="noopener">Visit Our Etsy Shop</a>
+<a class="secondary" href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener">Visit Our eBay Store</a>
+</div>
+
+</div>
 </section>
 
-</main>
+<!-- FOOTER -->
 
 <footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div>
-                <div class="footer-logo">Skin<span>Sessed</span></div>
-                <p>
-                    Next level obsessed body care — foaming scrubs, Second Skin moisturizers,
-                    Dessert Balm Glide Sticks, handcrafted goat milk soaps, and curated gift boxes.
-                </p>
-            </div>
+<div class="footer-logo">Skin<span>Sessed</span></div>
 
-            <div>
-                <h3>Shop</h3>
-                <div class="footer-links">
-                    <a href="https://www.etsy.com/shop/SkinJuiceBody" target="_blank" rel="noopener">Etsy Shop</a>
-                    <a href="https://www.ebay.com/usr/shook" target="_blank" rel="noopener">eBay Store</a>
-                    <a href="https://SkinSessed.com" target="_blank" rel="noopener">SkinSessed.com</a>
-                </div>
-            </div>
+FOAMING BODY SCRUBS • SECOND SKIN MOISTURIZERS • DESSERT BALM GLIDE STICKS • LIP SEALS • GOAT MILK SOAPS • GIFT BOXES
 
-            <div>
-                <h3>Connect</h3>
-                <div class="footer-links">
-                    <a href="mailto:ShopSkinSessed@gmail.com">ShopSkinSessed@gmail.com</a>
-                    <a href="https://www.facebook.com/shopskinsessed" target="_blank" rel="noopener">Facebook @shopskinsessed</a>
-                    <a href="https://www.instagram.com/shopskinsessed" target="_blank" rel="noopener">Instagram @shopskinsessed</a>
-                </div>
-            </div>
-        </div>
+<br><br>
 
-        <div class="copyright">
-            © 2026 SkinSessed • Next Level Obsessed • Body Care, Elevated
-        </div>
-    </div>
+Next Level Obsessed • Body Care, Elevated<br>
+ShopSkinSessed@gmail.com • SkinSessed.com
+
+<div class="footer-links">
+<a href="https://www.etsy.com/shop/SkinSessed" target="_blank" rel="noopener">Shop Etsy</a>
+<a href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener">Shop eBay</a>
+<a href="https://facebook.com/shopskinsessed" target="_blank" rel="noopener">Facebook</a>
+<a href="https://instagram.com/shopskinsessed" target="_blank" rel="noopener">Instagram</a>
+</div>
+
 </footer>
 
 </body>
