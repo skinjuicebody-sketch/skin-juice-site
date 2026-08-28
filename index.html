@@ -243,29 +243,6 @@
       line-height:1.38;
     }
 
-    .luxe-note{
-      position:relative;
-      z-index:2;
-      margin:28px auto 0;
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .luxe-note span{
-      font-family:'Cinzel',serif;
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:1.2px;
-      color:var(--olive);
-      text-transform:uppercase;
-      padding:9px 14px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.68);
-    }
-
     .shop-buttons{
       position:relative;
       z-index:2;
@@ -292,6 +269,67 @@
       background:linear-gradient(135deg,var(--berry),var(--rose));
       box-shadow:0 12px 26px rgba(159,35,68,.18);
       transition:.22s ease;
+      gap:10px;
+    }
+
+    .brand-mark{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      line-height:1;
+      flex:0 0 auto;
+    }
+
+    .etsy-mark{
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      background:#f1641e;
+      color:#fff;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:24px;
+      font-weight:700;
+      text-transform:none;
+    }
+
+    .tiktok-mark{
+      width:30px;
+      height:30px;
+      color:#fff;
+      font-family:Arial,sans-serif;
+      font-size:28px;
+      font-weight:900;
+      text-shadow:2px 0 #25f4ee,-2px 0 #fe2c55;
+      transform:translateY(-1px);
+    }
+
+    .ebay-mark{
+      min-width:52px;
+      height:28px;
+      padding:1px 5px 3px;
+      border-radius:6px;
+      background:#fff;
+      font-family:Arial,sans-serif;
+      font-size:18px;
+      font-weight:700;
+      letter-spacing:-2px;
+      text-transform:none;
+    }
+
+    .ebay-mark .e1{color:#e53238;}
+    .ebay-mark .e2{color:#0064d2;}
+    .ebay-mark .e3{color:#f5af02;}
+    .ebay-mark .e4{color:#86b817;}
+
+    .whatnot-mark{
+      width:46px;
+      height:30px;
+    }
+
+    .whatnot-mark svg{
+      width:46px;
+      height:30px;
+      display:block;
     }
 
     .shop-buttons a.tiktok{
@@ -359,6 +397,41 @@
       text-align:center;
     }
 
+    .shop-card .platform-logo-wrap{
+      min-height:62px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 10px;
+    }
+
+    .shop-card .platform-logo-wrap .etsy-mark{
+      width:58px;
+      height:58px;
+      font-size:44px;
+    }
+
+    .shop-card .platform-logo-wrap .tiktok-mark{
+      width:58px;
+      height:58px;
+      font-size:52px;
+      color:#111;
+    }
+
+    .shop-card .platform-logo-wrap .ebay-mark{
+      min-width:92px;
+      height:46px;
+      font-size:31px;
+      background:transparent;
+      padding:0;
+    }
+
+    .shop-card .platform-logo-wrap .whatnot-mark,
+    .shop-card .platform-logo-wrap .whatnot-mark svg{
+      width:82px;
+      height:50px;
+    }
+
     .shop-card h3{
       font-family:'Playfair Display',serif;
       font-size:32px;
@@ -424,28 +497,6 @@
       position:relative;
       font-size:21px;
       line-height:1.32;
-    }
-
-    .badge-row{
-      position:relative;
-      margin-top:18px;
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .badge-row span{
-      border:1px solid rgba(113,128,88,.35);
-      border-radius:999px;
-      padding:7px 10px;
-      color:var(--olive);
-      background:rgba(255,255,255,.72);
-      font-family:'Cinzel',serif;
-      font-size:11px;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      font-weight:700;
     }
 
     .feature-section{
@@ -570,15 +621,22 @@
     }
 
     .scent-list span{
-      border:1px solid rgba(198,148,63,.34);
-      border-radius:999px;
-      padding:10px 12px;
-      text-align:center;
-      background:rgba(255,255,255,.74);
+      position:relative;
+      padding:7px 8px 7px 22px;
       color:var(--deep);
       font-size:18px;
       font-weight:700;
-      line-height:1.1;
+      line-height:1.2;
+      text-align:left;
+    }
+
+    .scent-list span::before{
+      content:"✦";
+      position:absolute;
+      left:2px;
+      top:7px;
+      color:var(--gold);
+      font-size:12px;
     }
 
     .about-section{
@@ -597,15 +655,14 @@
     }
 
     .contact-strip a{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(198,148,63,.34);
-      background:rgba(255,255,255,.68);
+      padding:6px 8px;
       color:var(--olive);
       font-family:'Cinzel',serif;
       font-size:13px;
       font-weight:700;
       letter-spacing:.8px;
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
 
     .footer{
@@ -772,28 +829,46 @@
       Sculpted Bliss massage bars, samples, and curated Gift Sets.
     </p>
 
-    <div class="luxe-note">
-      <span>Small-batch body care</span>
-      <span>Moisture + softness</span>
-      <span>Fun scent variety</span>
-      <span>Giftable favorites</span>
-    </div>
-
     <div class="shop-buttons">
-      <a href="https://skinsessed.etsy.com/" target="_blank" rel="noopener">Shop Etsy</a>
-      <a class="tiktok" href="https://www.tiktok.com/@skinsessed" target="_blank" rel="noopener">TikTok Shop</a>
-      <a class="ebay" href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener">Shop eBay</a>
-      <a class="whatnot" href="https://www.whatnot.com/user/skinsessed" target="_blank" rel="noopener">Shop Whatnot</a>
+
+      <a href="https://skinsessed.etsy.com/" target="_blank" rel="noopener" aria-label="Shop SkinSessed on Etsy">
+        <span class="brand-mark etsy-mark" aria-hidden="true">E</span>
+        Shop Etsy
+      </a>
+
+      <a class="tiktok" href="https://www.tiktok.com/@skinsessed" target="_blank" rel="noopener" aria-label="Find SkinSessed on TikTok Shop">
+        <span class="brand-mark tiktok-mark" aria-hidden="true">♪</span>
+        TikTok Shop
+      </a>
+
+      <a class="ebay" href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener" aria-label="Shop SkinSessed on eBay">
+        <span class="brand-mark ebay-mark" aria-hidden="true">
+          <span class="e1">e</span><span class="e2">b</span><span class="e3">a</span><span class="e4">y</span>
+        </span>
+        Shop eBay
+      </a>
+
+      <a class="whatnot" href="https://www.whatnot.com/user/skinsessed" target="_blank" rel="noopener" aria-label="Shop SkinSessed on Whatnot">
+        <span class="brand-mark whatnot-mark" aria-hidden="true">
+          <svg viewBox="0 0 92 56" role="img">
+            <path d="M10 10c-7 0-10 6-10 13 0 12 14 22 24 30 10-8 24-18 24-30 0-7-4-13-11-13-6 0-10 4-13 9-3-5-8-9-14-9z" fill="#ffdf00" stroke="#111" stroke-width="5"/>
+            <path d="M44 10c-7 0-10 6-10 13 0 12 14 22 24 30 10-8 24-18 24-30 0-7-4-13-11-13-6 0-10 4-13 9-3-5-8-9-14-9z" fill="#ffdf00" stroke="#111" stroke-width="5"/>
+          </svg>
+        </span>
+        Shop Whatnot
+      </a>
+
     </div>
 
     <div class="hero-image">
-      <img src="body-care-duo.png" alt="SkinSessed body care products" fetchpriority="high">
+      <img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/body-care-duo.png?v=20260828" alt="SkinSessed body care products" fetchpriority="high">
     </div>
   </section>
 
 
   <section class="section alt" id="where-to-shop">
     <div class="container">
+
       <div class="section-kicker eyebrow">Find SkinSessed online</div>
       <h2 class="section-title">Where to <span>Shop</span></h2>
 
@@ -805,35 +880,46 @@
       <div class="shop-grid">
 
         <div class="shop-card">
+          <div class="platform-logo-wrap">
+            <span class="brand-mark etsy-mark" aria-hidden="true">E</span>
+          </div>
           <h3>Etsy</h3>
           <p>Shop SkinSessed body care, lip care, soaps, sets, and more.</p>
-          <a href="https://skinsessed.etsy.com/" target="_blank" rel="noopener">
-            SkinSessed.Etsy.com
-          </a>
+          <a href="https://skinsessed.etsy.com/" target="_blank" rel="noopener">Open Etsy Shop</a>
         </div>
 
         <div class="shop-card">
+          <div class="platform-logo-wrap">
+            <span class="brand-mark tiktok-mark" aria-hidden="true">♪</span>
+          </div>
           <h3>TikTok Shop</h3>
           <p>Find SkinSessed on TikTok and shop directly from our profile and Shop tab.</p>
-          <a href="https://www.tiktok.com/@skinsessed" target="_blank" rel="noopener">
-            @skinsessed
-          </a>
+          <a href="https://www.tiktok.com/@skinsessed" target="_blank" rel="noopener">Open TikTok</a>
         </div>
 
         <div class="shop-card">
+          <div class="platform-logo-wrap">
+            <span class="brand-mark ebay-mark" aria-hidden="true">
+              <span class="e1">e</span><span class="e2">b</span><span class="e3">a</span><span class="e4">y</span>
+            </span>
+          </div>
           <h3>eBay</h3>
           <p>Browse SkinSessed listings and current eBay inventory.</p>
-          <a href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener">
-            eBay / SkinSessed
-          </a>
+          <a href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener">Open eBay Store</a>
         </div>
 
         <div class="shop-card">
+          <div class="platform-logo-wrap">
+            <span class="brand-mark whatnot-mark" aria-hidden="true">
+              <svg viewBox="0 0 92 56" role="img">
+                <path d="M10 10c-7 0-10 6-10 13 0 12 14 22 24 30 10-8 24-18 24-30 0-7-4-13-11-13-6 0-10 4-13 9-3-5-8-9-14-9z" fill="#ffdf00" stroke="#111" stroke-width="5"/>
+                <path d="M44 10c-7 0-10 6-10 13 0 12 14 22 24 30 10-8 24-18 24-30 0-7-4-13-11-13-6 0-10 4-13 9-3-5-8-9-14-9z" fill="#ffdf00" stroke="#111" stroke-width="5"/>
+              </svg>
+            </span>
+          </div>
           <h3>Whatnot</h3>
           <p>Join SkinSessed on Whatnot for live selling, special offers, and fun finds.</p>
-          <a href="https://www.whatnot.com/user/skinsessed" target="_blank" rel="noopener">
-            Whatnot / SkinSessed
-          </a>
+          <a href="https://www.whatnot.com/user/skinsessed" target="_blank" rel="noopener">Open Whatnot</a>
         </div>
 
       </div>
@@ -850,7 +936,8 @@
       <p class="section-text">
         SkinSessed has grown beyond the original body-care collection.
         Explore moisturizing body care, lip care, beauty prep, handmade soaps,
-        sculpted massage bars, and giftable sets.
+        sculpted massage bars, and giftable sets. Product cards below are informational;
+        use the clearly marked shopping links above to purchase.
       </p>
 
       <div class="collection-grid">
@@ -858,83 +945,46 @@
         <div class="collection-card">
           <h3>Foaming Body Scrubs</h3>
           <p>Dense, creamy exfoliating scrubs with rich lather and indulgent fragrance.</p>
-          <div class="badge-row">
-            <span>11 oz</span>
-            <span>7 oz</span>
-          </div>
         </div>
 
         <div class="collection-card">
           <h3>Second Skin Moisturizers</h3>
           <p>Rich, creamy body moisturizers made to leave skin feeling soft, smooth, and conditioned.</p>
-          <div class="badge-row">
-            <span>10 oz</span>
-            <span>6 oz</span>
-          </div>
         </div>
 
         <div class="collection-card">
           <h3>Firming Complex</h3>
           <p>Lavender Mint body toning moisturizer with Sepilift™ DPHP for a smoother, firmer-looking appearance.</p>
-          <div class="badge-row">
-            <span>6 oz</span>
-            <span>10 oz</span>
-            <span>Lavender Mint</span>
-          </div>
         </div>
 
         <div class="collection-card">
           <h3>Liquid Satin</h3>
           <p>Silky face primer that helps smooth the look of texture and creates a soft satin-finish makeup base.</p>
-          <div class="badge-row">
-            <span>1 fl oz / 30 mL</span>
-            <span>Face Primer</span>
-          </div>
         </div>
 
         <div class="collection-card">
           <h3>Dessert Balm Glide Sticks</h3>
           <p>Solid glide-on body moisturizer for quick, targeted, mess-free moisture.</p>
-          <div class="badge-row">
-            <span>Body Care</span>
-            <span>Glide-On</span>
-          </div>
         </div>
 
         <div class="collection-card">
           <h3>Lip Seals</h3>
           <p>Moisturizing, conditioning lip balm in a fun assortment of SkinSessed scents and flavors.</p>
-          <div class="badge-row">
-            <span>Lip Balm</span>
-            <span>Moisturizing</span>
-          </div>
         </div>
 
         <div class="collection-card">
           <h3>Goat Milk Soaps</h3>
           <p>Handmade goat milk soaps with creamy lather, boutique designs, and scent-forward variety.</p>
-          <div class="badge-row">
-            <span>Handmade</span>
-            <span>Small Batch</span>
-          </div>
         </div>
 
         <div class="collection-card">
           <h3>Sculpted Bliss</h3>
           <p>Sculpted goat milk massage bars with raised massage points and SkinSessed fragrance.</p>
-          <div class="badge-row">
-            <span>Massage Bars</span>
-            <span>4-Bar Sets</span>
-          </div>
         </div>
 
         <div class="collection-card">
           <h3>Gift Sets</h3>
           <p>Curated SkinSessed assortments featuring coordinated body care, soaps, lip care, samples, and extras.</p>
-          <div class="badge-row">
-            <span>Gift Set</span>
-            <span>No Gift Box Included</span>
-          </div>
         </div>
 
       </div>
@@ -948,12 +998,11 @@
       <div class="feature-section">
 
         <div class="feature-image">
-          <img src="body-care-duo.png"
-               alt="SkinSessed Foaming Body Scrub and Second Skin Moisturizer"
-               loading="lazy">
+          <img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/body-care-duo.png?v=20260828" alt="SkinSessed Foaming Body Scrub and Second Skin Moisturizer" loading="lazy">
         </div>
 
         <div class="feature-copy">
+
           <div class="eyebrow">Creamy • Moisturizing • Scent-forward</div>
 
           <h2>
@@ -988,15 +1037,13 @@
       <div class="feature-section reverse">
 
         <div class="feature-image">
-          <img src="6oz10oz%20FirmingComp.png"
-               alt="SkinSessed Firming Complex Lavender Mint Body Toning Moisturizer in 6 oz and 10 oz sizes"
-               loading="lazy">
+          <img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/6oz10oz%20FirmingComp.png?v=20260828" alt="SkinSessed Firming Complex Lavender Mint Body Toning Moisturizer in 6 oz and 10 oz sizes" loading="lazy">
         </div>
 
         <div class="feature-copy">
 
           <div class="eyebrow">
-            Lavender Mint • Sepilift™ DPHP • Body Moisturizer
+            Lavender Mint • Sepilift™ DPHP • Body moisturizer
           </div>
 
           <h2>
@@ -1005,10 +1052,10 @@
           </h2>
 
           <p>
-            SkinSessed Firming Complex is a concentrated Lavender Mint
-            body moisturizer made with Sepilift™ DPHP and a rich anhydrous base.
-            It is designed to deeply moisturize while helping skin look smoother,
-            more supple, plumper, and firmer with consistent use.
+            SkinSessed Firming Complex is a concentrated Lavender Mint body moisturizer
+            made with Sepilift™ DPHP and a rich anhydrous base. It is designed to deeply
+            moisturize while helping skin look smoother, more supple, plumper, and firmer
+            with consistent use.
           </p>
 
           <ul>
@@ -1037,9 +1084,7 @@
       <div class="feature-section">
 
         <div class="feature-image">
-          <img src="Liquid%20Satin%20Prod%20Shot.png"
-               alt="SkinSessed Liquid Satin Silky Smooth Face Primer"
-               loading="lazy">
+          <img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/Liquid%20Satin%20Prod%20Shot.png?v=20260828" alt="SkinSessed Liquid Satin Silky Smooth Face Primer" loading="lazy">
         </div>
 
         <div class="feature-copy">
@@ -1054,10 +1099,9 @@
           </h2>
 
           <p>
-            Liquid Satin glides over the skin with a silky, lightweight feel
-            to help smooth the appearance of texture and create a polished base
-            before makeup. Wear it under complexion products or by itself for
-            a soft, refined finish.
+            Liquid Satin glides over the skin with a silky, lightweight feel to help
+            smooth the appearance of texture and create a polished base before makeup.
+            Wear it under complexion products or by itself for a soft, refined finish.
           </p>
 
           <ul>
@@ -1082,15 +1126,13 @@
       <div class="feature-section reverse">
 
         <div class="feature-image">
-          <img src="Updated%20Balm%20Sticks%20Products.png"
-               alt="SkinSessed Dessert Balm Glide Stick collection"
-               loading="lazy">
+          <img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/Updated%20Balm%20Sticks%20Products.png?v=20260828" alt="SkinSessed Dessert Balm Glide Stick collection" loading="lazy">
         </div>
 
         <div class="feature-copy">
 
           <div class="eyebrow">
-            Solid Body Moisturizer • Mess-Free • On-the-Go
+            Solid body moisturizer • Mess-free • On-the-go
           </div>
 
           <h2>
@@ -1099,9 +1141,9 @@
           </h2>
 
           <p>
-            Dessert Balm Glide Sticks are solid glide-on body moisturizers
-            that melt against the warmth of the skin for smooth, targeted application.
-            They are made for body-care use and are separate from SkinSessed Lip Seals.
+            Dessert Balm Glide Sticks are solid glide-on body moisturizers that melt
+            against the warmth of the skin for smooth, targeted application. They are
+            made for body-care use and are separate from SkinSessed Lip Seals.
           </p>
 
           <ul>
@@ -1125,15 +1167,13 @@
       <div class="feature-section">
 
         <div class="feature-image">
-          <img src="LipSeal%20Collection.png"
-               alt="SkinSessed Lip Seal moisturizing lip balm collection"
-               loading="lazy">
+          <img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/LipSeal%20Collection.png?v=20260828" alt="SkinSessed Lip Seal moisturizing lip balm collection" loading="lazy">
         </div>
 
         <div class="feature-copy">
 
           <div class="eyebrow">
-            Moisturizing • Conditioning • Smooth Glide
+            Moisturizing • Conditioning • Smooth glide
           </div>
 
           <h2>
@@ -1142,9 +1182,9 @@
           </h2>
 
           <p>
-            SkinSessed Lip Seals are moisturizing cosmetic lip balms
-            created to help lips feel soft, smooth, conditioned, and comfortable.
-            Assorted packs make it easy to try several scents and flavors at once.
+            SkinSessed Lip Seals are moisturizing cosmetic lip balms created to help
+            lips feel soft, smooth, conditioned, and comfortable. Assorted packs make
+            it easy to try several scents and flavors at once.
           </p>
 
           <ul>
@@ -1168,15 +1208,13 @@
       <div class="feature-section reverse">
 
         <div class="feature-image">
-          <img src="SQSoaps.jpg"
-               alt="SkinSessed handmade goat milk soap collection"
-               loading="lazy">
+          <img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/SQSoaps.jpg?v=20260828" alt="SkinSessed handmade goat milk soap collection" loading="lazy">
         </div>
 
         <div class="feature-copy">
 
           <div class="eyebrow">
-            Handmade • Goat Milk • Small Batch
+            Handmade • Goat milk • Small batch
           </div>
 
           <h2>
@@ -1210,15 +1248,13 @@
       <div class="feature-section">
 
         <div class="feature-image">
-          <img src="Prod%20Shot%20Bliss%20OatmealMH.png"
-               alt="SkinSessed Sculpted Bliss goat milk massage bars"
-               loading="lazy">
+          <img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/Prod%20Shot%20Bliss%20OatmealMH.png?v=20260828" alt="SkinSessed Sculpted Bliss goat milk massage bars" loading="lazy">
         </div>
 
         <div class="feature-copy">
 
           <div class="eyebrow">
-            Sculpted • Massage Points • Goat Milk Soap
+            Sculpted • Massage points • Goat milk soap
           </div>
 
           <h2>
@@ -1227,10 +1263,9 @@
           </h2>
 
           <p>
-            Sculpted Bliss bars combine creamy goat milk soap with a raised
-            massage-bar shape for a fun, tactile shower experience.
-            The sculpted points make the bar easy to grip and give
-            SkinSessed soap a distinctive spa-inspired look.
+            Sculpted Bliss bars combine creamy goat milk soap with a raised massage-bar
+            shape for a fun, tactile shower experience. The sculpted points make the bar
+            easy to grip and give SkinSessed soap a distinctive spa-inspired look.
           </p>
 
           <ul>
@@ -1253,9 +1288,7 @@
       <div class="feature-section reverse">
 
         <div class="feature-image">
-          <img src="GiftSet.png"
-               alt="SkinSessed curated body care Gift Set with scrub, moisturizer, Lip Seal, soaps, samples, and exfoliating glove"
-               loading="lazy">
+          <img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/GiftSet.png?v=20260828" alt="SkinSessed curated body care Gift Set with scrub, moisturizer, Lip Seal, soaps, samples, and exfoliating glove" loading="lazy">
         </div>
 
         <div class="feature-copy">
@@ -1270,9 +1303,9 @@
           </h2>
 
           <p>
-            SkinSessed Gift Sets bring several favorites together in one
-            coordinated assortment. The current presentation shown includes
-            body care, lip care, handmade soaps, samples, and an exfoliating glove.
+            SkinSessed Gift Sets bring several favorites together in one coordinated
+            assortment. The current presentation shown includes body care, lip care,
+            handmade soaps, samples, and an exfoliating glove.
           </p>
 
           <ul>
@@ -1302,7 +1335,7 @@
       <div class="scent-wrap">
 
         <div class="section-kicker eyebrow">
-          Scent Library
+          Scent library
         </div>
 
         <h2 class="section-title">
@@ -1323,7 +1356,7 @@
           <span>Caramel Nut Muffin</span>
           <span>Cherry Vanilla Swirl</span>
           <span>Chocolate Coconut</span>
-          <span>Chocolate Dream Truffle</span>
+          <span>Chocolate Creme Truffle</span>
           <span>Cucumber Melon</span>
           <span>Fresh Clean Linen</span>
           <span>Frosted Eucalyptus Mint</span>
@@ -1333,14 +1366,11 @@
           <span>Lemon Meringue Pie</span>
           <span>Malibu Rum Cupcakes</span>
           <span>Maple Cream</span>
-          <span>Maple Pecan Cream</span>
           <span>Oatmeal Milk &amp; Honey</span>
           <span>Orange Chiffon Cake</span>
           <span>Peaches &amp; Cream</span>
           <span>Raspberry Merlot</span>
           <span>Raspberry Sorbet</span>
-          <span>Snickerdoodle</span>
-          <span>Toasted Marshmallow</span>
         </div>
 
       </div>
@@ -1352,7 +1382,7 @@
     <div class="container">
 
       <div class="section-kicker eyebrow">
-        Meet the Brand
+        Meet the brand
       </div>
 
       <h2 class="section-title">
@@ -1361,13 +1391,10 @@
       </h2>
 
       <p class="section-text">
-        SkinSessed creates small-batch body care, lip care, soaps,
-        beauty favorites, and giftable assortments designed to make
-        everyday self-care feel more indulgent.
-
-        From dessert-inspired fragrance to fresh spa-like scents,
-        the collection is made for customers who want products that
-        are useful, fun, beautiful, and memorable.
+        SkinSessed creates small-batch body care, lip care, soaps, beauty favorites,
+        and giftable assortments designed to make everyday self-care feel more indulgent.
+        From dessert-inspired fragrance to fresh spa-like scents, the collection is made
+        for customers who want products that are useful, fun, beautiful, and memorable.
       </p>
 
       <div class="contact-strip">
@@ -1380,21 +1407,15 @@
           SkinSessed.com
         </a>
 
-        <a href="https://facebook.com/shopskinsessed"
-           target="_blank"
-           rel="noopener">
+        <a href="https://facebook.com/shopskinsessed" target="_blank" rel="noopener">
           Facebook @shopskinsessed
         </a>
 
-        <a href="https://instagram.com/shopskinsessed"
-           target="_blank"
-           rel="noopener">
+        <a href="https://instagram.com/shopskinsessed" target="_blank" rel="noopener">
           Instagram @shopskinsessed
         </a>
 
-        <a href="https://www.tiktok.com/@skinsessed"
-           target="_blank"
-           rel="noopener">
+        <a href="https://www.tiktok.com/@skinsessed" target="_blank" rel="noopener">
           TikTok @skinsessed
         </a>
 
@@ -1403,30 +1424,30 @@
 
       <div class="shop-buttons">
 
-        <a href="https://skinsessed.etsy.com/"
-           target="_blank"
-           rel="noopener">
+        <a href="https://skinsessed.etsy.com/" target="_blank" rel="noopener">
+          <span class="brand-mark etsy-mark" aria-hidden="true">E</span>
           Etsy
         </a>
 
-        <a class="tiktok"
-           href="https://www.tiktok.com/@skinsessed"
-           target="_blank"
-           rel="noopener">
+        <a class="tiktok" href="https://www.tiktok.com/@skinsessed" target="_blank" rel="noopener">
+          <span class="brand-mark tiktok-mark" aria-hidden="true">♪</span>
           TikTok Shop
         </a>
 
-        <a class="ebay"
-           href="https://www.ebay.com/usr/skinsessed"
-           target="_blank"
-           rel="noopener">
+        <a class="ebay" href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener">
+          <span class="brand-mark ebay-mark" aria-hidden="true">
+            <span class="e1">e</span><span class="e2">b</span><span class="e3">a</span><span class="e4">y</span>
+          </span>
           eBay
         </a>
 
-        <a class="whatnot"
-           href="https://www.whatnot.com/user/skinsessed"
-           target="_blank"
-           rel="noopener">
+        <a class="whatnot" href="https://www.whatnot.com/user/skinsessed" target="_blank" rel="noopener">
+          <span class="brand-mark whatnot-mark" aria-hidden="true">
+            <svg viewBox="0 0 92 56" role="img">
+              <path d="M10 10c-7 0-10 6-10 13 0 12 14 22 24 30 10-8 24-18 24-30 0-7-4-13-11-13-6 0-10 4-13 9-3-5-8-9-14-9z" fill="#ffdf00" stroke="#111" stroke-width="5"/>
+              <path d="M44 10c-7 0-10 6-10 13 0 12 14 22 24 30 10-8 24-18 24-30 0-7-4-13-11-13-6 0-10 4-13 9-3-5-8-9-14-9z" fill="#ffdf00" stroke="#111" stroke-width="5"/>
+            </svg>
+          </span>
           Whatnot
         </a>
 
@@ -1461,39 +1482,27 @@
 
     <div class="footer-links">
 
-      <a href="https://skinsessed.etsy.com/"
-         target="_blank"
-         rel="noopener">
+      <a href="https://skinsessed.etsy.com/" target="_blank" rel="noopener">
         Etsy
       </a>
 
-      <a href="https://www.tiktok.com/@skinsessed"
-         target="_blank"
-         rel="noopener">
+      <a href="https://www.tiktok.com/@skinsessed" target="_blank" rel="noopener">
         TikTok Shop
       </a>
 
-      <a href="https://www.ebay.com/usr/skinsessed"
-         target="_blank"
-         rel="noopener">
+      <a href="https://www.ebay.com/usr/skinsessed" target="_blank" rel="noopener">
         eBay
       </a>
 
-      <a href="https://www.whatnot.com/user/skinsessed"
-         target="_blank"
-         rel="noopener">
+      <a href="https://www.whatnot.com/user/skinsessed" target="_blank" rel="noopener">
         Whatnot
       </a>
 
-      <a href="https://facebook.com/shopskinsessed"
-         target="_blank"
-         rel="noopener">
+      <a href="https://facebook.com/shopskinsessed" target="_blank" rel="noopener">
         Facebook
       </a>
 
-      <a href="https://instagram.com/shopskinsessed"
-         target="_blank"
-         rel="noopener">
+      <a href="https://instagram.com/shopskinsessed" target="_blank" rel="noopener">
         Instagram
       </a>
 
