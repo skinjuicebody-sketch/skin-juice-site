@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | SkinSessed</title>
+  <meta name="robots" content="noindex,nofollow">
+  <style>
+    :root{--cream:#fff8ef;--cream2:#f7eadb;--deep:#2a1d17;--berry:#a9284d;--rose:#c44b67;--gold:#c6943f;--olive:#42562b}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--cream),var(--cream2));color:var(--deep);font-family:Georgia,'Times New Roman',serif;padding:28px 16px}.wrap{max-width:820px;margin:0 auto}.brand{text-align:center;margin:10px 0 26px}.brand h1{font-size:clamp(2.8rem,9vw,5rem);margin:0}.brand span{color:var(--berry)}.brand p{margin:6px 0 0;color:var(--olive);font-size:1.1rem}.panel{background:#fff;border:1px solid rgba(198,148,63,.4);border-radius:24px;padding:30px;box-shadow:0 16px 42px rgba(42,29,23,.12)}h2{margin-top:0;font-size:2rem}.muted{color:#69574d;line-height:1.5}.item{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:16px 0;border-top:1px solid #eadccc}.item:first-of-type{border-top:0}.item strong{display:block;font-size:1.1rem}.qty{font-size:.95rem;color:#69574d;margin-top:4px}.btn{display:inline-block;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--berry),var(--rose));padding:12px 18px;border-radius:999px;font-weight:700;white-space:nowrap}.home{display:block;text-align:center;margin-top:24px;color:var(--berry);font-weight:700}.error{border-left:5px solid var(--gold);padding-left:16px}.small{font-size:.92rem;color:#6c5a50;margin-top:18px;line-height:1.45}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <header class="brand"><h1>Skin<span>Sessed</span></h1><p>Secure website checkout</p></header>
+  <section class="panel" id="checkout-panel">
+    <h2>Preparing your checkout…</h2>
+    <p class="muted">Please wait while your SkinSessed item is matched to secure checkout.</p>
+  </section>
+  <a class="home" href="shop.html">Return to SkinSessed Shop</a>
+</main>
+<script>
+(function(){
+  const catalog = {
+    'SS-SCRUB-7': {name:'7 oz Foaming Body Scrub', url:'https://buy.stripe.com/9B6aEZ5PP3Iu5xCfRH6sw00'},
+    'SS-SCRUB-11': {name:'11 oz Foaming Body Scrub', url:'https://buy.stripe.com/00wbJ36TTfrc6BGeND6sw01'},
+    'SS-SECOND-6': {name:'6 oz Second Skin Moisturizer', url:'https://buy.stripe.com/dRmeVf4LLgvg1hmdJz6sw02'},
+    'SS-SOAP-5': {name:'5 Palm-Size Goat Milk Soap Bars', url:'https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03'},
+    'SS-SOAP-3': {name:'5 Palm-Size Goat Milk Soap Bars', url:'https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03'},
+    'SS-BLISS-4': {name:'4 Sculpted Bliss Massage Bars', url:'https://buy.stripe.com/8x26oJ4LLdj42lq8pf6sw04'},
+    'SS-FIRM-6': {name:'6 oz Firming Complex', url:'https://buy.stripe.com/14AcN70vvdj4bW048Z6sw05'},
+    'SS-FIRM-10': {name:'10 oz Firming Complex', url:'https://buy.stripe.com/7sY00l4LL1Am9NS0WN6sw06'}
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const rawProducts = (params.get('products') || '').trim();
+  const panel = document.getElementById('checkout-panel');
+
+  if(!rawProducts){
+    panel.innerHTML = '<div class="error"><h2>Checkout information is missing</h2><p class="muted">No product was supplied with this checkout request. Please return to the SkinSessed shop and select your item again.</p></div>';
+    return;
+  }
+
+  const requested = rawProducts.split(',').map(function(entry){
+    const parts = entry.split(':');
+    const id = decodeURIComponent((parts[0] || '').trim());
+    const parsedQty = parseInt(parts[1] || '1',10);
+    return {id:id, qty:Number.isFinite(parsedQty) && parsedQty > 0 ? parsedQty : 1};
+  }).filter(function(item){ return item.id && catalog[item.id]; });
+
+  if(requested.length === 0){
+    panel.innerHTML = '<div class="error"><h2>Product not found</h2><p class="muted">The requested product does not match a current SkinSessed checkout item. Please return to the shop and choose an available product.</p></div>';
+    return;
+  }
+
+  if(requested.length === 1 && requested[0].qty === 1){
+    window.location.replace(catalog[requested[0].id].url);
+    return;
+  }
+
+  const itemsHtml = requested.map(function(item){
+    const p = catalog[item.id];
+    return '<div class="item"><div><strong>'+p.name+'</strong><div class="qty">Requested quantity: '+item.qty+'</div></div><a class="btn" href="'+p.url+'">Secure Checkout</a></div>';
+  }).join('');
+
+  panel.innerHTML = '<h2>Your SkinSessed checkout</h2><p class="muted">Your requested items are shown below. Stripe checkout allows quantity adjustment before payment when available.</p>'+itemsHtml+'<p class="small">If more than one different product was selected, complete each secure checkout shown above. This prevents an incorrect charge or product substitution.</p>';
+})();
+</script>
+</body>
+</html>
