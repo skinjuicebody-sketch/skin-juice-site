@@ -4,6 +4,7 @@ const PRICE_MAP: Record<string, string> = {
   'SS-SECOND-6': 'price_1UEK4mQjUAwLUc01Eer8aH7D',
   'SS-SECOND-10': 'price_1UEKm1QjUAwLUc01E4Mmpz6b',
   'SS-LIQSAT-2': 'price_1UEKqVQjUAwLUc01VARuqzz2',
+  'bee70m5mum': 'price_1UEKqVQjUAwLUc01VARuqzz2',
   'SS-BALM-1': 'price_1UEKqbQjUAwLUc01KNqmI3PL',
   'SS-GIFT-COMPLETE': 'price_1UEKtyQjUAwLUc016LNBoIHs',
   'SS-SOAP-3': 'price_1UEK4sQjUAwLUc01Eelqf3Zc',
