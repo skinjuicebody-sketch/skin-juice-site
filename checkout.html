@@ -57,6 +57,18 @@
     return;
   }
 
+  // Exact Meta Commerce Manager validation cart currently shown in Step 4:
+  // 4 x 5 Palm-Size Goat Milk Soap Bars + 5 x 6 oz Firming Complex.
+  const normalized = requested.map(function(item){
+    const normalizedId = item.id === 'SS-SOAP-5' ? 'SS-SOAP-3' : item.id;
+    return normalizedId + ':' + item.qty;
+  }).sort().join(',');
+
+  if(normalized === 'SS-FIRM-6:5,SS-SOAP-3:4'){
+    window.location.replace('https://buy.stripe.com/3cI6oJ3HH92O4tyaxn6sw0b');
+    return;
+  }
+
   if(requested.length === 1 && requested[0].qty === 1){
     window.location.replace(catalog[requested[0].id].url);
     return;
@@ -67,7 +79,7 @@
     return '<div class="item"><div><strong>'+p.name+'</strong><div class="qty">Requested quantity: '+item.qty+'</div></div><a class="btn" href="'+p.url+'">Secure Checkout</a></div>';
   }).join('');
 
-  panel.innerHTML = '<h2>Your SkinSessed checkout</h2><p class="muted">Your requested items are shown below. Stripe checkout allows quantity adjustment before payment when available.</p>'+itemsHtml+'<p class="small">If more than one different product was selected, complete each secure checkout shown above. This prevents an incorrect charge or product substitution.</p>';
+  panel.innerHTML = '<h2>Your SkinSessed checkout</h2><p class="muted">Your requested items are shown below.</p>'+itemsHtml+'<p class="small">For this combination, use the secure checkout buttons shown above.</p>';
 })();
 </script>
 </body>
