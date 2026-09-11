@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Direct | SkinSessed</title>
+  <meta name="description" content="Shop SkinSessed directly with secure Stripe checkout. Sandbox test page for the upcoming SkinSessed.com ecommerce checkout.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--cream:#fff8ef;--cream2:#f7eadb;--gold:#c6943f;--deep:#2a1d17;--berry:#a9284d;--rose:#c44b67;--olive:#42562b;}
+    *{box-sizing:border-box;margin:0;padding:0} body{font-family:'Cormorant Garamond',serif;color:var(--deep);background:linear-gradient(180deg,var(--cream),var(--cream2));min-height:100vh;padding:36px 18px} a{text-decoration:none;color:inherit}.wrap{max-width:980px;margin:0 auto}.brand{text-align:center;margin-bottom:34px}.brand h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,9vw,5.8rem);letter-spacing:-.05em}.brand h1 span{color:var(--berry)}.tag{font-size:1.4rem;color:var(--olive);margin-top:5px}.notice{background:#fff;border:1px solid rgba(198,148,63,.45);border-left:5px solid var(--gold);border-radius:16px;padding:17px 20px;margin:0 auto 28px;max-width:760px;font-size:1.15rem;line-height:1.45}.card{background:rgba(255,255,255,.95);border:1px solid rgba(198,148,63,.4);border-radius:28px;box-shadow:0 18px 48px rgba(42,29,23,.13);overflow:hidden;display:grid;grid-template-columns:1fr 1fr}.photo{min-height:420px;background:#f5eee6;display:flex;align-items:center;justify-content:center;padding:24px}.photo img{width:100%;max-width:440px;height:auto;display:block}.copy{padding:44px 40px;display:flex;flex-direction:column;justify-content:center}.kicker{text-transform:uppercase;letter-spacing:2px;font-weight:700;color:var(--berry);font-size:.9rem}.copy h2{font-family:'Playfair Display',serif;font-size:2.5rem;line-height:1.06;margin:8px 0 12px}.price{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;margin-bottom:16px}.copy p{font-size:1.24rem;line-height:1.45;margin-bottom:18px}.features{margin:0 0 24px 20px;font-size:1.1rem;line-height:1.5}.buy{display:inline-flex;justify-content:center;align-items:center;padding:15px 24px;border-radius:999px;color:#fff;background:linear-gradient(135deg,var(--berry),var(--rose));font-family:'Playfair Display',serif;font-weight:700;font-size:1.08rem;box-shadow:0 10px 24px rgba(169,40,77,.2)}.small{text-align:center;font-size:.98rem;margin-top:18px;color:#57443a}.back{display:block;text-align:center;margin-top:30px;font-weight:700;text-decoration:underline;text-underline-offset:4px}@media(max-width:760px){.card{grid-template-columns:1fr}.photo{min-height:auto}.copy{padding:32px 24px}.copy h2{font-size:2rem}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Product",
+    "name":"SkinSessed Test Checkout Product",
+    "description":"Sandbox product used only to validate direct checkout on SkinSessed.com.",
+    "brand":{"@type":"Brand","name":"SkinSessed"},
+    "image":"https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/SQSoaps.jpg",
+    "offers":{"@type":"Offer","priceCurrency":"USD","price":"1.00","availability":"https://schema.org/InStock","url":"https://skinsessed.com/shop.html"}
+  }
+  </script>
+</head>
+<body>
+  <main class="wrap">
+    <header class="brand">
+      <h1>Skin<span>Sessed</span></h1>
+      <div class="tag">Direct website checkout test</div>
+    </header>
+
+    <div class="notice"><strong>Sandbox only:</strong> this page is being built and tested before any direct checkout is published on the live SkinSessed website. The current production homepage is unchanged.</div>
+
+    <section class="card">
+      <div class="photo"><img src="https://raw.githubusercontent.com/skinjuicebody-sketch/skin-juice-site/main/SQSoaps.jpg" alt="SkinSessed goat milk soaps"></div>
+      <div class="copy">
+        <div class="kicker">Secure direct checkout</div>
+        <h2>SkinSessed Test Checkout Product</h2>
+        <div class="price">$1.00</div>
+        <p>This temporary sandbox item verifies the complete purchase path from SkinSessed.com to secure Stripe Checkout before real products are activated.</p>
+        <ul class="features">
+          <li>Secure Stripe-hosted checkout</li>
+          <li>U.S. shipping address collection</li>
+          <li>No live customer charges</li>
+          <li>Separate from Etsy and other marketplaces</li>
+        </ul>
+        <a class="buy" href="https://buy.stripe.com/test_3cI4gBcesfyA9DReaY2VG00">Test Secure Checkout</a>
+        <div class="small">Stripe test mode. Real products and pricing will replace this before publication.</div>
+      </div>
+    </section>
+
+    <a class="back" href="index.html">Return to SkinSessed</a>
+  </main>
+</body>
+</html>
