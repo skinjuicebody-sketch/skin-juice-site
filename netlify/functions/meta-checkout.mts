@@ -25,6 +25,7 @@ const PRODUCT_NAMES: Record<string, string> = {
   'SS-SOAP-3': '3 Palm-Size Goat Milk Soap Bars',
   'SS-SOAP-5': '5 Palm-Size Goat Milk Soap Bars',
   'SS-BLISS-4': '4 Sculpted Bliss Massage Bars',
+  'SS-SOAP-3': '3 Palm-Size Goat Milk Soap Bars',
   'SS-LIPSEAL-6': '6 Lip Seals Lip Balm Collection',
   'SS-LIPSEAL-6': '6 Lip Seals Lip Balm Collection',
 };
