@@ -25,8 +25,6 @@ const PRODUCT_NAMES: Record<string, string> = {
   'SS-SOAP-3': '3 Palm-Size Goat Milk Soap Bars',
   'SS-SOAP-5': '5 Palm-Size Goat Milk Soap Bars',
   'SS-BLISS-4': '4 Sculpted Bliss Massage Bars',
-  'SS-SOAP-3': '3 Palm-Size Goat Milk Soap Bars',
-  'SS-LIPSEAL-6': '6 Lip Seals Lip Balm Collection',
   'SS-LIPSEAL-6': '6 Lip Seals Lip Balm Collection',
 };
 
@@ -36,6 +34,7 @@ const SCENTED_IDS = new Set([
 ]);
 
 const SCENT_OPTIONS = [
+  'Banana Cream Pie',
   'Birthday Cake',
   'Black Cherry Merlot',
   'Blueberry Pound Cake',
@@ -44,6 +43,7 @@ const SCENT_OPTIONS = [
   'Cucumber Melon',
   'Fresh Clean Linen',
   'Frosted Eucalyptus Mint',
+  'Grape Soda',
   'Kiwi Watermelon',
   'Lemon Meringue Pie',
   'Malibu Rum Cupcakes',
@@ -52,13 +52,6 @@ const SCENT_OPTIONS = [
   'Orange Chiffon Cake',
   'Peaches & Cream',
   'Raspberry Mimosa',
-];
-
-const GIFT_SCENT_OPTIONS = [
-  'Cucumber Melon',
-  'Oatmeal Milk & Honey',
-  'Peaches & Cream',
-  'Blueberry Pound Cake',
 ];
 
 type CartItem = { id: string; qty: number };
@@ -74,9 +67,23 @@ function parseProducts(raw: string): CartItem[] {
 }
 
 function getScentCount(id: string): number {
+  if (id === 'SS-GIFT-COMPLETE') return 5;
+  if (id === 'SS-SOAP-3') return 3;
   if (id === 'SS-SOAP-5') return 5;
+  if (id === 'SS-BLISS-4') return 4;
   if (id === 'SS-LIPSEAL-6') return 6;
   return 1;
+}
+
+function getScentSlotLabels(id: string): string[] {
+  if (id === 'SS-GIFT-COMPLETE') {
+    return ['Body Scrub', 'Second Skin Moisturizer', 'Soap Bar 1', 'Soap Bar 2', 'Lip Seal'];
+  }
+  if (id === 'SS-LIPSEAL-6') return Array.from({ length: 6 }, (_, index) => 'Lip Seal ' + (index + 1));
+  if (id === 'SS-SOAP-3' || id === 'SS-SOAP-5' || id === 'SS-BLISS-4') {
+    return Array.from({ length: getScentCount(id) }, (_, index) => 'Bar ' + (index + 1));
+  }
+  return [];
 }
 
 function getScentSpecs(items: CartItem[]): ScentSpec[] {
@@ -84,16 +91,15 @@ function getScentSpecs(items: CartItem[]): ScentSpec[] {
   items.forEach((item, itemIndex) => {
     if (!SCENTED_IDS.has(item.id)) return;
     const perUnit = getScentCount(item.id);
-    const options = item.id === 'SS-GIFT-COMPLETE' ? GIFT_SCENT_OPTIONS : SCENT_OPTIONS;
+    const slotLabels = getScentSlotLabels(item.id);
+    const options = SCENT_OPTIONS;
     for (let unit = 1; unit <= item.qty; unit += 1) {
       for (let slot = 1; slot <= perUnit; slot += 1) {
-        let detail = '';
-        if (item.id === 'SS-SOAP-5') detail = ', bar ' + slot;
-        if (item.id === 'SS-LIPSEAL-6') detail = ', Lip Seal ' + slot;
+        const detail = slotLabels[slot - 1] ? ', ' + slotLabels[slot - 1] : '';
         specs.push({
           key: 'scent-' + itemIndex + '-' + unit + '-' + slot,
           label: (PRODUCT_NAMES[item.id] || item.id) + ' #' + unit + detail,
-          required: item.id !== 'SS-LIPSEAL-6' || slot === 1,
+          required: true,
           options,
         });
       }
@@ -114,8 +120,8 @@ function buildScentPage(rawProducts: string, items: CartItem[]): string {
     qty: item.qty,
     name: PRODUCT_NAMES[item.id] || item.id,
     scentCount: SCENTED_IDS.has(item.id) ? getScentCount(item.id) : 0,
-    options: item.id === 'SS-GIFT-COMPLETE' ? GIFT_SCENT_OPTIONS : SCENT_OPTIONS,
-    optionalAfterFirst: item.id === 'SS-LIPSEAL-6',
+    options: SCENT_OPTIONS,
+    slotLabels: getScentSlotLabels(item.id),
   }));
   const json = JSON.stringify(config).replace(/</g, '\\u003c');
   const paragraphs = items.map((item) => {
@@ -142,7 +148,7 @@ function buildScentPage(rawProducts: string, items: CartItem[]): string {
     '<p class="intro">If you order more than one, choose each item’s scent separately. Your choices will be saved with your order before secure Stripe payment.</p>' +
     '<ul class="order">' + paragraphs + '</ul>' +
     '<form id="scent-form"><div id="items"></div><p id="form-error" class="error" role="alert"></p>' +
-    '<p class="hint">Lip Seal sets: choose at least one scent; add up to six different choices.</p>' +
+    '<p class="hint">Choose a scent for every scented product and every piece in a set.</p>' +
     '<button class="button" type="submit">Continue to secure payment</button></form></section>' +
     '<a class="back" href="https://skinsessed.com/shop.html">Return to SkinSessed Shop</a>' +
     '<script id="checkout-data" type="application/json">' + json + '</script>' +
@@ -156,9 +162,9 @@ function buildScentPage(rawProducts: string, items: CartItem[]): string {
     'const qty=document.createElement("input");qty.type="number";qty.min="1";qty.max="99";qty.step="1";qty.id="qty-"+itemIndex;qty.name="qty-"+itemIndex;qty.value=String(item.qty);qtyWrap.appendChild(qty);row.appendChild(qtyWrap);' +
     'qty.addEventListener("input",function(){const saved=Object.fromEntries(new FormData(form));item.qty=Math.max(1,Math.min(99,parseInt(qty.value,10)||1));render();Object.keys(saved).forEach(function(key){const el=form.elements.namedItem(key);if(el)el.value=saved[key];});});' +
     'for(let unit=1;unit<=item.qty;unit++){for(let slot=1;slot<=item.scentCount;slot++){count++;const key="scent-"+itemIndex+"-"+unit+"-"+slot;const box=document.createElement("div");box.className="unit";const label=document.createElement("label");label.htmlFor=key;' +
-    'let suffix=item.scentCount>1?(item.id==="SS-SOAP-5"?" · Bar "+slot:" · Lip Seal "+slot):"";label.textContent=item.name+" #"+unit+suffix+" — choose scent";box.appendChild(label);' +
-    'const select=document.createElement("select");select.id=key;select.name=key;const optional=item.optionalAfterFirst&&slot>1;select.required=!optional;' +
-    'const blank=document.createElement("option");blank.value="";blank.textContent=optional?"No additional scent":"Select a scent";select.appendChild(blank);' +
+    'let suffix=item.scentCount>1&&item.slotLabels[slot-1]?" · "+item.slotLabels[slot-1]:"";label.textContent=item.name+" #"+unit+suffix+" — choose scent";box.appendChild(label);' +
+    'const select=document.createElement("select");select.id=key;select.name=key;select.required=true;' +
+    'const blank=document.createElement("option");blank.value="";blank.textContent="Select a scent";select.appendChild(blank);' +
     'item.options.forEach(function(option){const opt=document.createElement("option");opt.value=option;opt.textContent=option;select.appendChild(opt);});' +
     'if(prior[key])select.value=prior[key];box.appendChild(select);row.appendChild(box);}}}host.appendChild(row);});' +
     'if(count>48){error.textContent="This order has more than 48 scent selections. Please split it into two checkouts.";form.querySelector("button").disabled=true;}else{error.textContent="";form.querySelector("button").disabled=false;}}' +
