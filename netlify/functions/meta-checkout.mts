@@ -233,7 +233,11 @@ export default async (req: Request) => {
           headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
         });
       }
-      const checkout = await createCheckoutSession(rawProducts, items);\n      if (!checkout.ok) return checkout;\n      const data = await checkout.json() as { url?: string };\n      if (!data.url) return new Response('Unable to create secure checkout.', { status: 502 });\n      return Response.redirect(data.url, 303);
+      const checkout = await createCheckoutSession(rawProducts, items);
+      if (!checkout.ok) return checkout;
+      const data = await checkout.json() as { url?: string };
+      if (!data.url) return new Response('Unable to create secure checkout.', { status: 502 });
+      return Response.redirect(data.url, 303);
     }
 
     if (req.method === 'POST') {
