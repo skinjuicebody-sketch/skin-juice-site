@@ -9,6 +9,7 @@ const PRICE_MAP: Record<string, string> = {
   'SS-GIFT-COMPLETE': 'price_1UEKtyQjUAwLUc016LNBoIHs',
   'SS-SOAP-3': 'price_1UEK4sQjUAwLUc01Eelqf3Zc',
   'SS-SOAP-5': 'price_1UEK4sQjUAwLUc01Eelqf3Zc',
+  'SS-LIPSEAL-6': 'price_1UKUv8QjUAwLUc01lm2mI0Az',
   'SS-BLISS-4': 'price_1UEK4yQjUAwLUc01Ehl0m6v4',
   'SS-FIRM-6': 'price_1UEK54QjUAwLUc01ImpK8t09',
   'SS-FIRM-10': 'price_1UEK5AQjUAwLUc01x88cg4AN',
@@ -24,6 +25,7 @@ const PRODUCT_NAMES: Record<string, string> = {
   'SS-SOAP-3': '3 Palm-Size Goat Milk Soap Bars',
   'SS-SOAP-5': '5 Palm-Size Goat Milk Soap Bars',
   'SS-BLISS-4': '4 Sculpted Bliss Massage Bars',
+  'SS-LIPSEAL-6': '6 Lip Seals Lip Balm Collection',
   'SS-LIPSEAL-6': '6 Lip Seals Lip Balm Collection',
 };
 
@@ -179,6 +181,7 @@ async function createCheckoutSession(rawProducts: string, items: CartItem[], sce
   body.set('allow_promotion_codes', 'true');
   body.set('shipping_address_collection[allowed_countries][0]', 'US');
   body.set('metadata[source]', 'meta_shop');
+  body.set('payment_intent_data[metadata][source]', 'skinsessed_checkout');
   body.set('metadata[meta_products]', rawProducts.slice(0, 500));
 
   items.forEach((item, index) => {
@@ -198,7 +201,9 @@ async function createCheckoutSession(rawProducts: string, items: CartItem[], sce
     }
     if (choice) {
       scentIndex += 1;
-      body.set('metadata[scent_' + scentIndex + ']', spec.label + ': ' + choice);
+      const selection = spec.label + ': ' + choice;
+      body.set('metadata[scent_' + scentIndex + ']', selection);
+      body.set('payment_intent_data[metadata][scent_' + scentIndex + ']', selection);
     }
   }
 
