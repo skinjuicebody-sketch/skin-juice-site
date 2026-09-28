@@ -499,6 +499,34 @@
       line-height:1.32;
     }
 
+    .collection-card-link{
+      display:block;
+      color:inherit;
+      text-decoration:none;
+      transition:transform .2s ease,box-shadow .2s ease;
+      cursor:pointer;
+    }
+
+    .collection-card-link:hover,
+    .collection-card-link:focus-visible{
+      transform:translateY(-3px);
+      box-shadow:var(--shadow);
+      outline:2px solid var(--gold);
+      outline-offset:3px;
+    }
+
+    .collection-card-cta{
+      position:relative;
+      display:inline-block;
+      margin-top:16px;
+      color:var(--berry);
+      font-family:'Cinzel',serif;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+    }
+
     .feature-section{
       display:grid;
       grid-template-columns:1.02fr .98fr;
@@ -953,50 +981,68 @@
 
       <div class="collection-grid">
 
-        <div class="collection-card">
+        <a class="collection-card collection-card-link" href="shop.html#shop-scrubs">
           <h3>Foaming Body Scrubs</h3>
           <p>Dense, creamy exfoliating scrubs with rich lather and indulgent fragrance.</p>
-        </div>
+        
+          <span class="collection-card-cta">Shop now</span>
+        </a>
 
-        <div class="collection-card">
+        <a class="collection-card collection-card-link" href="shop.html#shop-second-skin">
           <h3>Second Skin Moisturizers</h3>
           <p>Rich, creamy body moisturizers made to leave skin feeling soft, smooth, and conditioned.</p>
-        </div>
+        
+          <span class="collection-card-cta">Shop now</span>
+        </a>
 
-        <div class="collection-card">
+        <a class="collection-card collection-card-link" href="shop.html#shop-firming-complex">
           <h3>Firming Complex</h3>
           <p>Lavender Mint body moisturizer with Sepilift™ DPHP for skin that looks smoother, softer, and well moisturized.</p>
-        </div>
+        
+          <span class="collection-card-cta">Shop now</span>
+        </a>
 
-        <div class="collection-card">
+        <a class="collection-card collection-card-link" href="products/liquid-satin-2oz.html">
           <h3>Liquid Satin</h3>
           <p>Silky face primer that helps smooth the look of texture and creates a soft satin-finish makeup base.</p>
-        </div>
+        
+          <span class="collection-card-cta">Shop now</span>
+        </a>
 
-        <div class="collection-card">
+        <a class="collection-card collection-card-link" href="products/dessert-balm-glide-stick-1oz.html">
           <h3>Dessert Balm Glide Sticks</h3>
           <p>Solid glide-on body moisturizer for quick, targeted, mess-free moisture.</p>
-        </div>
+        
+          <span class="collection-card-cta">Shop now</span>
+        </a>
 
-        <div class="collection-card">
+        <a class="collection-card collection-card-link" href="https://shop.tiktok.com/us/pdp/1732598110887318323" target="_blank" rel="noopener">
           <h3>Lip Seals</h3>
           <p>Moisturizing, conditioning lip balm in a fun assortment of SkinSessed scents and flavors.</p>
-        </div>
+        
+          <span class="collection-card-cta">Shop now</span>
+        </a>
 
-        <div class="collection-card">
+        <a class="collection-card collection-card-link" href="products/goat-milk-soap-3-bar-set.html">
           <h3>Goat Milk Soaps</h3>
           <p>Handmade goat milk soaps with creamy lather, boutique designs, and scent-forward variety.</p>
-        </div>
+        
+          <span class="collection-card-cta">Shop now</span>
+        </a>
 
-        <div class="collection-card">
+        <a class="collection-card collection-card-link" href="products/sculpted-bliss-4-pack.html">
           <h3>Sculpted Bliss</h3>
           <p>Sculpted goat milk massage bars with raised massage points and SkinSessed fragrance.</p>
-        </div>
+        
+          <span class="collection-card-cta">Shop now</span>
+        </a>
 
-        <div class="collection-card">
+        <a class="collection-card collection-card-link" href="products/complete-skinsessed-gift-set.html">
           <h3>Gift Sets</h3>
           <p>Curated SkinSessed assortments featuring coordinated body care, soaps, lip care, samples, and extras.</p>
-        </div>
+        
+          <span class="collection-card-cta">Shop now</span>
+        </a>
 
       </div>
     </div>
