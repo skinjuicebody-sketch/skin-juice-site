@@ -829,6 +829,15 @@
         font-size:2.55rem;
       }
     }
+  
+    .featured-soap{padding:68px 0;background:rgba(255,253,249,.72);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .featured-soap-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:center}
+    .featured-soap-photo{display:block;overflow:hidden;border-radius:26px;box-shadow:var(--shadow);background:var(--cream-2)}
+    .featured-soap-photo img{width:100%;aspect-ratio:1/1;object-fit:cover}
+    .featured-soap-copy h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.7rem);line-height:1.12;margin:14px 0}
+    .featured-soap-copy p{font-size:clamp(1.3rem,2.3vw,1.65rem);line-height:1.35;margin-bottom:24px}
+    .featured-soap-cta{display:inline-block;background:var(--berry);color:#fff;padding:14px 28px;border-radius:999px;font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:.5px}
+    @media(max-width:700px){.featured-soap-layout{grid-template-columns:1fr;gap:24px}.featured-soap{padding:48px 0}}
   </style>
 </head>
 
@@ -897,6 +906,20 @@
     </div>
   </section>
 
+
+  <section class="featured-soap" id="featured-soaps" aria-labelledby="featured-soap-title">
+    <div class="container featured-soap-layout">
+      <a class="featured-soap-photo" href="https://skinsessed.etsy.com/listing/4598245812" target="_blank" rel="noopener noreferrer" aria-label="Shop Oatmeal Milk and Honey five-bar goat milk soap set on Etsy">
+        <img src="images/oatmeal-milk-honey-five-bar.jpg" alt="Five SkinSessed Oatmeal Milk and Honey goat milk soap bars with warm honey-toned swirls, white tops, and autumn-shaped embeds" loading="lazy">
+      </a>
+      <div class="featured-soap-copy">
+        <div class="eyebrow">Featured Goat Milk Soap</div>
+        <h2 id="featured-soap-title">Oatmeal Milk &amp; Honey<br>Five-Bar Soap Set</h2>
+        <p>Five beautifully handcrafted goat milk soap bars featuring warm honey-toned swirls and decorative autumn-inspired tops. Discover the newest SkinSessed soap set on Etsy.</p>
+        <a class="featured-soap-cta" href="https://skinsessed.etsy.com/listing/4598245812" target="_blank" rel="noopener noreferrer">Shop This Set on Etsy</a>
+      </div>
+    </div>
+  </section>
 
   <section class="section alt" id="where-to-shop">
     <div class="container">
