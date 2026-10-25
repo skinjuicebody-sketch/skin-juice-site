@@ -17,7 +17,7 @@ const catalog=[
 ["SS-FIRM-10","10 oz Firming Complex",2199,"firming-complex-10oz",0],
 ["SS-LIPSEAL-6","6 Lip Seals Lip Balm Collection",1750,"lip-seal-6-pack",6]
 ].map(([sku,name,cents,slug,choices])=>({sku,name,cents,slug,choices}));
-catalog.push({sku:"SS-FEATURE-CUCUMBER-4",name:"4 Full-Size Cucumber Melon Goat Milk Soap Bars",cents:1995,slug:"",choices:0},{sku:"SS-FEATURE-LINEN-4",name:"4 Full-Size Fresh Clean Linen Goat Milk Soap Bars",cents:1995,slug:"",choices:0},{sku:"SS-FEATURE-BIRTHDAY-3",name:"3 Birthday Cake Jumbo Goat Milk Soap Bars",cents:1775,slug:"",choices:0});
+catalog.push({sku:"SS-FEATURE-OATMEAL-3",name:"3 Full-Size Oatmeal Milk & Honey Goat Milk Soap Bars",cents:1475,slug:"",choices:0},{sku:"SS-FEATURE-CUCUMBER-3",name:"3 Full-Size Cucumber Melon Goat Milk Soap Bars",cents:1475,slug:"",choices:0},{sku:"SS-FEATURE-LINEN-3",name:"3 Full-Size Fresh Clean Linen Goat Milk Soap Bars",cents:1475,slug:"",choices:0},{sku:"SS-FEATURE-BIRTHDAY-3",name:"3 Birthday Cake Jumbo Goat Milk Soap Bars",cents:1775,slug:"",choices:0});
 const scents=["Birthday Cake","Banana Pudding","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla Swirl","Chocolate Crème Truffle","Cinnamon Apples","Cranberry Cheesecake","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue","Mahogany Teakwood","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
 const money=n=>"$"+(n/100).toFixed(2);
 const storage="skinsessed-cart-v1";
