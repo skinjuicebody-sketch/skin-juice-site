@@ -76,16 +76,7 @@ box.append(wrap)
 const total=document.createElement("h2");total.textContent="Subtotal: "+money(cart.reduce((n,x)=>n+catalog.find(p=>p.sku===x.sku).cents*x.quantity,0));box.append(total);
 const checkout=document.createElement("button");checkout.className="ss-cart-checkout";checkout.textContent="Secure Checkout — All Items";const status=document.createElement("p");status.className="ss-cart-muted";status.setAttribute("role","status");box.append(checkout,status);
 checkout.textContent="Secure Checkout — All Items";
-checkout.onclick=async()=>{
-for(const item of cart){const p=catalog.find(x=>x.sku===item.sku);if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){status.textContent="Please choose all required scents for "+p.name+".";return}}
-checkout.disabled=true;checkout.textContent="Opening secure Stripe checkout…";status.textContent="Preparing one payment for all items.";
-try{
-const response=await fetch(checkoutEndpoint,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({items:cart})});
-const data=await response.json().catch(()=>({}));
-if(!response.ok||!data.url)throw Error(data.error||"Checkout service is unavailable.");
-window.location.assign(data.url);
-}catch(error){status.textContent="Combined checkout could not open: "+(error.message||"Network error")+". Your cart is saved.";checkout.disabled=false;checkout.textContent="Try Secure Checkout Again";}
-
+checkout.onclick=()=>{for(const item of cart){const p=catalog.find(x=>x.sku===item.sku);if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){status.textContent="Please choose all required scents for "+p.name+".";return}}const form=document.createElement("form");form.method="POST";form.action=checkoutEndpoint;form.style.display="none";const input=document.createElement("input");input.name="cart";input.value=JSON.stringify({items:cart});form.append(input);document.body.append(form);status.textContent="Opening combined Stripe checkout…";form.submit();
 };
 }
 const featured=document.querySelector('#featured-mahogany-trio .featured-soap-cta');
