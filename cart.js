@@ -1,6 +1,6 @@
 (async()=>{
 "use strict";
-const checkoutEndpoint="https://frolicking-toffee-82ff8f.netlify.app/.netlify/functions/create-cart-checkout";
+const checkoutEndpoint="https://skinsessed-public-checkout.netlify.app/.netlify/functions/create-cart-checkout";
 const directCheckoutLinks={
 "SS-MAHOGANY-TRIO":"https://buy.stripe.com/4gMdRbba97YKbW0cFv6sw0d",
 "SS-SCRUB-7":"https://buy.stripe.com/9B6aEZ5PP3Iu5xCfRH6sw00",
