@@ -75,14 +75,17 @@ box.append(wrap)
 });
 const total=document.createElement("h2");total.textContent="Subtotal: "+money(cart.reduce((n,x)=>n+catalog.find(p=>p.sku===x.sku).cents*x.quantity,0));box.append(total);
 const checkout=document.createElement("button");checkout.className="ss-cart-checkout";checkout.textContent="Secure Checkout — All Items";const status=document.createElement("p");status.className="ss-cart-muted";status.setAttribute("role","status");box.append(checkout,status);
-checkout.textContent="Continue to Secure Stripe Payment";
-checkout.onclick=()=>{for(const item of cart){const p=catalog.find(x=>x.sku===item.sku);if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){status.textContent="Please choose all required scents for "+p.name+".";return}}
-status.textContent="Secure Stripe checkout is available below. Each item is purchased separately while combined checkout is unavailable.";
-const previous=box.querySelector(".ss-payment-links");if(previous)previous.remove();
-const links=document.createElement("div");links.className="ss-payment-links";links.style.marginTop="12px";
-cart.forEach(item=>{const product=catalog.find(p=>p.sku===item.sku);const url=directCheckoutLinks[item.sku];if(!url){const msg=document.createElement("p");msg.textContent=product.name+": contact SkinSessed to order this item.";links.append(msg);return}
-const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Pay for "+product.name+" — "+money(product.cents*item.quantity);a.style.cssText="display:block;padding:13px;margin:9px 0;border-radius:8px;background:#a9284d;color:white;text-align:center;text-decoration:none;font-weight:bold";links.append(a)});
-const note=document.createElement("p");note.className="ss-cart-muted";note.textContent="Stripe links open individually. Confirm the item name, price, quantity, and fragrance on Stripe before paying. The soap link currently charges $15.99 for three bars, regardless of the featured price shown in the cart. Your cart remains saved.";links.append(note);status.after(links);
+checkout.textContent="Secure Checkout — All Items";
+checkout.onclick=async()=>{
+for(const item of cart){const p=catalog.find(x=>x.sku===item.sku);if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){status.textContent="Please choose all required scents for "+p.name+".";return}}
+checkout.disabled=true;checkout.textContent="Opening secure Stripe checkout…";status.textContent="Preparing one payment for all items.";
+try{
+const response=await fetch(checkoutEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:cart})});
+const data=await response.json().catch(()=>({}));
+if(!response.ok||!data.url)throw Error(data.error||"Checkout service is unavailable.");
+window.location.assign(data.url);
+}catch(error){status.textContent="Combined checkout could not open: "+(error.message||"Network error")+". Your cart is saved.";checkout.disabled=false;checkout.textContent="Try Secure Checkout Again";}
+
 };
 }
 const featured=document.querySelector('#featured-mahogany-trio .featured-soap-cta');
