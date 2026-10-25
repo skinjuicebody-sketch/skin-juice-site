@@ -16,6 +16,7 @@ const corsOrigin="https://skinsessed.com";
 const headers={"Content-Type":"application/json","Access-Control-Allow-Origin":corsOrigin,"Vary":"Origin","Cache-Control":"no-store"};
 export default async function handler(req){
  if(req.method==="OPTIONS") return new Response(null,{status:204,headers:{...headers,"Access-Control-Allow-Methods":"POST, OPTIONS","Access-Control-Allow-Headers":"Content-Type"}});
+ if(req.method==="GET")return new Response(JSON.stringify({ready:Boolean(Netlify.env.get("STRIPE_SECRET_KEY"))}),{status:200,headers});
  if(req.method!=="POST")return new Response(JSON.stringify({error:"Method not allowed"}),{status:405,headers});
  if(req.headers.get("origin")!==corsOrigin)return new Response(JSON.stringify({error:"Unrecognized origin"}),{status:403,headers});
  const key=Netlify.env.get("STRIPE_SECRET_KEY");
