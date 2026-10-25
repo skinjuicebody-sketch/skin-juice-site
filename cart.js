@@ -1,6 +1,19 @@
 (async()=>{
 "use strict";
 const checkoutEndpoint="https://frolicking-toffee-82ff8f.netlify.app/.netlify/functions/create-cart-checkout";
+const directCheckoutLinks={
+"SS-MAHOGANY-TRIO":"https://buy.stripe.com/4gMdRbba97YKbW0cFv6sw0d",
+"SS-SCRUB-7":"https://buy.stripe.com/9B6aEZ5PP3Iu5xCfRH6sw00",
+"SS-SCRUB-11":"https://buy.stripe.com/00wbJ36TTfrc6BGeND6sw01",
+"SS-SECOND-6":"https://buy.stripe.com/dRmeVf4LLgvg1hmdJz6sw02",
+"SS-SECOND-10":"https://buy.stripe.com/4gM7sN7XX7YKgcgcFv6sw07",
+"SS-LIQSAT-2":"https://buy.stripe.com/4gMdRb5PP7YKf8c34V6sw08",
+"SS-BALM-1":"https://buy.stripe.com/7sYdRb4LL5QC4tyfRH6sw09",
+"SS-GIFT-COMPLETE":"https://buy.stripe.com/7sY00l0vv7YK4ty48Z6sw0a",
+"SS-SOAP-5":"https://buy.stripe.com/8x26oJ4LLdj42lq8pf6sw04",
+"SS-BLISS-4":"https://buy.stripe.com/14AcN70vvdj4bW048Z6sw05",
+"SS-FIRM-6":"https://buy.stripe.com/7sY00l4LL1Am9NS0WN6sw06"
+};
 // Cart must initialize independently; checkout errors are shown only when purchasing.
 const catalog=[
 ["SS-MAHOGANY-TRIO","Mahogany Teakwood Body Care Trio",1795,"mahogany-teakwood-trio",0],
@@ -55,9 +68,15 @@ box.append(wrap)
 });
 const total=document.createElement("h2");total.textContent="Subtotal: "+money(cart.reduce((n,x)=>n+catalog.find(p=>p.sku===x.sku).cents*x.quantity,0));box.append(total);
 const checkout=document.createElement("button");checkout.className="ss-cart-checkout";checkout.textContent="Secure Checkout — All Items";const status=document.createElement("p");status.className="ss-cart-muted";status.setAttribute("role","status");box.append(checkout,status);
-checkout.onclick=async()=>{for(const item of cart){const p=catalog.find(x=>x.sku===item.sku);if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){status.textContent="Please choose all required scents for "+p.name+".";return}}
-checkout.disabled=true;status.textContent="Preparing your secure payment...";
-try{const resp=await fetch("https://frolicking-toffee-82ff8f.netlify.app/.netlify/functions/create-cart-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:cart})});const data=await resp.json();if(!resp.ok||!data.url)throw Error(data.error||"Unable to start checkout");location.href=data.url}catch(e){status.textContent=e.message+" Your cart has been saved.";checkout.disabled=false}}
+checkout.textContent="Continue to Secure Stripe Payment";
+checkout.onclick=()=>{for(const item of cart){const p=catalog.find(x=>x.sku===item.sku);if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){status.textContent="Please choose all required scents for "+p.name+".";return}}
+status.textContent="Secure Stripe checkout is available below. Each item is purchased separately while combined checkout is unavailable.";
+const previous=box.querySelector(".ss-payment-links");if(previous)previous.remove();
+const links=document.createElement("div");links.className="ss-payment-links";links.style.marginTop="12px";
+cart.forEach(item=>{const product=catalog.find(p=>p.sku===item.sku);const url=directCheckoutLinks[item.sku];if(!url){const msg=document.createElement("p");msg.textContent=product.name+": contact SkinSessed to order this item.";links.append(msg);return}
+const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Pay for "+product.name+" — "+money(product.cents*item.quantity);a.style.cssText="display:block;padding:13px;margin:9px 0;border-radius:8px;background:#a9284d;color:white;text-align:center;text-decoration:none;font-weight:bold";links.append(a)});
+const note=document.createElement("p");note.className="ss-cart-muted";note.textContent="Stripe links open individually. Please confirm quantities and scent choices on each Stripe page before paying. Your cart remains saved.";links.append(note);status.after(links);
+};
 }
 const featured=document.querySelector('#featured-mahogany-trio .featured-soap-cta');
 if(featured){const product=catalog.find(p=>p.sku==="SS-MAHOGANY-TRIO");const addButton=document.createElement("button");addButton.type="button";addButton.className=featured.className+" ss-cart-add";addButton.textContent="Add to Cart · $17.95";addButton.onclick=()=>add(product);featured.replaceWith(addButton)}
