@@ -17,6 +17,7 @@ const catalog=[
 ["SS-FIRM-10","10 oz Firming Complex",2199,"firming-complex-10oz",0],
 ["SS-LIPSEAL-6","6 Lip Seals Lip Balm Collection",1750,"lip-seal-6-pack",6]
 ].map(([sku,name,cents,slug,choices])=>({sku,name,cents,slug,choices}));
+catalog.push({sku:"SS-FEATURE-CUCUMBER-4",name:"4 Full-Size Cucumber Melon Goat Milk Soap Bars",cents:1995,slug:"",choices:0},{sku:"SS-FEATURE-LINEN-4",name:"4 Full-Size Fresh Clean Linen Goat Milk Soap Bars",cents:1995,slug:"",choices:0},{sku:"SS-FEATURE-BIRTHDAY-3",name:"3 Birthday Cake Jumbo Goat Milk Soap Bars",cents:1775,slug:"",choices:0});
 const scents=["Birthday Cake","Banana Pudding","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla Swirl","Chocolate Crème Truffle","Cinnamon Apples","Cranberry Cheesecake","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue","Mahogany Teakwood","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
 const money=n=>"$"+(n/100).toFixed(2);
 const storage="skinsessed-cart-v1";
@@ -61,6 +62,7 @@ try{const resp=await fetch("https://frolicking-toffee-82ff8f.netlify.app/.netlif
 const featured=document.querySelector('#featured-mahogany-trio .featured-soap-cta');
 if(featured){const product=catalog.find(p=>p.sku==="SS-MAHOGANY-TRIO");const addButton=document.createElement("button");addButton.type="button";addButton.className=featured.className+" ss-cart-add";addButton.textContent="Add to Cart · $17.95";addButton.onclick=()=>add(product);featured.replaceWith(addButton)}
 document.querySelectorAll(".ss-home-sampler-add").forEach(button=>{const product=catalog.find(p=>p.sku===button.dataset.cartSku);if(product)button.addEventListener("click",()=>add(product))});
+document.querySelectorAll(".ss-featured-add").forEach(button=>{const product=catalog.find(p=>p.sku===button.dataset.cartSku);if(product)button.addEventListener("click",()=>add(product))});
 const isShop=location.pathname.endsWith("/shop.html");
 if(isShop){document.querySelectorAll("article.card").forEach(card=>{const link=card.querySelector('a[href*="products/"]');if(!link)return;const slug=(link.getAttribute("href").split("/").pop()||"").replace(/\.html$/,"");const p=catalog.find(x=>x.slug===slug);if(!p)return;const button=card.querySelector("a.btn.primary");if(!button)return;const b=document.createElement("button");b.type="button";b.className=button.className+" ss-cart-add";b.textContent="Add to Cart";b.onclick=()=>add(p);button.replaceWith(b)})}
 else {const slug=(location.pathname.split("/").pop()||"").replace(/\.html$/,"");const p=catalog.find(x=>x.slug===slug);if(p){const button=document.querySelector(".product-copy a.btn.primary");if(button){const b=document.createElement("button");b.type="button";b.className=button.className+" ss-cart-add";b.textContent="Add to Cart";b.onclick=()=>add(p);button.replaceWith(b)}}}
