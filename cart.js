@@ -1,7 +1,7 @@
 (async()=>{
 "use strict";
 const checkoutEndpoint="https://frolicking-toffee-82ff8f.netlify.app/.netlify/functions/create-cart-checkout";
-try{const resp=await fetch(checkoutEndpoint,{cache:"no-store"});const state=await resp.json();if(!resp.ok||!state.ready)return}catch{return}
+// Cart must initialize independently; checkout errors are shown only when purchasing.
 const catalog=[
 ["SS-MAHOGANY-TRIO","Mahogany Teakwood Body Care Trio",1795,"mahogany-teakwood-trio",0],
 ["SS-SCRUB-7","7 oz Foaming Body Scrub",1199,"foaming-body-scrub-7oz",1],
