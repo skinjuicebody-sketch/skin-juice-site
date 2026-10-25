@@ -11,8 +11,15 @@ const directCheckoutLinks={
 "SS-BALM-1":"https://buy.stripe.com/7sYdRb4LL5QC4tyfRH6sw09",
 "SS-GIFT-COMPLETE":"https://buy.stripe.com/7sY00l0vv7YK4ty48Z6sw0a",
 "SS-SOAP-5":"https://buy.stripe.com/8x26oJ4LLdj42lq8pf6sw04",
-"SS-BLISS-4":"https://buy.stripe.com/14AcN70vvdj4bW048Z6sw05",
-"SS-FIRM-6":"https://buy.stripe.com/7sY00l4LL1Am9NS0WN6sw06"
+"SS-BLISS-4":"https://buy.stripe.com/8x26oJ4LLdj42lq8pf6sw04",
+"SS-FIRM-6":"https://buy.stripe.com/14AcN70vvdj4bW048Z6sw05",
+"SS-FIRM-10":"https://buy.stripe.com/7sY00l4LL1Am9NS0WN6sw06",
+"SS-LIPSEAL-6":"https://buy.stripe.com/00waEZguta6SaRW34V6sw0c",
+"SS-SOAP-5":"https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03",
+"SS-FEATURE-OATMEAL-3":"https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03",
+"SS-FEATURE-CUCUMBER-3":"https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03",
+"SS-FEATURE-LINEN-3":"https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03",
+"SS-FEATURE-BIRTHDAY-3":"https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03"
 };
 // Cart must initialize independently; checkout errors are shown only when purchasing.
 const catalog=[
@@ -75,7 +82,7 @@ const previous=box.querySelector(".ss-payment-links");if(previous)previous.remov
 const links=document.createElement("div");links.className="ss-payment-links";links.style.marginTop="12px";
 cart.forEach(item=>{const product=catalog.find(p=>p.sku===item.sku);const url=directCheckoutLinks[item.sku];if(!url){const msg=document.createElement("p");msg.textContent=product.name+": contact SkinSessed to order this item.";links.append(msg);return}
 const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Pay for "+product.name+" — "+money(product.cents*item.quantity);a.style.cssText="display:block;padding:13px;margin:9px 0;border-radius:8px;background:#a9284d;color:white;text-align:center;text-decoration:none;font-weight:bold";links.append(a)});
-const note=document.createElement("p");note.className="ss-cart-muted";note.textContent="Stripe links open individually. Please confirm quantities and scent choices on each Stripe page before paying. Your cart remains saved.";links.append(note);status.after(links);
+const note=document.createElement("p");note.className="ss-cart-muted";note.textContent="Stripe links open individually. Confirm the item name, price, quantity, and fragrance on Stripe before paying. The soap link currently charges $15.99 for three bars, regardless of the featured price shown in the cart. Your cart remains saved.";links.append(note);status.after(links);
 };
 }
 const featured=document.querySelector('#featured-mahogany-trio .featured-soap-cta');
