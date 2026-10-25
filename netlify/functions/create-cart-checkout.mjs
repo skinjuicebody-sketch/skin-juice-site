@@ -12,13 +12,13 @@ const prices={
 "SS-FIRM-6":"price_1UEK54QjUAwLUc01ImpK8t09",
 "SS-FIRM-10":"price_1UEK5AQjUAwLUc01x88cg4AN"
 };
-const corsOrigin="https://skinsessed.com";
+const allowedOrigins=["https://skinsessed.com","https://www.skinsessed.com","https://frolicking-toffee-82ff8f.netlify.app"];\nconst corsOrigin="https://skinsessed.com";
 const headers={"Content-Type":"application/json","Access-Control-Allow-Origin":corsOrigin,"Vary":"Origin","Cache-Control":"no-store"};
 export default async function handler(req){
  if(req.method==="OPTIONS") return new Response(null,{status:204,headers:{...headers,"Access-Control-Allow-Methods":"POST, OPTIONS","Access-Control-Allow-Headers":"Content-Type"}});
  if(req.method==="GET")return new Response(JSON.stringify({ready:Boolean(Netlify.env.get("STRIPE_SECRET_KEY"))}),{status:200,headers});
  if(req.method!=="POST")return new Response(JSON.stringify({error:"Method not allowed"}),{status:405,headers});
- if(req.headers.get("origin")!==corsOrigin)return new Response(JSON.stringify({error:"Unrecognized origin"}),{status:403,headers});
+ if(!allowedOrigins.includes(req.headers.get("origin")))return new Response(JSON.stringify({error:"Unrecognized origin"}),{status:403,headers});
  const key=Netlify.env.get("STRIPE_SECRET_KEY");
  if(!key)return new Response(JSON.stringify({error:"Secure checkout is not configured yet. Please contact SkinSessed."}),{status:503,headers});
  try {
