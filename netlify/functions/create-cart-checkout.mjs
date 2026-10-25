@@ -1,3 +1,4 @@
+const featuredPrices={"SS-FEATURE-CUCUMBER-4":{"name":"4 Full-Size Cucumber Melon Goat Milk Soap Bars","cents":1995},"SS-FEATURE-LINEN-4":{"name":"4 Full-Size Fresh Clean Linen Goat Milk Soap Bars","cents":1995},"SS-FEATURE-BIRTHDAY-3":{"name":"3 Birthday Cake Jumbo Goat Milk Soap Bars","cents":1775}};
 const prices={
 "SS-MAHOGANY-TRIO":"price_1UUWj9QjUAwLUc01XF0WXuSU",
 "SS-SCRUB-7":"price_1UEK4YQjUAwLUc01EP59yvqx",
@@ -34,8 +35,9 @@ export default async function handler(req){
   items.forEach((item,i)=>{
    if(!item||!Number.isInteger(item.quantity)||item.quantity<1||item.quantity>20)throw Error("Invalid quantity.");
    total+=item.quantity;if(total>30)throw Error("Maximum 30 items per order.");
-   const sku=String(item.sku||"");const price=prices[sku];if(!price&&sku!=="SS-LIPSEAL-6")throw Error("Unknown product.");
+   const sku=String(item.sku||"");const price=prices[sku];if(!price&&sku!=="SS-LIPSEAL-6"&&!featuredPrices[sku])throw Error("Unknown product.");
    if(price)params.append(`line_items[${i}][price]`,price);
+   else if(featuredPrices[sku]){const fp=featuredPrices[sku];params.append(`line_items[${i}][price_data][currency]`,"usd");params.append(`line_items[${i}][price_data][unit_amount]`,String(fp.cents));params.append(`line_items[${i}][price_data][product_data][name]`,fp.name)}
    else {
     params.append(`line_items[${i}][price_data][currency]`,"usd");
     params.append(`line_items[${i}][price_data][unit_amount]`,"1750");
