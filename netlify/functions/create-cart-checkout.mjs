@@ -23,7 +23,7 @@ export default async function handler(req){
  const key=Netlify.env.get("STRIPE_SECRET_KEY");
  if(!key)return new Response(JSON.stringify({error:"Secure checkout is not configured yet. Please contact SkinSessed."}),{status:503,headers});
  try {
-  const body=await req.json();const items=body.items;
+  const raw=await req.text();const body=req.headers.get("content-type")?.includes("application/x-www-form-urlencoded")?JSON.parse(new URLSearchParams(raw).get("cart")||"{}"):JSON.parse(raw);const items=body.items;
   if(!Array.isArray(items)||items.length<1||items.length>30)throw Error("Choose 1 to 30 cart items.");
   const params=new URLSearchParams();params.set("mode","payment");params.set("success_url","https://skinsessed.com/shop.html?checkout=success");params.set("cancel_url","https://skinsessed.com/shop.html?checkout=cancel");
   params.append("shipping_address_collection[allowed_countries][0]","US");
@@ -52,6 +52,7 @@ export default async function handler(req){
   });
   const result=await fetch("https://api.stripe.com/v1/checkout/sessions",{method:"POST",headers:{"Authorization":"Bearer "+key,"Content-Type":"application/x-www-form-urlencoded"},body:params.toString()});
   const data=await result.json();if(!result.ok||!data.url)throw Error("Stripe could not start checkout.");
+  if(req.headers.get("content-type")?.includes("application/x-www-form-urlencoded"))return Response.redirect(data.url,303);
   return new Response(JSON.stringify({url:data.url}),{status:200,headers});
  }catch(e){return new Response(JSON.stringify({error:e.message||"Checkout failed"}),{status:400,headers});}
 }
