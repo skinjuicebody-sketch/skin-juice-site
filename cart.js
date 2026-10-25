@@ -80,7 +80,7 @@ checkout.onclick=async()=>{
 for(const item of cart){const p=catalog.find(x=>x.sku===item.sku);if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){status.textContent="Please choose all required scents for "+p.name+".";return}}
 checkout.disabled=true;checkout.textContent="Opening secure Stripe checkout…";status.textContent="Preparing one payment for all items.";
 try{
-const response=await fetch(checkoutEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:cart})});
+const response=await fetch(checkoutEndpoint,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({items:cart})});
 const data=await response.json().catch(()=>({}));
 if(!response.ok||!data.url)throw Error(data.error||"Checkout service is unavailable.");
 window.location.assign(data.url);
