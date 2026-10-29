@@ -41,6 +41,22 @@ catalog.push({sku:"SS-FEATURE-OATMEAL-3",name:"3 Full-Size Oatmeal Milk & Honey 
 const scents=["Birthday Cake","Banana Pudding","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla Swirl","Chocolate Crème Truffle","Cinnamon Apples","Cranberry Cheesecake","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue","Mahogany Teakwood","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
 const money=n=>"$"+(n/100).toFixed(2);
 const storage="skinsessed-cart-v1";
+const checkoutAttemptStorage="skinsessed-checkout-attempt-v1";
+const checkoutSucceeded=new URLSearchParams(location.search).get("checkout")==="success";
+// A completed Stripe redirect means this cart was purchased. Don't offer it for payment again.
+if(checkoutSucceeded){try{localStorage.removeItem(storage);localStorage.removeItem(checkoutAttemptStorage)}catch{}}
+function getCheckoutAttemptId(){
+ const signature=JSON.stringify(cart.map(item=>({sku:item.sku,quantity:item.quantity,scents:item.scents||[]})));
+ let previous=null;
+ try{previous=JSON.parse(localStorage.getItem(checkoutAttemptStorage)||"null")}catch{}
+ const age=Date.now()-Number(previous?.created||0);
+ if(previous && previous.signature===signature && age>=0 && age<22*60*60*1000 &&
+     /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(previous.id||""))
+   return previous.id;
+ const id=crypto.randomUUID();
+ localStorage.setItem(checkoutAttemptStorage,JSON.stringify({id,signature,created:Date.now()}));
+ return id;
+}
 let cart=[];try{const saved=JSON.parse(localStorage.getItem(storage)||"[]");if(Array.isArray(saved))cart=saved.filter(x=>catalog.some(p=>p.sku===x.sku)&&Number.isInteger(x.quantity)&&x.quantity>0&&x.quantity<=20).slice(0,30)}catch{}
 const save=()=>{localStorage.setItem(storage,JSON.stringify(cart));render()};
 const css=document.createElement("style");css.textContent=`
@@ -52,6 +68,13 @@ const css=document.createElement("style");css.textContent=`
 .ss-cart-checkout{background:#a9284d;color:white;border:0;border-radius:10px;padding:14px;width:100%;font-weight:bold;font-size:18px}
 .ss-cart-close{float:right;background:none;border:0;font-size:28px}.ss-cart-muted{font-size:15px;color:#715a50}.ss-cart-add{cursor:pointer}
 `;document.head.append(css);
+if(checkoutSucceeded){
+ const confirmation=document.createElement("p");
+ confirmation.setAttribute("role","status");
+ confirmation.textContent="Thank you! Your payment was completed. Your cart has been cleared so it can't be paid again accidentally.";
+ confirmation.style.cssText="padding:16px;margin:16px auto;max-width:760px;background:#f7eaf0;color:#632342;border-radius:8px;text-align:center;font:600 16px system-ui";
+ (document.querySelector("main")||document.body).prepend(confirmation);
+}
 const panel=document.createElement("div");panel.className="ss-cart-panel";panel.setAttribute("role","dialog");panel.setAttribute("aria-label","SkinSessed shopping cart");
 const box=document.createElement("div");box.className="ss-cart-box";panel.append(box);document.body.append(panel);
 const launch=document.createElement("button");launch.className="ss-cart-launch";launch.type="button";document.body.append(launch);
@@ -75,7 +98,29 @@ box.append(wrap)
 });
 const total=document.createElement("h2");total.textContent="Subtotal: "+money(cart.reduce((n,x)=>n+catalog.find(p=>p.sku===x.sku).cents*x.quantity,0));box.append(total);
 const emergency=document.createElement("div");emergency.className="ss-cart-item";const emTitle=document.createElement("strong");emTitle.textContent="Secure Stripe Checkout — Order Now";emergency.append(emTitle);const emNote=document.createElement("p");emNote.className="ss-cart-muted";emNote.textContent="Pay securely now. Each product opens a separate Stripe checkout. Confirm the price, quantities, and any scent options on the payment page before paying.";emergency.append(emNote);cart.forEach(item=>{const p=catalog.find(x=>x.sku===item.sku);const url=directCheckoutLinks[item.sku];if(!url)return;const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Buy "+p.name+" — "+money(p.cents)+" each";a.style.cssText="display:block;margin:9px 0;padding:12px;background:#a9284d;color:white;border-radius:8px;text-align:center;text-decoration:none;font-size:16px";emergency.append(a)});box.append(emergency);const checkout=document.createElement("button");checkout.className="ss-cart-checkout";checkout.textContent="Secure Checkout — All Items";const status=document.createElement("p");status.className="ss-cart-muted";status.setAttribute("role","status");box.append(checkout,status);
-checkout.onclick=()=>{for(const item of cart){const p=catalog.find(x=>x.sku===item.sku);if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){status.textContent="Please choose all required scents for "+p.name+".";return}}const form=document.createElement("form");form.method="POST";form.action=checkoutEndpoint;form.style.display="none";const input=document.createElement("input");input.name="cart";input.value=JSON.stringify({items:cart});form.append(input);document.body.append(form);status.textContent="Opening combined Stripe checkout…";form.submit();};
+let checkoutInProgress=false;
+checkout.onclick=()=>{
+ if(checkoutInProgress)return;
+ for(const item of cart){
+   const p=catalog.find(x=>x.sku===item.sku);
+   if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){
+     status.textContent="Please choose all required scents for "+p.name+".";return;
+   }
+ }
+ let checkoutAttemptId;
+ try{checkoutAttemptId=getCheckoutAttemptId()}catch(e){
+   status.textContent="Unable to start checkout. Please refresh the page and try again.";return;
+ }
+ checkoutInProgress=true;
+ checkout.disabled=true;
+ checkout.textContent="Opening Secure Checkout…";
+ const form=document.createElement("form");form.method="POST";form.action=checkoutEndpoint;form.style.display="none";
+ const input=document.createElement("input");input.name="cart";
+ input.value=JSON.stringify({items:cart,checkoutAttemptId});
+ form.append(input);document.body.append(form);
+ status.textContent="Opening your secure Stripe checkout. Please don't submit again.";
+ form.submit();
+};
 }
 const featured=document.querySelector('#featured-mahogany-trio .featured-soap-cta');
 if(featured){const product=catalog.find(p=>p.sku==="SS-MAHOGANY-TRIO");const addButton=document.createElement("button");addButton.type="button";addButton.className=featured.className+" ss-cart-add";addButton.textContent="Add to Cart · $17.95";addButton.onclick=()=>add(product);featured.replaceWith(addButton)}
