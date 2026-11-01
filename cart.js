@@ -32,6 +32,8 @@ const catalog=[
 ["SS-BALM-1","1 oz Dessert Balm Glide Stick",1099,"dessert-balm-glide-stick-1oz",1],
 ["SS-GIFT-COMPLETE","Complete SkinSessed Gift Set",3800,"complete-skinsessed-gift-set",1],
 ["SS-SOAP-5","5 Palm-Size Goat Milk Soap Bars",1599,"goat-milk-soap-3-bar-set",5],
+["SS-BLUEBERRY-4","Blueberry Pound Cake Set of Four Full-Size Goat Milk Soap Bars",1995,"blueberry-pound-cake-4-bars",0],
+["SS-RASPBERRY-4","Raspberry Mimosa Set of Four Full-Size Goat Milk Soap Bars",1995,"raspberry-mimosa-4-bars",0],
 ["SS-BLISS-4","4 Sculpted Bliss Massage Bars",1599,"sculpted-bliss-4-pack",4],
 ["SS-FIRM-6","6 oz Firming Complex",1499,"firming-complex-6oz",0],
 ["SS-FIRM-10","10 oz Firming Complex",2199,"firming-complex-10oz",0],
