@@ -2,7 +2,6 @@
 "use strict";
 const checkoutEndpoint="https://skinsessed-public-checkout.netlify.app/.netlify/functions/create-cart-checkout";
 const directCheckoutLinks={
-"SS-MAHOGANY-TRIO":"https://buy.stripe.com/4gMdRbba97YKbW0cFv6sw0d",
 "SS-SCRUB-7":"https://buy.stripe.com/9B6aEZ5PP3Iu5xCfRH6sw00",
 "SS-SCRUB-11":"https://buy.stripe.com/00wbJ36TTfrc6BGeND6sw01",
 "SS-SECOND-6":"https://buy.stripe.com/dRmeVf4LLgvg1hmdJz6sw02",
@@ -23,7 +22,7 @@ const directCheckoutLinks={
 };
 // Cart must initialize independently; checkout errors are shown only when purchasing.
 const catalog=[
-["SS-MAHOGANY-TRIO","Mahogany Teakwood Body Care Trio",1795,"mahogany-teakwood-trio",0],
+["SS-MAHOGANY-TRIO","Mahogany Teakwood Body Care Trio",1895,"mahogany-teakwood-trio",0],
 ["SS-SCRUB-7","7 oz Foaming Body Scrub",1199,"foaming-body-scrub-7oz",1],
 ["SS-SCRUB-11","11 oz Foaming Body Scrub",1699,"foaming-body-scrub-11oz",1],
 ["SS-SECOND-6","6 oz Second Skin Moisturizer",1399,"second-skin-moisturizer-6oz",1],
@@ -127,7 +126,7 @@ checkout.onclick=()=>{
 };
 }
 const featured=document.querySelector('#featured-mahogany-trio .featured-soap-cta');
-if(featured){const product=catalog.find(p=>p.sku==="SS-MAHOGANY-TRIO");const addButton=document.createElement("button");addButton.type="button";addButton.className=featured.className+" ss-cart-add";addButton.textContent="Add to Cart · $17.95";addButton.onclick=()=>add(product);featured.replaceWith(addButton)}
+if(featured){const product=catalog.find(p=>p.sku==="SS-MAHOGANY-TRIO");const addButton=document.createElement("button");addButton.type="button";addButton.className=featured.className+" ss-cart-add";addButton.textContent="Add to Cart · $18.95";addButton.onclick=()=>add(product);featured.replaceWith(addButton)}
 document.querySelectorAll(".ss-home-sampler-add").forEach(button=>{const product=catalog.find(p=>p.sku===button.dataset.cartSku);if(product)button.addEventListener("click",()=>add(product))});
 document.querySelectorAll(".ss-featured-add").forEach(button=>{const product=catalog.find(p=>p.sku===button.dataset.cartSku);if(product)button.addEventListener("click",()=>add(product))});
 const isShop=location.pathname.endsWith("/shop.html");
