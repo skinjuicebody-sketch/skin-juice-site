@@ -1,4 +1,5 @@
-const featuredPrices={"SS-BODYWASH-16":{"name":"SkinSessed 16 oz Deep Hydration Body Wash","cents":1595},"SS-FEATURE-OATMEAL-3":{"name":"3 Full-Size Oatmeal Milk & Honey Goat Milk Soap Bars","cents":1475},"SS-FEATURE-CUCUMBER-3":{"name":"3 Full-Size Cucumber Melon Goat Milk Soap Bars","cents":1475},"SS-FEATURE-LINEN-3":{"name":"3 Full-Size Fresh Clean Linen Goat Milk Soap Bars","cents":1475},"SS-FEATURE-BIRTHDAY-3":{"name":"3 Birthday Cake Jumbo Goat Milk Soap Bars","cents":1775}};
+// Redeploy checkout function to load the production Stripe credential updated on 2026-10-26.
+const featuredPrices={"SS-BODYWASH-16":{"name":"SkinSessed 16 oz Deep Hydration Body Wash","cents":1595},"SS-CINNAMON-3":{"name":"Cinnamon Apples Set of Three 6.4 oz Goat Milk Soap Bars","cents":1995},"SS-BLUEBERRY-4":{"name":"Blueberry Pound Cake Set of Four Full-Size Goat Milk Soap Bars","cents":1995},"SS-RASPBERRY-4":{"name":"Raspberry Mimosa Set of Four Full-Size Goat Milk Soap Bars","cents":1995},"SS-FEATURE-OATMEAL-3":{"name":"3 Full-Size Oatmeal Milk & Honey Goat Milk Soap Bars","cents":1475},"SS-FEATURE-CUCUMBER-3":{"name":"3 Full-Size Cucumber Melon Goat Milk Soap Bars","cents":1475},"SS-FEATURE-LINEN-3":{"name":"3 Full-Size Fresh Clean Linen Goat Milk Soap Bars","cents":1475},"SS-FEATURE-BIRTHDAY-3":{"name":"3 Birthday Cake Jumbo Goat Milk Soap Bars","cents":1775}};
 const prices={
 "SS-MAHOGANY-TRIO":"price_1UUWj9QjUAwLUc01XF0WXuSU",
 "SS-SCRUB-7":"price_1UEK4YQjUAwLUc01EP59yvqx",
@@ -13,19 +14,22 @@ const prices={
 "SS-FIRM-6":"price_1UEK54QjUAwLUc01ImpK8t09",
 "SS-FIRM-10":"price_1UEK5AQjUAwLUc01x88cg4AN"
 };
-const allowedOrigins=["https://skinsessed.com","https://www.skinsessed.com","https://frolicking-toffee-82ff8f.netlify.app","https://skinsessed-public-checkout.netlify.app"];\nconst corsOrigin="https://skinsessed.com";
+const allowedOrigins=["https://skinsessed.com","https://www.skinsessed.com","https://frolicking-toffee-82ff8f.netlify.app","https://skinsessed-public-checkout.netlify.app"];
+const corsOrigin="https://skinsessed.com";
 const headers={"Content-Type":"application/json","Access-Control-Allow-Origin":corsOrigin,"Vary":"Origin","Cache-Control":"no-store"};
 export default async function handler(req){
  if(req.method==="OPTIONS") return new Response(null,{status:204,headers:{...headers,"Access-Control-Allow-Methods":"POST, OPTIONS","Access-Control-Allow-Headers":"Content-Type"}});
  if(req.method==="GET")return new Response(JSON.stringify({ready:Boolean(Netlify.env.get("STRIPE_SECRET_KEY"))}),{status:200,headers});
  if(req.method!=="POST")return new Response(JSON.stringify({error:"Method not allowed"}),{status:405,headers});
  if(req.headers.get("origin")&&!allowedOrigins.includes(req.headers.get("origin")))return new Response(JSON.stringify({error:"Unrecognized origin"}),{status:403,headers});
- const key=Netlify.env.get("STRIPE_SECRET_KEY");
+ const key=String(Netlify.env.get("STRIPE_SECRET_KEY")||"").replace(/[\u200B-\u200D\u2060\uFEFF]/g,"").trim().replace(/^["\x27]|["\x27]$/g,"").trim();
  if(!key)return new Response(JSON.stringify({error:"Secure checkout is not configured yet. Please contact SkinSessed."}),{status:503,headers});
  try {
   const raw=await req.text();const body=req.headers.get("content-type")?.includes("application/x-www-form-urlencoded")?JSON.parse(new URLSearchParams(raw).get("cart")||"{}"):JSON.parse(raw);const items=body.items;
   if(!Array.isArray(items)||items.length<1||items.length>30)throw Error("Choose 1 to 30 cart items.");
-  const params=new URLSearchParams();params.set("mode","payment");params.set("success_url","https://skinsessed.com/shop.html?checkout=success");params.set("cancel_url","https://skinsessed.com/shop.html?checkout=cancel");
+  // A stable browser-generated checkout attempt lets Stripe safely replay duplicate requests.
+  const checkoutAttemptId=typeof body.checkoutAttemptId==="string" && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(body.checkoutAttemptId)?body.checkoutAttemptId:null;
+  const params=new URLSearchParams();if(checkoutAttemptId)params.set("metadata[checkout_attempt_id]",checkoutAttemptId);params.set("mode","payment");params.set("success_url","https://skinsessed.com/shop.html?checkout=success");params.set("cancel_url","https://skinsessed.com/shop.html?checkout=cancel");
   params.append("shipping_address_collection[allowed_countries][0]","US");
   params.append("shipping_options[0][shipping_rate_data][type]","fixed_amount");
   params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]","0");
@@ -50,8 +54,8 @@ export default async function handler(req){
    if(note.length>490)throw Error("Please shorten scent selections.");
    params.append(`metadata[item_${i+1}]`,note);
   });
-  const result=await fetch("https://api.stripe.com/v1/checkout/sessions",{method:"POST",headers:{"Authorization":"Bearer "+key,"Content-Type":"application/x-www-form-urlencoded"},body:params.toString()});
-  const data=await result.json();if(!result.ok||!data.url)throw Error("Stripe could not start checkout.");
+  const result=await fetch("https://api.stripe.com/v1/checkout/sessions",{method:"POST",headers:{"Authorization":"Bearer "+key,"Content-Type":"application/x-www-form-urlencoded",...(checkoutAttemptId?{"Idempotency-Key":"skinsessed-cart-"+checkoutAttemptId}:{})},body:params.toString()});
+  const data=await result.json();if(!result.ok||!data.url){console.error("Stripe Checkout session failed",result.status,data?.error?.type||"",data?.error?.code||"",data?.error?.message||"");throw Error("Stripe checkout error: "+(data?.error?.message||"Request rejected")+" (HTTP "+result.status+").")}
   if(req.headers.get("content-type")?.includes("application/x-www-form-urlencoded"))return Response.redirect(data.url,303);
   return new Response(JSON.stringify({url:data.url}),{status:200,headers});
  }catch(e){return new Response(JSON.stringify({error:e.message||"Checkout failed"}),{status:400,headers});}
