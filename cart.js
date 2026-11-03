@@ -38,7 +38,8 @@ const catalog=[
 ["SS-BLISS-4","4 Sculpted Bliss Massage Bars",1599,"sculpted-bliss-4-pack",4],
 ["SS-FIRM-6","6 oz Firming Complex",1499,"firming-complex-6oz",0],
 ["SS-FIRM-10","10 oz Firming Complex",2199,"firming-complex-10oz",0],
-["SS-LIPSEAL-6","6 Lip Seals Lip Balm Collection",1750,"lip-seal-6-pack",6]
+["SS-LIPSEAL-6","6 Lip Seals Lip Balm Collection",1750,"lip-seal-6-pack",6],
+["SS-BODYWASH-16","16 oz Deep Hydration Body Wash",1595,"deep-hydration-body-wash-16oz",1]
 ].map(([sku,name,cents,slug,choices])=>({sku,name,cents,slug,choices}));
 catalog.push({sku:"SS-FEATURE-OATMEAL-3",name:"3 Full-Size Oatmeal Milk & Honey Goat Milk Soap Bars",cents:1475,slug:"",choices:0},{sku:"SS-FEATURE-CUCUMBER-3",name:"3 Full-Size Cucumber Melon Goat Milk Soap Bars",cents:1475,slug:"",choices:0},{sku:"SS-FEATURE-LINEN-3",name:"3 Full-Size Fresh Clean Linen Goat Milk Soap Bars",cents:1475,slug:"",choices:0},{sku:"SS-FEATURE-BIRTHDAY-3",name:"3 Birthday Cake Jumbo Goat Milk Soap Bars",cents:1775,slug:"",choices:0});
 const scents=["Birthday Cake","Banana Pudding","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla Swirl","Chocolate Crème Truffle","Cinnamon Apples","Cranberry Cheesecake","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue","Mahogany Teakwood","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
@@ -83,7 +84,7 @@ const box=document.createElement("div");box.className="ss-cart-box";panel.append
 const launch=document.createElement("button");launch.className="ss-cart-launch";launch.type="button";document.body.append(launch);
 launch.onclick=()=>{panel.classList.add("open");render()};panel.onclick=e=>{if(e.target===panel)panel.classList.remove("open")};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")panel.classList.remove("open")});
-function add(product){const current=cart.find(x=>x.sku===product.sku);if(current){if(current.quantity<20)current.quantity++}else{cart.push({sku:product.sku,quantity:1,scents:Array(product.choices).fill("")})}save();panel.classList.add("open")}
+function add(product){const bw=product.sku==="SS-BODYWASH-16";const selected=bw?document.querySelector("#body-wash-scent")?.value||"":"";if(bw&&!selected){const note=document.querySelector("#body-wash-feedback");if(note)note.textContent="Please choose a scent before adding to your cart.";document.querySelector("#body-wash-scent")?.focus();return}const current=cart.find(x=>x.sku===product.sku&&(!bw||x.scents?.[0]===selected));if(current){if(current.quantity<20)current.quantity++}else{cart.push({sku:product.sku,quantity:1,scents:bw?[selected]:Array(product.choices).fill("")})}save();panel.classList.add("open")}
 function render(){
 launch.textContent="View Cart ("+cart.reduce((n,x)=>n+x.quantity,0)+")";
 box.replaceChildren();
@@ -130,7 +131,7 @@ if(featured){const product=catalog.find(p=>p.sku==="SS-MAHOGANY-TRIO");const add
 document.querySelectorAll(".ss-home-sampler-add").forEach(button=>{const product=catalog.find(p=>p.sku===button.dataset.cartSku);if(product)button.addEventListener("click",()=>add(product))});
 document.querySelectorAll(".ss-featured-add").forEach(button=>{const product=catalog.find(p=>p.sku===button.dataset.cartSku);if(product)button.addEventListener("click",()=>add(product))});
 const isShop=location.pathname.endsWith("/shop.html");
-if(isShop){document.querySelectorAll("article.card").forEach(card=>{const link=card.querySelector('a[href*="products/"]');if(!link)return;const slug=(link.getAttribute("href").split("/").pop()||"").replace(/\.html$/,"");const p=catalog.find(x=>x.slug===slug);if(!p)return;const button=card.querySelector("a.btn.primary");if(!button)return;const b=document.createElement("button");b.type="button";b.className=button.className+" ss-cart-add";b.textContent="Add to Cart";b.onclick=()=>add(p);button.replaceWith(b)})}
+if(isShop){document.querySelectorAll("article.card").forEach(card=>{const link=card.querySelector('a[href*="products/"]');if(!link)return;const slug=(link.getAttribute("href").split("/").pop()||"").replace(/\.html$/,"");const p=catalog.find(x=>x.slug===slug);if(!p||p.sku==="SS-BODYWASH-16")return;const button=card.querySelector("a.btn.primary");if(!button)return;const b=document.createElement("button");b.type="button";b.className=button.className+" ss-cart-add";b.textContent="Add to Cart";b.onclick=()=>add(p);button.replaceWith(b)})}
 else {const slug=(location.pathname.split("/").pop()||"").replace(/\.html$/,"");const p=catalog.find(x=>x.slug===slug);if(p){const button=document.querySelector(".product-copy a.btn.primary");if(button){const b=document.createElement("button");b.type="button";b.className=button.className+" ss-cart-add";b.textContent="Add to Cart";b.onclick=()=>add(p);button.replaceWith(b)}}}
 render();
 })();
