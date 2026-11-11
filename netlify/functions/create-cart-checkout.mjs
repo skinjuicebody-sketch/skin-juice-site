@@ -1,5 +1,5 @@
 // Redeploy checkout function to load the production Stripe credential updated on 2026-10-26.
-const featuredPrices={"SS-MAHOGANY-TRIO":{"name":"Mahogany Teakwood Body Care Trio","cents":1895},"SS-BODYWASH-16":{"name":"SkinSessed 16 oz Deep Hydration Body Wash","cents":1595},"SS-CINNAMON-3":{"name":"Cinnamon Apples Set of Three 6.4 oz Goat Milk Soap Bars","cents":1995},"SS-BLUEBERRY-4":{"name":"Blueberry Pound Cake Set of Four Full-Size Goat Milk Soap Bars","cents":1995},"SS-RASPBERRY-4":{"name":"Raspberry Mimosa Set of Four Full-Size Goat Milk Soap Bars","cents":1995},"SS-FEATURE-OATMEAL-3":{"name":"3 Full-Size Oatmeal Milk & Honey Goat Milk Soap Bars","cents":1475},"SS-FEATURE-BIRTHDAY-3":{"name":"3 Birthday Cake Jumbo Goat Milk Soap Bars","cents":1775}};
+const featuredPrices={"SS-MAHOGANY-TRIO":{"name":"Mahogany Teakwood Body Care Trio","cents":1895},"SS-BODYWASH-16":{"name":"SkinSessed 16 oz Deep Hydration Body Wash","cents":1595},"SS-CINNAMON-3":{"name":"Cinnamon Apples Set of Three 6.4 oz Goat Milk Soap Bars","cents":1995},"SS-BLUEBERRY-4":{"name":"Blueberry Pound Cake Set of Four Full-Size Goat Milk Soap Bars","cents":1995},"SS-RASPBERRY-4":{"name":"Raspberry Mimosa Set of Four Full-Size Goat Milk Soap Bars","cents":1995}};
 const prices={
 "SS-SCRUB-7":"price_1UEK4YQjUAwLUc01EP59yvqx",
 "SS-SCRUB-11":"price_1UEK4fQjUAwLUc01j0kuNrdd",
