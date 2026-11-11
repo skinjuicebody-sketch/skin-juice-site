@@ -15,8 +15,6 @@ const directCheckoutLinks={
 "SS-FIRM-10":"https://buy.stripe.com/7sY00l4LL1Am9NS0WN6sw06",
 "SS-LIPSEAL-6":"https://buy.stripe.com/00waEZguta6SaRW34V6sw0c",
 "SS-SOAP-5":"https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03",
-"SS-FEATURE-OATMEAL-3":"https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03",
-"SS-FEATURE-BIRTHDAY-3":"https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03"
 };
 // Cart must initialize independently; checkout errors are shown only when purchasing.
 const catalog=[
@@ -38,7 +36,6 @@ const catalog=[
 ["SS-LIPSEAL-6","6 Lip Seals Lip Balm Collection",1750,"lip-seal-6-pack",6],
 ["SS-BODYWASH-16","16 oz Deep Hydration Body Wash",1595,"deep-hydration-body-wash-16oz",1]
 ].map(([sku,name,cents,slug,choices])=>({sku,name,cents,slug,choices}));
-catalog.push({sku:"SS-FEATURE-OATMEAL-3",name:"3 Full-Size Oatmeal Milk & Honey Goat Milk Soap Bars",cents:1475,slug:"",choices:0},{sku:"SS-FEATURE-BIRTHDAY-3",name:"3 Birthday Cake Jumbo Goat Milk Soap Bars",cents:1775,slug:"",choices:0});
 const scents=["Birthday Cake","Banana Pudding","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla Swirl","Chocolate Crème Truffle","Cinnamon Apples","Cranberry Cheesecake","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue","Mahogany Teakwood","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
 const money=n=>"$"+(n/100).toFixed(2);
 const storage="skinsessed-cart-v1";
