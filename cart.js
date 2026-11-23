@@ -57,7 +57,7 @@ function getCheckoutAttemptId(){
  return id;
 }
 let cart=[];try{const saved=JSON.parse(localStorage.getItem(storage)||"[]");if(Array.isArray(saved))cart=saved.filter(x=>catalog.some(p=>p.sku===x.sku)&&Number.isInteger(x.quantity)&&x.quantity>0&&x.quantity<=20).slice(0,30)}catch{}
-const save=()=>{localStorage.setItem(storage,JSON.stringify(cart));render()};
+const save=()=>{try{localStorage.setItem(storage,JSON.stringify(cart))}catch(error){console.warn("Cart storage unavailable; current shopping session can still proceed.",error)}render()};
 const css=document.createElement("style");css.textContent=`
 .ss-cart-launch{position:fixed;z-index:9997;right:18px;bottom:18px;border:0;border-radius:50px;padding:15px 22px;background:#a9284d;color:white;font:700 15px Georgia,serif;box-shadow:0 5px 20px #0003;cursor:pointer}
 .ss-cart-panel{position:fixed;z-index:9998;inset:0;background:#15101099;display:none;align-items:center;justify-content:center;padding:14px}
@@ -80,6 +80,15 @@ const launch=document.createElement("button");launch.className="ss-cart-launch";
 launch.onclick=()=>{panel.classList.add("open");render()};panel.onclick=e=>{if(e.target===panel)panel.classList.remove("open")};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")panel.classList.remove("open")});
 function add(product){const bw=product.sku==="SS-BODYWASH-16";const selected=bw?document.querySelector("#body-wash-scent")?.value||"":"";if(bw&&!selected){const note=document.querySelector("#body-wash-feedback");if(note)note.textContent="Please choose a scent before adding to your cart.";document.querySelector("#body-wash-scent")?.focus();return}const current=cart.find(x=>x.sku===product.sku&&(!bw||x.scents?.[0]===selected));if(current){if(current.quantity<20)current.quantity++}else{cart.push({sku:product.sku,quantity:1,scents:bw?[selected]:Array(product.choices).fill("")})}save();panel.classList.add("open")}
+// Explicit product buttons do not rely on replacing a navigation link.
+document.addEventListener("click",event=>{
+  const button=event.target.closest?.("[data-ss-cart-sku]");
+  if(!button)return;
+  const product=catalog.find(item=>item.sku===button.getAttribute("data-ss-cart-sku"));
+  if(!product)return;
+  event.preventDefault();
+  add(product);
+});
 function render(){
 launch.textContent="View Cart ("+cart.reduce((n,x)=>n+x.quantity,0)+")";
 box.replaceChildren();
