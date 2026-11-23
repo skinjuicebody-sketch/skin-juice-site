@@ -53,7 +53,7 @@ function getCheckoutAttemptId(){
      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(previous.id||""))
    return previous.id;
  const id=crypto.randomUUID();
- localStorage.setItem(checkoutAttemptStorage,JSON.stringify({id,signature,created:Date.now()}));
+ try{localStorage.setItem(checkoutAttemptStorage,JSON.stringify({id,signature,created:Date.now()}))}catch{}
  return id;
 }
 let cart=[];try{const saved=JSON.parse(localStorage.getItem(storage)||"[]");if(Array.isArray(saved))cart=saved.filter(x=>catalog.some(p=>p.sku===x.sku)&&Number.isInteger(x.quantity)&&x.quantity>0&&x.quantity<=20).slice(0,30)}catch{}
