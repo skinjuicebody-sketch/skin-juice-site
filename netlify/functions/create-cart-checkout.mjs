@@ -35,10 +35,15 @@ export default async function handler(req){
   params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]","usd");
   params.append("shipping_options[0][shipping_rate_data][display_name]","Free U.S. shipping");
   let total=0;
+  let giftBoxes=0;
   items.forEach((item,i)=>{
    if(!item||!Number.isInteger(item.quantity)||item.quantity<1||item.quantity>20)throw Error("Invalid quantity.");
    total+=item.quantity;if(total>30)throw Error("Maximum 30 items per order.");
-   const sku=String(item.sku||"");const price=prices[sku];if(!price&&sku!=="SS-LIPSEAL-6"&&!featuredPrices[sku])throw Error("Unknown product.");
+   const sku=String(item.sku||"");
+   const giftBoxQuantity=item.giftBoxQuantity===undefined?0:item.giftBoxQuantity;
+   if(!Number.isInteger(giftBoxQuantity)||giftBoxQuantity<0||giftBoxQuantity>item.quantity||(giftBoxQuantity>0&&sku!=="SS-GIFT-COMPLETE"))throw Error("Invalid luxury gift box quantity.");
+   giftBoxes+=giftBoxQuantity;
+   const price=prices[sku];if(!price&&sku!=="SS-LIPSEAL-6"&&!featuredPrices[sku])throw Error("Unknown product.");
    if(price)params.append(`line_items[${i}][price]`,price);
    else if(featuredPrices[sku]){const fp=featuredPrices[sku];params.append(`line_items[${i}][price_data][currency]`,"usd");params.append(`line_items[${i}][price_data][unit_amount]`,String(fp.cents));params.append(`line_items[${i}][price_data][product_data][name]`,fp.name)}
    else {
@@ -49,10 +54,18 @@ export default async function handler(req){
    params.append(`line_items[${i}][quantity]`,String(item.quantity));
    const choices=Array.isArray(item.scents)?item.scents:[];
    if(choices.length>12||choices.some(v=>typeof v!=="string"||v.length>80))throw Error("Invalid scent selections.");
-   const note=sku+" x"+item.quantity+(choices.length?" — "+choices.join(", "):"");
+   const note=sku+" x"+item.quantity+(choices.length?" — "+choices.join(", "):"")+(giftBoxQuantity?" — Luxury gift box x"+giftBoxQuantity:"");
    if(note.length>490)throw Error("Please shorten scent selections.");
    params.append(`metadata[item_${i+1}]`,note);
   });
+  if(giftBoxes){
+   const i=items.length;
+   params.append(`line_items[${i}][price_data][currency]`,"usd");
+   params.append(`line_items[${i}][price_data][unit_amount]`,"700");
+   params.append(`line_items[${i}][price_data][product_data][name]`,"SkinSessed Luxury Black Gift Box with Ribbon");
+   params.append(`line_items[${i}][quantity]`,String(giftBoxes));
+   params.append("metadata[luxury_gift_box_quantity]",String(giftBoxes));
+  }
   const result=await fetch("https://api.stripe.com/v1/checkout/sessions",{method:"POST",headers:{"Authorization":"Bearer "+key,"Content-Type":"application/x-www-form-urlencoded",...(checkoutAttemptId?{"Idempotency-Key":"skinsessed-cart-"+checkoutAttemptId}:{})},body:params.toString()});
   const data=await result.json();if(!result.ok||!data.url){console.error("Stripe Checkout session failed",result.status,data?.error?.type||"",data?.error?.code||"",data?.error?.message||"");throw Error("Stripe checkout error: "+(data?.error?.message||"Request rejected")+" (HTTP "+result.status+").")}
   if(req.headers.get("content-type")?.includes("application/x-www-form-urlencoded"))return Response.redirect(data.url,303);

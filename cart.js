@@ -39,13 +39,16 @@ const catalog=[
 ].map(([sku,name,cents,slug,choices])=>({sku,name,cents,slug,choices}));
 const scents=["Birthday Cake","Banana Pudding","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla Swirl","Chocolate Crème Truffle","Cinnamon Apples","Cranberry Cheesecake","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue","Mahogany Teakwood","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
 const money=n=>"$"+(n/100).toFixed(2);
+const giftBoxCents=700;
+const giftBoxCount=item=>item.sku==="SS-GIFT-COMPLETE"&&Number.isInteger(item.giftBoxQuantity)?Math.max(0,Math.min(item.quantity,item.giftBoxQuantity)):0;
+const itemCents=item=>catalog.find(p=>p.sku===item.sku).cents*item.quantity+giftBoxCents*giftBoxCount(item);
 const storage="skinsessed-cart-v1";
 const checkoutAttemptStorage="skinsessed-checkout-attempt-v1";
 const checkoutSucceeded=new URLSearchParams(location.search).get("checkout")==="success";
 // A completed Stripe redirect means this cart was purchased. Don't offer it for payment again.
 if(checkoutSucceeded){try{localStorage.removeItem(storage);localStorage.removeItem(checkoutAttemptStorage)}catch{}}
 function getCheckoutAttemptId(){
- const signature=JSON.stringify(cart.map(item=>({sku:item.sku,quantity:item.quantity,scents:item.scents||[]})));
+ const signature=JSON.stringify(cart.map(item=>({sku:item.sku,quantity:item.quantity,scents:item.scents||[],giftBoxQuantity:giftBoxCount(item)})));
  let previous=null;
  try{previous=JSON.parse(localStorage.getItem(checkoutAttemptStorage)||"null")}catch{}
  const age=Date.now()-Number(previous?.created||0);
@@ -79,7 +82,7 @@ const box=document.createElement("div");box.className="ss-cart-box";panel.append
 const launch=document.createElement("button");launch.className="ss-cart-launch";launch.type="button";document.body.append(launch);
 launch.onclick=()=>{panel.classList.add("open");render()};panel.onclick=e=>{if(e.target===panel)panel.classList.remove("open")};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")panel.classList.remove("open")});
-function add(product){const bw=product.sku==="SS-BODYWASH-16";const selected=bw?document.querySelector("#body-wash-scent")?.value||"":"";if(bw&&!selected){const note=document.querySelector("#body-wash-feedback");if(note)note.textContent="Please choose a scent before adding to your cart.";document.querySelector("#body-wash-scent")?.focus();return}const current=cart.find(x=>x.sku===product.sku&&(!bw||x.scents?.[0]===selected));if(current){if(current.quantity<20)current.quantity++}else{cart.push({sku:product.sku,quantity:1,scents:bw?[selected]:Array(product.choices).fill("")})}save();panel.classList.add("open")}
+function add(product){const requestedGiftBox=product.sku==="SS-GIFT-COMPLETE"&&document.querySelector("#gift-packaging")?.value==="luxury"?1:0;const bw=product.sku==="SS-BODYWASH-16";const selected=bw?document.querySelector("#body-wash-scent")?.value||"":"";if(bw&&!selected){const note=document.querySelector("#body-wash-feedback");if(note)note.textContent="Please choose a scent before adding to your cart.";document.querySelector("#body-wash-scent")?.focus();return}const current=cart.find(x=>x.sku===product.sku&&(!bw||x.scents?.[0]===selected));if(current){if(current.quantity<20){const previousBoxes=giftBoxCount(current);current.quantity++;if(product.sku==="SS-GIFT-COMPLETE")current.giftBoxQuantity=previousBoxes+requestedGiftBox}}else{cart.push({sku:product.sku,quantity:1,scents:bw?[selected]:Array(product.choices).fill(""),...(product.sku==="SS-GIFT-COMPLETE"?{giftBoxQuantity:requestedGiftBox}:{})})}save();panel.classList.add("open")}
 // Explicit product buttons do not rely on replacing a navigation link.
 document.addEventListener("click",event=>{
   const button=event.target.closest?.("[data-ss-cart-sku]");
@@ -97,15 +100,22 @@ const subtitle=document.createElement("p");subtitle.className="ss-cart-muted";su
 if(!cart.length){const p=document.createElement("p");p.textContent="Your cart is empty.";box.append(p);return}
 cart.forEach((item,index)=>{
 const p=catalog.find(x=>x.sku===item.sku);const wrap=document.createElement("div");wrap.className="ss-cart-item";
-const title=document.createElement("strong");title.textContent=p.name+" — "+money(p.cents*item.quantity);wrap.append(title);
-const label=document.createElement("label");label.textContent="Quantity: ";const qty=document.createElement("input");qty.type="number";qty.min=1;qty.max=20;qty.value=item.quantity;qty.setAttribute("aria-label","Quantity for "+p.name);qty.onchange=()=>{item.quantity=Math.max(1,Math.min(20,parseInt(qty.value,10)||1));save()};label.append(qty);wrap.append(label);
+const title=document.createElement("strong");title.textContent=p.name+" — "+money(itemCents(item));wrap.append(title);
+const label=document.createElement("label");label.textContent="Quantity: ";const qty=document.createElement("input");qty.type="number";qty.min=1;qty.max=20;qty.value=item.quantity;qty.setAttribute("aria-label","Quantity for "+p.name);qty.onchange=()=>{item.quantity=Math.max(1,Math.min(20,parseInt(qty.value,10)||1));if(item.sku==="SS-GIFT-COMPLETE")item.giftBoxQuantity=giftBoxCount(item);save()};label.append(qty);wrap.append(label);
 const remove=document.createElement("button");remove.textContent="Remove";remove.onclick=()=>{cart.splice(index,1);save()};wrap.append(remove);
+if(item.sku==="SS-GIFT-COMPLETE"){
+ const packaging=document.createElement("label");packaging.textContent="Gift packaging:";
+ const select=document.createElement("select");select.setAttribute("aria-label","Number of luxury gift boxes");
+ for(let n=0;n<=item.quantity;n++){const option=document.createElement("option");option.value=String(n);option.textContent=n===0?"Standard packaging (included)":n===1?"1 luxury black gift box (+$7.00)":n+" luxury black gift boxes (+"+money(n*giftBoxCents)+")";select.append(option)}
+ select.value=String(giftBoxCount(item));select.onchange=()=>{item.giftBoxQuantity=Number(select.value);save()};packaging.append(select);wrap.append(packaging);
+ const note=document.createElement("p");note.className="ss-cart-muted";note.textContent="Elegant black gift box finished with ribbon. Optional $7.00 per gift set.";wrap.append(note);
+}
 if(p.choices){const note=document.createElement("p");note.className="ss-cart-muted";note.textContent=p.choices===1?"Choose a scent for this product:":"Choose "+p.choices+" scents (one per included item):";wrap.append(note);
 if(!Array.isArray(item.scents))item.scents=[];for(let j=0;j<p.choices;j++){const sel=document.createElement("select");sel.setAttribute("aria-label","Scent "+(j+1)+" for "+p.name);const placeholder=document.createElement("option");placeholder.textContent="Select scent "+(j+1);placeholder.value="";sel.append(placeholder);scents.forEach(name=>{const opt=document.createElement("option");opt.value=name;opt.textContent=name;sel.append(opt)});sel.value=item.scents[j]||"";sel.onchange=()=>{item.scents[j]=sel.value;localStorage.setItem(storage,JSON.stringify(cart))};wrap.append(sel)}}
 box.append(wrap)
 });
-const total=document.createElement("h2");total.textContent="Subtotal: "+money(cart.reduce((n,x)=>n+catalog.find(p=>p.sku===x.sku).cents*x.quantity,0));box.append(total);
-const emergency=document.createElement("div");emergency.className="ss-cart-item";const emTitle=document.createElement("strong");emTitle.textContent="Secure Stripe Checkout — Order Now";emergency.append(emTitle);const emNote=document.createElement("p");emNote.className="ss-cart-muted";emNote.textContent="Pay securely now. Each product opens a separate Stripe checkout. Confirm the price, quantities, and any scent options on the payment page before paying.";emergency.append(emNote);cart.forEach(item=>{const p=catalog.find(x=>x.sku===item.sku);const url=directCheckoutLinks[item.sku];if(!url)return;const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Buy "+p.name+" — "+money(p.cents)+" each";a.style.cssText="display:block;margin:9px 0;padding:12px;background:#a9284d;color:white;border-radius:8px;text-align:center;text-decoration:none;font-size:16px";emergency.append(a)});box.append(emergency);const checkout=document.createElement("button");checkout.className="ss-cart-checkout";checkout.textContent="Secure Checkout — All Items";const status=document.createElement("p");status.className="ss-cart-muted";status.setAttribute("role","status");box.append(checkout,status);
+const total=document.createElement("h2");total.textContent="Subtotal: "+money(cart.reduce((n,x)=>n+itemCents(x),0));box.append(total);
+const emergency=document.createElement("div");emergency.className="ss-cart-item";const emTitle=document.createElement("strong");emTitle.textContent="Secure Stripe Checkout — Order Now";emergency.append(emTitle);const emNote=document.createElement("p");emNote.className="ss-cart-muted";emNote.textContent="Pay securely now. Each product opens a separate Stripe checkout. Confirm the price, quantities, and any scent options on the payment page before paying.";emergency.append(emNote);cart.forEach(item=>{const p=catalog.find(x=>x.sku===item.sku);const url=directCheckoutLinks[item.sku];if(!url||giftBoxCount(item)>0)return;const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Buy "+p.name+" — "+money(p.cents)+" each";a.style.cssText="display:block;margin:9px 0;padding:12px;background:#a9284d;color:white;border-radius:8px;text-align:center;text-decoration:none;font-size:16px";emergency.append(a)});if(!cart.some(item=>giftBoxCount(item)>0))box.append(emergency);const checkout=document.createElement("button");checkout.className="ss-cart-checkout";checkout.textContent="Secure Checkout — All Items";const status=document.createElement("p");status.className="ss-cart-muted";status.setAttribute("role","status");box.append(checkout,status);
 let checkoutInProgress=false;
 checkout.onclick=()=>{
  if(checkoutInProgress)return;
