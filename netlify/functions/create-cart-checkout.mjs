@@ -56,6 +56,7 @@ export default async function handler(req){
    const choices=Array.isArray(item.scents)?item.scents:[];
    if(choices.length>12||choices.some(v=>typeof v!=="string"||v.length>80))throw Error("Invalid scent selections.");
    if(sku==="SS-LIPSEAL-6"&&(choices.length!==6||choices.some(v=>!lipSealFlavors.includes(v))))throw Error("Choose six approved Lip Seal flavors before checkout.");
+   if(sku==="SS-BODYWASH-16"&&(choices.length!==1||!["Banana Pudding","Birthday Cake","Blueberry Pound Cake","Cherry Vanilla Swirl","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue Pie","Malibu Rum Cupcakes","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"].includes(choices[0])))throw Error("Choose an available body wash fragrance before checkout.");
    const note=sku+" x"+item.quantity+(choices.length?" — "+choices.join(", "):"")+(giftBoxQuantity?" — Luxury gift box x"+giftBoxQuantity:"");
    if(note.length>490)throw Error("Please shorten scent selections.");
    params.append(`metadata[item_${i+1}]`,note);

@@ -9,7 +9,6 @@ const directCheckoutLinks={
 "SS-LIQSAT-2":"https://buy.stripe.com/4gMdRb5PP7YKf8c34V6sw08",
 "SS-BALM-1":"https://buy.stripe.com/7sYdRb4LL5QC4tyfRH6sw09",
 "SS-GIFT-COMPLETE":"https://buy.stripe.com/7sY00l0vv7YK4ty48Z6sw0a",
-"SS-SOAP-5":"https://buy.stripe.com/8x26oJ4LLdj42lq8pf6sw04",
 "SS-BLISS-4":"https://buy.stripe.com/8x26oJ4LLdj42lq8pf6sw04",
 "SS-FIRM-6":"https://buy.stripe.com/14AcN70vvdj4bW048Z6sw05",
 "SS-FIRM-10":"https://buy.stripe.com/7sY00l4LL1Am9NS0WN6sw06",
@@ -35,9 +34,11 @@ const catalog=[
 ["SS-LIPSEAL-6","6 Lip Seals Lip Balm Collection",1750,"lip-seal-6-pack",6],
 ["SS-BODYWASH-16","16 oz Deep Hydration Body Wash",1595,"deep-hydration-body-wash-16oz",1]
 ].map(([sku,name,cents,slug,choices])=>({sku,name,cents,slug,choices}));
-const scents=["Birthday Cake","Banana Pudding","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla Swirl","Chocolate Crème Truffle","Cinnamon Apples","Cranberry Cheesecake","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue","Mahogany Teakwood","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
+const scents=["Birthday Cake","Banana Pudding","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla Swirl","Chocolate Crème Truffle","Cinnamon Apples","Cranberry Cheesecake","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue Pie","Mahogany Teakwood","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
 const lipSealFlavors=["Banana Pudding","Birthday Cake","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla","Chocolate Cream Truffle","Frosted Mint","Kiwi Watermelon","Lemon Meringue Pie","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk and Honey","Orange Chiffon Cake","Peaches and Cream","Raspberry Mimosa"];
-const optionsFor=p=>p.sku==="SS-LIPSEAL-6"?lipSealFlavors:scents;
+const bodyWashScents=["Banana Pudding","Birthday Cake","Blueberry Pound Cake","Cherry Vanilla Swirl","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue Pie","Malibu Rum Cupcakes","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
+const giftSetScents=["Cucumber Melon","Oatmeal Milk & Honey","Peaches & Cream","Blueberry Pound Cake"];
+const optionsFor=p=>p.sku==="SS-LIPSEAL-6"?lipSealFlavors:p.sku==="SS-BODYWASH-16"?bodyWashScents:p.sku==="SS-GIFT-COMPLETE"?giftSetScents:scents;
 const money=n=>"$"+(n/100).toFixed(2);
 const giftBoxCents=700;
 const giftBoxCount=item=>item.sku==="SS-GIFT-COMPLETE"&&Number.isInteger(item.giftBoxQuantity)?Math.max(0,Math.min(item.quantity,item.giftBoxQuantity)):0;
@@ -121,7 +122,7 @@ checkout.onclick=()=>{
  if(checkoutInProgress)return;
  for(const item of cart){
    const p=catalog.find(x=>x.sku===item.sku);
-   if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>p.sku==="SS-LIPSEAL-6"?!lipSealFlavors.includes(s):!s)||item.scents.length<p.choices)){
+   if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!optionsFor(p).includes(s))||item.scents.length<p.choices)){
      status.textContent="Please choose all required scents for "+p.name+".";return;
    }
  }

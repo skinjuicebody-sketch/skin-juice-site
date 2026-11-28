@@ -22,7 +22,7 @@ const PRODUCT_NAMES: Record<string, string> = {
   'SS-SECOND-10': '10 oz Second Skin Moisturizer',
   'SS-BALM-1': '1 oz Dessert Balm Glide Stick',
   'SS-GIFT-COMPLETE': 'Complete SkinSessed Gift Set',
-  'SS-SOAP-3': '3 Palm-Size Goat Milk Soap Bars',
+  'SS-SOAP-3': '5 Palm-Size Goat Milk Soap Bars',
   'SS-SOAP-5': '5 Palm-Size Goat Milk Soap Bars',
   'SS-BLISS-4': '4 Sculpted Bliss Massage Bars',
   'SS-LIPSEAL-6': '6 Lip Seals Lip Balm Collection',
@@ -34,7 +34,7 @@ const SCENTED_IDS = new Set([
 ]);
 
 const SCENT_OPTIONS = [
-  'Banana Cream Pie',
+  'Banana Pudding',
   'Birthday Cake',
   'Black Cherry Merlot',
   'Blueberry Pound Cake',
@@ -73,7 +73,7 @@ function parseProducts(raw: string): CartItem[] {
 
 function getScentCount(id: string): number {
   if (id === 'SS-GIFT-COMPLETE') return 5;
-  if (id === 'SS-SOAP-3') return 3;
+  if (id === 'SS-SOAP-3') return 5;
   if (id === 'SS-SOAP-5') return 5;
   if (id === 'SS-BLISS-4') return 4;
   if (id === 'SS-LIPSEAL-6') return 6;
