@@ -13,7 +13,6 @@ const directCheckoutLinks={
 "SS-BLISS-4":"https://buy.stripe.com/8x26oJ4LLdj42lq8pf6sw04",
 "SS-FIRM-6":"https://buy.stripe.com/14AcN70vvdj4bW048Z6sw05",
 "SS-FIRM-10":"https://buy.stripe.com/7sY00l4LL1Am9NS0WN6sw06",
-"SS-LIPSEAL-6":"https://buy.stripe.com/00waEZguta6SaRW34V6sw0c",
 "SS-SOAP-5":"https://buy.stripe.com/7sYbJ37XXgvggcg5d36sw03",
 };
 // Cart must initialize independently; checkout errors are shown only when purchasing.
@@ -37,6 +36,8 @@ const catalog=[
 ["SS-BODYWASH-16","16 oz Deep Hydration Body Wash",1595,"deep-hydration-body-wash-16oz",1]
 ].map(([sku,name,cents,slug,choices])=>({sku,name,cents,slug,choices}));
 const scents=["Birthday Cake","Banana Pudding","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla Swirl","Chocolate Crème Truffle","Cinnamon Apples","Cranberry Cheesecake","Cucumber Melon","Fresh Clean Linen","Frosted Eucalyptus Mint","Kiwi Watermelon","Lemon Meringue","Mahogany Teakwood","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk & Honey","Orange Chiffon Cake","Peaches & Cream","Raspberry Mimosa"];
+const lipSealFlavors=["Banana Pudding","Birthday Cake","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla","Chocolate Cream Truffle","Frosted Mint","Kiwi Watermelon","Lemon Meringue Pie","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk and Honey","Orange Chiffon Cake","Peaches and Cream","Raspberry Mimosa"];
+const optionsFor=p=>p.sku==="SS-LIPSEAL-6"?lipSealFlavors:scents;
 const money=n=>"$"+(n/100).toFixed(2);
 const giftBoxCents=700;
 const giftBoxCount=item=>item.sku==="SS-GIFT-COMPLETE"&&Number.isInteger(item.giftBoxQuantity)?Math.max(0,Math.min(item.quantity,item.giftBoxQuantity)):0;
@@ -110,17 +111,17 @@ if(item.sku==="SS-GIFT-COMPLETE"){
  const note=document.createElement("p");note.className="ss-cart-muted";note.textContent="Elegant black gift box finished with ribbon. Optional $7.00 per gift set.";wrap.append(note);
 }
 if(p.choices){const note=document.createElement("p");note.className="ss-cart-muted";note.textContent=p.choices===1?"Choose a scent for this product:":"Choose "+p.choices+" scents (one per included item):";wrap.append(note);
-if(!Array.isArray(item.scents))item.scents=[];for(let j=0;j<p.choices;j++){const sel=document.createElement("select");sel.setAttribute("aria-label","Scent "+(j+1)+" for "+p.name);const placeholder=document.createElement("option");placeholder.textContent="Select scent "+(j+1);placeholder.value="";sel.append(placeholder);scents.forEach(name=>{const opt=document.createElement("option");opt.value=name;opt.textContent=name;sel.append(opt)});sel.value=item.scents[j]||"";sel.onchange=()=>{item.scents[j]=sel.value;localStorage.setItem(storage,JSON.stringify(cart))};wrap.append(sel)}}
+if(!Array.isArray(item.scents))item.scents=[];for(let j=0;j<p.choices;j++){const sel=document.createElement("select");sel.setAttribute("aria-label",(p.sku==="SS-LIPSEAL-6"?"Lip Seal ":"Scent ")+(j+1)+" for "+p.name);const placeholder=document.createElement("option");placeholder.textContent=(p.sku==="SS-LIPSEAL-6"?"Select Lip Seal flavor ":"Select scent ")+(j+1);placeholder.value="";sel.append(placeholder);optionsFor(p).forEach(name=>{const opt=document.createElement("option");opt.value=name;opt.textContent=name;sel.append(opt)});if(!optionsFor(p).includes(item.scents[j]))item.scents[j]="";sel.value=item.scents[j]||"";sel.onchange=()=>{item.scents[j]=sel.value;localStorage.setItem(storage,JSON.stringify(cart))};wrap.append(sel)}}
 box.append(wrap)
 });
 const total=document.createElement("h2");total.textContent="Subtotal: "+money(cart.reduce((n,x)=>n+itemCents(x),0));box.append(total);
-const emergency=document.createElement("div");emergency.className="ss-cart-item";const emTitle=document.createElement("strong");emTitle.textContent="Secure Stripe Checkout — Order Now";emergency.append(emTitle);const emNote=document.createElement("p");emNote.className="ss-cart-muted";emNote.textContent="Pay securely now. Each product opens a separate Stripe checkout. Confirm the price, quantities, and any scent options on the payment page before paying.";emergency.append(emNote);cart.forEach(item=>{const p=catalog.find(x=>x.sku===item.sku);const url=directCheckoutLinks[item.sku];if(!url||giftBoxCount(item)>0)return;const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Buy "+p.name+" — "+money(p.cents)+" each";a.style.cssText="display:block;margin:9px 0;padding:12px;background:#a9284d;color:white;border-radius:8px;text-align:center;text-decoration:none;font-size:16px";emergency.append(a)});if(!cart.some(item=>giftBoxCount(item)>0))box.append(emergency);const checkout=document.createElement("button");checkout.className="ss-cart-checkout";checkout.textContent="Secure Checkout — All Items";const status=document.createElement("p");status.className="ss-cart-muted";status.setAttribute("role","status");box.append(checkout,status);
+const emergency=document.createElement("div");emergency.className="ss-cart-item";const emTitle=document.createElement("strong");emTitle.textContent="Secure Stripe Checkout — Order Now";emergency.append(emTitle);const emNote=document.createElement("p");emNote.className="ss-cart-muted";emNote.textContent="Pay securely now. Each product opens a separate Stripe checkout. Confirm the price, quantities, and any scent options on the payment page before paying.";emergency.append(emNote);cart.forEach(item=>{const p=catalog.find(x=>x.sku===item.sku);const url=directCheckoutLinks[item.sku];if(!url||giftBoxCount(item)>0)return;const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Buy "+p.name+" — "+money(p.cents)+" each";a.style.cssText="display:block;margin:9px 0;padding:12px;background:#a9284d;color:white;border-radius:8px;text-align:center;text-decoration:none;font-size:16px";emergency.append(a)});if(emergency.querySelector("a")&&!cart.some(item=>giftBoxCount(item)>0))box.append(emergency);const checkout=document.createElement("button");checkout.className="ss-cart-checkout";checkout.textContent="Secure Checkout — All Items";const status=document.createElement("p");status.className="ss-cart-muted";status.setAttribute("role","status");box.append(checkout,status);
 let checkoutInProgress=false;
 checkout.onclick=()=>{
  if(checkoutInProgress)return;
  for(const item of cart){
    const p=catalog.find(x=>x.sku===item.sku);
-   if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>!s)||item.scents.length<p.choices)){
+   if(p.choices&&(!Array.isArray(item.scents)||item.scents.slice(0,p.choices).some(s=>p.sku==="SS-LIPSEAL-6"?!lipSealFlavors.includes(s):!s)||item.scents.length<p.choices)){
      status.textContent="Please choose all required scents for "+p.name+".";return;
    }
  }

@@ -37,7 +37,8 @@
 </main>
 <script>
 (function(){
-  const target = 'https://skinsessed-checkout.netlify.app/checkout' + window.location.search;
+  const hasLipSeal=(new URLSearchParams(window.location.search).get('products')||'').split(',').some(item=>item.split(':')[0].trim()==='SS-LIPSEAL-6');
+  const target = (hasLipSeal?'https://skinsessed-public-checkout.netlify.app/checkout':'https://skinsessed-checkout.netlify.app/checkout') + window.location.search;
   window.location.replace(target);
 })();
 </script>

@@ -54,6 +54,11 @@ const SCENT_OPTIONS = [
   'Raspberry Mimosa',
 ];
 
+const LIP_SEAL_FLAVORS = ["Banana Pudding","Birthday Cake","Black Cherry Merlot","Blueberry Pound Cake","Caramel Nut Muffin","Cherry Vanilla","Chocolate Cream Truffle","Frosted Mint","Kiwi Watermelon","Lemon Meringue Pie","Malibu Rum Cupcakes","Maple Pecan","Oatmeal Milk and Honey","Orange Chiffon Cake","Peaches and Cream","Raspberry Mimosa"];
+function optionsForSlot(id: string, slot: number): string[] {
+  return id === "SS-LIPSEAL-6" || (id === "SS-GIFT-COMPLETE" && slot === 5) ? LIP_SEAL_FLAVORS : SCENT_OPTIONS;
+}
+
 type CartItem = { id: string; qty: number };
 type ScentSpec = { key: string; label: string; required: boolean; options: string[] };
 
@@ -92,7 +97,6 @@ function getScentSpecs(items: CartItem[]): ScentSpec[] {
     if (!SCENTED_IDS.has(item.id)) return;
     const perUnit = getScentCount(item.id);
     const slotLabels = getScentSlotLabels(item.id);
-    const options = SCENT_OPTIONS;
     for (let unit = 1; unit <= item.qty; unit += 1) {
       for (let slot = 1; slot <= perUnit; slot += 1) {
         const detail = slotLabels[slot - 1] ? ', ' + slotLabels[slot - 1] : '';
@@ -100,7 +104,7 @@ function getScentSpecs(items: CartItem[]): ScentSpec[] {
           key: 'scent-' + itemIndex + '-' + unit + '-' + slot,
           label: (PRODUCT_NAMES[item.id] || item.id) + ' #' + unit + detail,
           required: true,
-          options,
+          options: optionsForSlot(item.id, slot),
         });
       }
     }
@@ -121,6 +125,7 @@ function buildScentPage(rawProducts: string, items: CartItem[]): string {
     name: PRODUCT_NAMES[item.id] || item.id,
     scentCount: SCENTED_IDS.has(item.id) ? getScentCount(item.id) : 0,
     options: SCENT_OPTIONS,
+    slotOptions: Array.from({ length: getScentCount(item.id) }, (_, index) => optionsForSlot(item.id, index + 1)),
     slotLabels: getScentSlotLabels(item.id),
   }));
   const json = JSON.stringify(config).replace(/</g, '\\u003c');
@@ -165,7 +170,7 @@ function buildScentPage(rawProducts: string, items: CartItem[]): string {
     'let suffix=item.scentCount>1&&item.slotLabels[slot-1]?" · "+item.slotLabels[slot-1]:"";label.textContent=item.name+" #"+unit+suffix+" — choose scent";box.appendChild(label);' +
     'const select=document.createElement("select");select.id=key;select.name=key;select.required=true;' +
     'const blank=document.createElement("option");blank.value="";blank.textContent="Select a scent";select.appendChild(blank);' +
-    'item.options.forEach(function(option){const opt=document.createElement("option");opt.value=option;opt.textContent=option;select.appendChild(opt);});' +
+    '(item.slotOptions[slot-1]||item.options).forEach(function(option){const opt=document.createElement("option");opt.value=option;opt.textContent=option;select.appendChild(opt);});' +
     'if(prior[key])select.value=prior[key];box.appendChild(select);row.appendChild(box);}}}host.appendChild(row);});' +
     'if(count>48){error.textContent="This order has more than 48 scent selections. Please split it into two checkouts.";form.querySelector("button").disabled=true;}else{error.textContent="";form.querySelector("button").disabled=false;}}' +
     'render();form.addEventListener("submit",async function(event){event.preventDefault();error.textContent="";const button=form.querySelector("button");button.disabled=true;button.textContent="Preparing secure checkout…";' +
