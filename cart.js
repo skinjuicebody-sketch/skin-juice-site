@@ -30,7 +30,6 @@ const catalog=[
 ["SS-BLUEBERRY-4","Blueberry Pound Cake Set of Four Full-Size Goat Milk Soap Bars",1995,"blueberry-pound-cake-4-bars",0],
 ["SS-RASPBERRY-4","Raspberry Mimosa Set of Four Full-Size Goat Milk Soap Bars",1995,"raspberry-mimosa-4-bars",0],
 ["SS-CHERRY-BRULEE-3","Cherry Crème Brûlée Set of Three Full-Size Goat Milk Soap Bars",1575,"cherry-creme-brulee-3-bars",0],
-["SS-CHOC-MINT-4","Chocolate Mint Chip Limited Edition 4-Bar Goat Milk Soap Set",1995,"chocolate-mint-chip-4-bars",0],
 ["SS-BLISS-4","4 Sculpted Bliss Massage Bars",1599,"sculpted-bliss-4-pack",4],
 ["SS-FIRM-6","6 oz Firming Complex",1499,"firming-complex-6oz",0],
 ["SS-FIRM-10","10 oz Firming Complex",2199,"firming-complex-10oz",0],
